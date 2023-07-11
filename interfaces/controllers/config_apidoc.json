@@ -1,0 +1,14 @@
+{
+    "name": "Mostik",
+    "version": "0.1.0",
+    "description": "Описание документации по инфтерфейсу REST API",
+    "title": "Custom apiDoc browser title",
+    "url": "http://127.0.0.1:3423",
+    "header": {
+        "title": "Введение",
+        "filename": "header.md"
+    },
+    "footer": {
+        "filename": "footer.md"
+    }
+}

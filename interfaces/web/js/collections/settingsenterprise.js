@@ -1,0 +1,28 @@
+var SettingsEnterpriseCollection = Backbone.Collection.extend({
+  model: SettingsEnterpriseModel,
+});
+var SettingsEnterpriseCollectionPages = Backbone.Model.extend({
+    default : {
+      data : new SettingsEnterpriseCollection(),
+      meta : {},
+      pages : new PaginationCollection()
+    },
+    parse: function (response, options) {
+      let output = { data: new SettingsEnterpriseCollection(), meta: response.meta, pages: new PaginationCollection() }
+      response.data.forEach(d => {
+        output.data.add(new SettingsEnterpriseModel(d))
+      });
+      response.pages.forEach(p => {
+        output.pages.add(new PaginationModel(p))
+      });
+      return output
+    },
+    url: function () {
+      if(!this.attributes.pages){
+        return '/api/settingsenterprise/all'
+        }
+      var searchParams = new URLSearchParams(window.location.search);
+      searchParams.set("page", this.get('pages').find(p => p.get('is_active')).get('number'));
+      return '/api/settingsenterprise/all?' + searchParams.toString()
+    }
+  });

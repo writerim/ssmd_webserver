@@ -1,0 +1,99 @@
+{
+  "name": "web_server",
+  "version": "1.0.7",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "watch": "npm-watch",
+    "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",
+    "start": "node index.js",
+    "test": "SET NODE_ENV=test && mocha --timeout 10000 --colors ./repositories/**/*.test.js ./use_cases/**/*.test.js ./interfaces/controllers/**/*.test.js",
+    "test2": "SET NODE_ENV=test && mocha --timeout 10000 --colors  ./interfaces/controllers/**/*.test.js"
+  },
+  "apidoc": {
+    "header": {
+      "title": "Introduction",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "Best practices",
+      "filename": "footer.md"
+    }
+  },
+  "author": "Sergey Ivanov",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbuget/nodejs-clean-architecture-app.git"
+  },
+  "dependencies": {
+    "@sinonjs/referee-sinon": "^11.0.0",
+    "@types/sequelize": "^4.28.11",
+    "apidoc": "^0.54.0",
+    "apiserver": "^0.1.3",
+    "ava": "^4.3.1",
+    "axios": "^0.27.2",
+    "blipp": "^4.0.1",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^8.6.0",
+    "easy-table": "^1.2.0",
+    "expect.js": "^0.3.1",
+    "express": "^4.18.2",
+    "express-api-doc": "^0.0.12",
+    "express-handlebars": "^6.0.5",
+    "express-jsdoc-swagger": "^1.8.0",
+    "hapi-swagger": "^14.2.5",
+    "hbs": "^4.2.0",
+    "jest-mysql": "^1.1.10",
+    "jsonwebtoken": "^8.5.1",
+    "jsverify": "^0.8.4",
+    "knuth-shuffle": "^1.0.8",
+    "mariadb": "^3.0.0",
+    "moment": "^2.29.2",
+    "mongoose": "^5.13.14",
+    "mysql2": "^2.3.3",
+    "n": "^9.0.1",
+    "node-api-doc-generator": "^1.1.1",
+    "node-telegram-bot-api": "^0.59.0",
+    "npm-watch": "^0.11.0",
+    "openapi": "^1.0.1",
+    "pm2": "^5.2.2",
+    "randomstring": "^1.2.2",
+    "redoc-cli": "^0.13.21",
+    "request": "^2.88.2",
+    "require-directory": "^2.1.1",
+    "sequelize": "^5.22.5",
+    "sha1": "^1.1.1",
+    "sqlite3": "^5.0.11",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2",
+    "table": "^6.8.0",
+    "tedious": "^14.6.0",
+    "telegraf": "^4.8.2",
+    "uuid": "^8.3.2"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6.12"
+  },
+  "jest": {
+    "preset": "jest-mysql",
+    "collectCoverageFrom": [
+      "**/*.{js}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/coverage/**"
+    ],
+    "testURL": "http://localhost/"
+  },
+  "devDependencies": {
+    "sequelize-mock": "^0.10.2",
+    "sequelize-test-helpers": "^1.4.3",
+    "supertest": "^6.3.3"
+  }
+}
