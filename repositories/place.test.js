@@ -1,4 +1,4 @@
-                                     
+                                             
 
          
 
@@ -37,6 +37,8 @@ describe("repo: DB: Place", function () {
                                                             o['lft'] = 10
                                                             o['rgt'] = 10
                                                             o['icon'] = 'test'
+                                                            o['status'] = 10
+                                                            o['is_exclude'] = true
                             return PlaceAdd(o)
         .then(res => {
                                                 add_id = res.get('id')
@@ -50,7 +52,11 @@ describe("repo: DB: Place", function () {
                                         assert.equal(res.get('rgt'), 10)
                                             
                                     assert.equal(res.get('icon'), 'test')
-                                        })
+                                                
+                                        assert.equal(res.get('status'), 10)
+                                            
+                                    assert.equal(res.get('is_exclude'), true)
+                                    })
     })
 
     it('func Place GetAll. Получение всех записей', async function () {
@@ -67,7 +73,11 @@ describe("repo: DB: Place", function () {
                                                 assert.equal(res.get('rgt'), 10)
                                                         
                                             assert.equal(res.get('icon'), 'test')
-                                                    }
+                                                            
+                                                assert.equal(res.get('status'), 10)
+                                                        
+                                            assert.equal(res.get('is_exclude'), true)
+                                                }
         })
     })
 
@@ -87,7 +97,11 @@ describe("repo: DB: Place", function () {
                                         assert.equal(res.get('rgt'), 10)
                                             
                                     assert.equal(res.get('icon'), 'test')
-                                        })
+                                                
+                                        assert.equal(res.get('status'), 10)
+                                            
+                                    assert.equal(res.get('is_exclude'), true)
+                                    })
     })
 
 
@@ -101,6 +115,8 @@ describe("repo: DB: Place", function () {
                                                             o['lft'] = 54
                                                             o['rgt'] = 54
                                                             o['icon'] = 'test 2'
+                                                            o['status'] = 54
+                                                            o['is_exclude'] = false
                             
         return PlaceUpdate(o).then(res => {
                                                 assert.equal(res.get('id'), add_id)
@@ -114,6 +130,10 @@ describe("repo: DB: Place", function () {
                                     assert.equal(res.get('rgt'), 54)
                                             
                                     assert.equal(res.get('icon'), 'test 2')
+                                            
+                                    assert.equal(res.get('status'), 54)
+                                            
+                                    assert.equal(res.get('is_exclude'), false)
                                     })
     })
 

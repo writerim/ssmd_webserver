@@ -1,6 +1,6 @@
 // generated
 
-                                                        
+                                                            
 
 
 const { DataTypes, Op } = require('sequelize');
@@ -15,8 +15,8 @@ const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
             const ERROR_VALIDATE_NAME = 'error validate date name'
         const ERROR_VALIDATE_SETTINGSCONNECTIONS = 'error validate date settings_connections'
-                        const ERROR_VALIDATE_MODID = 'error validate date mod_id'
-             
+                    const ERROR_VALIDATE_MODID = 'error validate date mod_id'
+                     
 
 const initional = ()=>{
 
@@ -40,9 +40,6 @@ const initional = ()=>{
             GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'rgt', { 
                     type: DataTypes.INTEGER,
                 }, {  mustExist: false }).catch(()=>{});
-            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'place_id', { 
-                    type: DataTypes.INTEGER,
-                }, {  mustExist: false }).catch(()=>{});
             GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'utc', { 
                     type: DataTypes.INTEGER,
                 }, {  mustExist: false }).catch(()=>{});
@@ -54,6 +51,12 @@ const initional = ()=>{
                 }, {  mustExist: false }).catch(()=>{});
             GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'types', { 
                     type: DataTypes.JSON(DataTypes.STRING),
+                }, {  mustExist: false }).catch(()=>{});
+            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'status', { 
+                    type: DataTypes.INTEGER,
+                }, {  mustExist: false }).catch(()=>{});
+            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'is_exclude', { 
+                    type: DataTypes.BOOLEAN,
                 }, {  mustExist: false }).catch(()=>{});
         
     setTimeout(()=>{
@@ -82,9 +85,6 @@ const Device = GetConnect({name: 'Device' , deamon : initional}).define(TABLENAM
             rgt: {
                             type: DataTypes.INTEGER,
                                 },
-            place_id: {
-                            type: DataTypes.INTEGER,
-                                },
             utc: {
                             type: DataTypes.INTEGER,
                                 },
@@ -97,6 +97,12 @@ const Device = GetConnect({name: 'Device' , deamon : initional}).define(TABLENAM
             types: {
                             type: DataTypes.JSON(DataTypes.STRING),
                                 },
+            status: {
+                            type: DataTypes.INTEGER,
+                                },
+            is_exclude: {
+                            type: DataTypes.BOOLEAN,
+                                },
     })
 
 
@@ -104,7 +110,7 @@ const Device = GetConnect({name: 'Device' , deamon : initional}).define(TABLENAM
 const Add = async (data) => {
 
     let uniques_where = {}
-                                                                                                                                            if(Object.keys(uniques_where).length){
+                                                                                                                                                        if(Object.keys(uniques_where).length){
         return Device.findOne({
             where: uniques_where
         }).then(res=>{
@@ -173,7 +179,7 @@ const GetAll = async (params) => {
 
 const GetAllSerach = async (text, params) => {
     let filter_by_text = []
-                                                                                                                                            return Device.findAll({
+                                                                                                                                                        return Device.findAll({
         where : {
             [Op.or]: filter_by_text, ...params
         }
@@ -213,10 +219,10 @@ const Validate = (data) => {
                     if (!data.settings_connections) {
             return ERROR_VALIDATE_SETTINGSCONNECTIONS
         }
-                                                    if (!data.mod_id) {
+                                            if (!data.mod_id) {
             return ERROR_VALIDATE_MODID
         }
-                         
+                                         
 
     return ``
 }
@@ -357,8 +363,8 @@ DEVICE_ERROR_VALIDATE_INVALID_DATA: ERROR_VALIDATE_INVALID_DATA,
 DEVICE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
                             DEVICE_ERROR_VALIDATE_NAME: ERROR_VALIDATE_NAME,
                     DEVICE_ERROR_VALIDATE_SETTINGSCONNECTIONS: ERROR_VALIDATE_SETTINGSCONNECTIONS,
-                                                    DEVICE_ERROR_VALIDATE_MODID: ERROR_VALIDATE_MODID,
-                         
+                                            DEVICE_ERROR_VALIDATE_MODID: ERROR_VALIDATE_MODID,
+                                         
 
     DeviceGetAll: GetAll,
     DeviceGetAllCount: GetAllCount,

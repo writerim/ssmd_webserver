@@ -1,4 +1,4 @@
-                                     
+                                             
 
          
 
@@ -54,6 +54,8 @@ describe("use_cases: Place", function () {
                                                             o['lft'] = 10
                                                             o['rgt'] = 10
                                                             o['icon'] = 'test'
+                                                            o['status'] = 10
+                                                            o['is_exclude'] = true
                             return AddPlace(o,new User())
         .then(res => {
                                                 add_id = res.id
@@ -67,7 +69,11 @@ describe("use_cases: Place", function () {
                                         assert.equal(res.rgt, 10)
                                             
                                     assert.equal(res.icon, 'test')
-                                        })
+                                                
+                                        assert.equal(res.status, 10)
+                                            
+                                    assert.equal(res.is_exclude, true)
+                                    })
     })
 
     it('func Place GetAll. Получение всех записей', async function () {
@@ -84,7 +90,11 @@ describe("use_cases: Place", function () {
                                                 assert.equal(res.rgt, 10)
                                                         
                                             assert.equal(res.icon, 'test')
-                                                    }
+                                                            
+                                                assert.equal(res.status, 10)
+                                                        
+                                            assert.equal(res.is_exclude, true)
+                                                }
         })
     })
 
@@ -106,6 +116,10 @@ describe("use_cases: Place", function () {
                                     assert.equal(res.rgt, 10)
                                             
                                     assert.equal(res.icon, 'test')
+                                            
+                                    assert.equal(res.status, 10)
+                                            
+                                    assert.equal(res.is_exclude, true)
                                     })
     })
 
@@ -121,6 +135,8 @@ describe("use_cases: Place", function () {
                                                             o['lft'] = 54
                                                             o['rgt'] = 54
                                                             o['icon'] = 'test 2'
+                                                            o['status'] = 54
+                                                            o['is_exclude'] = false
                             
         return EditPlace(o,new User()).then(res => {
                                                 assert.equal(res.id, add_id)
@@ -134,6 +150,10 @@ describe("use_cases: Place", function () {
                                     assert.equal(res.rgt, 54)
                                             
                                     assert.equal(res.icon, 'test 2')
+                                            
+                                    assert.equal(res.status, 54)
+                                            
+                                    assert.equal(res.is_exclude, false)
                                     })
     })
 

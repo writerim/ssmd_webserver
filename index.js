@@ -57,7 +57,7 @@ const start = async () => {
                 partialsDir: ['interfaces/web/partials']
             }
         ))
-
+        
         app.set('view engine', 'hbs');
         app.use("/js", express.static('interfaces/web/js'));
         app.use("/css", express.static('interfaces/web/assets/css/'));
@@ -65,15 +65,14 @@ const start = async () => {
         app.use("/fonts", express.static('interfaces/web/assets/fonts/'));
         app.use("/admin/doc", express.static('interfaces/apidoc/index.html'));
         app.use("/admin/assets", express.static('interfaces/apidoc/assets'));
-        app.use("/assets", express.static('interfaces/web/static/assets'));
         app.set('views', path.join(__dirname, 'interfaces/web/pages'));
-
+        
 
 
         require('./interfaces/base_routing.js')(app);
         require('./interfaces/custom_base_routing.js')(app);
         require('./interfaces/admin_routing.js')(app);
-
+        
         app.use((err, req, res, next) => {
             res.status(500)
             res.end(JSON.stringify({ error: err.message }));

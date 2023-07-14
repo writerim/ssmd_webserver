@@ -6,6 +6,8 @@ var PlaceModel = Backbone.Model.extend({
                         lft : 0,
                         rgt : 0,
                         icon : '',
+                        status : 0,
+                        is_exclude : false,
           },
   url: function(){
     return '/api/place/' + this.get('id')

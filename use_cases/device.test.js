@@ -1,4 +1,4 @@
-                                                         
+                                                             
 
          
 
@@ -54,11 +54,12 @@ describe("use_cases: Device", function () {
                                                             o['settings_connections'] = {'foo':'bar'}
                                                             o['lft'] = 10
                                                             o['rgt'] = 10
-                                                            o['place_id'] = 10
                                                             o['utc'] = 10
                                                             o['mod_id'] = 10
                                                             o['time_settings'] = {'foo':'bar'}
                                                             o['types'] = ['a','b']
+                                                            o['status'] = 10
+                                                            o['is_exclude'] = true
                             return AddDevice(o,new User())
         .then(res => {
                                                 add_id = res.id
@@ -73,8 +74,6 @@ describe("use_cases: Device", function () {
                                             
                                         assert.equal(res.rgt, 10)
                                             
-                                        assert.equal(res.place_id, 10)
-                                            
                                         assert.equal(res.utc, 10)
                                             
                                         assert.equal(res.mod_id, 10)
@@ -82,6 +81,10 @@ describe("use_cases: Device", function () {
                                     assert.deepStrictEqual(res.time_settings, {'foo':'bar'})
                                             
                                     assert.deepStrictEqual(res.types, ['a','b'])
+                                            
+                                        assert.equal(res.status, 10)
+                                            
+                                    assert.equal(res.is_exclude, true)
                                     })
     })
 
@@ -100,8 +103,6 @@ describe("use_cases: Device", function () {
                                                         
                                                 assert.equal(res.rgt, 10)
                                                         
-                                                assert.equal(res.place_id, 10)
-                                                        
                                                 assert.equal(res.utc, 10)
                                                         
                                                 assert.equal(res.mod_id, 10)
@@ -109,6 +110,10 @@ describe("use_cases: Device", function () {
                                             assert.deepStrictEqual(res.time_settings, {'foo':'bar'})
                                                         
                                             assert.deepStrictEqual(res.types, ['a','b'])
+                                                        
+                                                assert.equal(res.status, 10)
+                                                        
+                                            assert.equal(res.is_exclude, true)
                                                 }
         })
     })
@@ -132,8 +137,6 @@ describe("use_cases: Device", function () {
                                             
                                     assert.equal(res.rgt, 10)
                                             
-                                    assert.equal(res.place_id, 10)
-                                            
                                     assert.equal(res.utc, 10)
                                             
                                     assert.equal(res.mod_id, 10)
@@ -141,6 +144,10 @@ describe("use_cases: Device", function () {
                                     assert.deepStrictEqual(res.time_settings, {'foo':'bar'})
                                             
                                     assert.deepStrictEqual(res.types, ['a','b'])
+                                            
+                                    assert.equal(res.status, 10)
+                                            
+                                    assert.equal(res.is_exclude, true)
                                     })
     })
 
@@ -156,11 +163,12 @@ describe("use_cases: Device", function () {
                                                             o['settings_connections'] = {'dd' : 'sss'}
                                                             o['lft'] = 54
                                                             o['rgt'] = 54
-                                                            o['place_id'] = 54
                                                             o['utc'] = 54
                                                             o['mod_id'] = 54
                                                             o['time_settings'] = {'dd' : 'sss'}
                                                             o['types'] = [1,2]
+                                                            o['status'] = 54
+                                                            o['is_exclude'] = false
                             
         return EditDevice(o,new User()).then(res => {
                                                 assert.equal(res.id, add_id)
@@ -175,8 +183,6 @@ describe("use_cases: Device", function () {
                                             
                                     assert.equal(res.rgt, 54)
                                             
-                                    assert.equal(res.place_id, 54)
-                                            
                                     assert.equal(res.utc, 54)
                                             
                                     assert.equal(res.mod_id, 54)
@@ -184,6 +190,10 @@ describe("use_cases: Device", function () {
                                     assert.deepStrictEqual(res.time_settings, {'dd' : 'sss'})
                                             
                                     assert.deepStrictEqual(res.types, [1,2])
+                                            
+                                    assert.equal(res.status, 54)
+                                            
+                                    assert.equal(res.is_exclude, false)
                                     })
     })
 

@@ -33,6 +33,8 @@ module.exports = {
 * @apiBody {Number} lft Левый указатель
 * @apiBody {Number} rgt Правый указатель
 * @apiBody {String} icon Иконка
+* @apiBody {Number} status Статус объекта
+* @apiBody {Boolean} is_exclude Исключен из опроса
 *
 * @apiSuccess {Number} id 
 * @apiSuccess {String} name Название точки
@@ -40,6 +42,8 @@ module.exports = {
 * @apiSuccess {Number} lft Левый указатель
 * @apiSuccess {Number} rgt Правый указатель
 * @apiSuccess {String} icon Иконка
+* @apiSuccess {Number} status Статус объекта
+* @apiSuccess {Boolean} is_exclude Исключен из опроса
 * @apiErrorExample Response (example):
 *     HTTP/1.1 200
 *     {
@@ -50,7 +54,7 @@ module.exports = {
 *       "error": "not fount row"
                 *       "error": "error validate date name",
                     *       "error": "error validate date parent_id",
-                                             
+                                                             
 *     }
 */
     ApiAddPlace (req, res, next) {
@@ -123,6 +127,8 @@ module.exports = {
 * @apiBody {Number} lft Левый указатель
 * @apiBody {Number} rgt Правый указатель
 * @apiBody {String} icon Иконка
+* @apiBody {Number} status Статус объекта
+* @apiBody {Boolean} is_exclude Исключен из опроса
 *
 *
 * @apiSuccess {Number} id=true 
@@ -131,6 +137,8 @@ module.exports = {
 * @apiSuccess {Number} lft=true Левый указатель
 * @apiSuccess {Number} rgt=true Правый указатель
 * @apiSuccess {String} icon Иконка
+* @apiSuccess {Number} status=true Статус объекта
+* @apiSuccess {Boolean} is_exclude Исключен из опроса
 * @apiErrorExample Response (example):
 *     HTTP/1.1 200
 *     {
@@ -141,7 +149,7 @@ module.exports = {
 *       "error": "not fount row"
                 *       "error": "error validate date name",
                     *       "error": "error validate date parent_id",
-                                             
+                                                             
 *     }
 */
     ApiEditPlace (req, res, next) {
@@ -223,6 +231,8 @@ module.exports = {
 * @apiSuccess {Number} data.lft Левый указатель
 * @apiSuccess {Number} data.rgt Правый указатель
 * @apiSuccess {String} data.icon Иконка
+* @apiSuccess {Number} data.status Статус объекта
+* @apiSuccess {Boolean} data.is_exclude Исключен из опроса
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -324,7 +334,7 @@ module.exports = {
 
     
 /**
-* @api {get} /api/place/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_parent_id=:filter_parent_id&?filters_by_lft=:filter_lft&?filters_by_rgt=:filter_rgt&?filters_by_icon=:filter_icon&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Места установки
+* @api {get} /api/place/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_parent_id=:filter_parent_id&?filters_by_lft=:filter_lft&?filters_by_rgt=:filter_rgt&?filters_by_icon=:filter_icon&?filters_by_status=:filter_status&?filters_by_is_exclude=:filter_is_exclude&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Места установки
 * @apiName GetAllFilterPlace
 * @apiGroup Place
 *
@@ -338,6 +348,8 @@ module.exports = {
 * @apiParam { int } filter_lft Фильтр по полю lft
 * @apiParam { int } filter_rgt Фильтр по полю rgt
 * @apiParam { string } filter_icon Фильтр по полю icon
+* @apiParam { int } filter_status Фильтр по полю status
+* @apiParam { bool } filter_is_exclude Фильтр по полю is_exclude
 * @apiParam {int} limit_row=10   Сколько записей показывать
 * @apiParam {int} offset_row=0   Сколько записей отступить от начала
 * @apiParam {int} page_num=1  Какую страницу показывать
@@ -349,6 +361,8 @@ module.exports = {
 * @apiSuccess {Number} data.lft Левый указатель
 * @apiSuccess {Number} data.rgt Правый указатель
 * @apiSuccess {String} data.icon Иконка
+* @apiSuccess {Number} data.status Статус объекта
+* @apiSuccess {Boolean} data.is_exclude Исключен из опроса
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -444,6 +458,20 @@ module.exports = {
                 if( typeof req.params.filters_by_icon != 'undefined' ){
                     filter['icon'] = req.params.filters_by_icon
                 }
+                            if( typeof req.query.filters_by_status != 'undefined' ){
+                    filter['status'] = req.query.filters_by_status
+                }
+
+                if( typeof req.params.filters_by_status != 'undefined' ){
+                    filter['status'] = req.params.filters_by_status
+                }
+                            if( typeof req.query.filters_by_is_exclude != 'undefined' ){
+                    filter['is_exclude'] = req.query.filters_by_is_exclude
+                }
+
+                if( typeof req.params.filters_by_is_exclude != 'undefined' ){
+                    filter['is_exclude'] = req.params.filters_by_is_exclude
+                }
             
             return GetAllByFilterCountPlace(filter, user_ctx).then(r_count => {
                 return GetAllByFilterPlace(filter, {limit: Number(limit) , offset:Number(offset)}, user_ctx).then(r => {
@@ -508,6 +536,8 @@ module.exports = {
 * @apiSuccess {Number} data.lft Левый указатель
 * @apiSuccess {Number} data.rgt Правый указатель
 * @apiSuccess {String} data.icon Иконка
+* @apiSuccess {Number} data.status Статус объекта
+* @apiSuccess {Boolean} data.is_exclude Исключен из опроса
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка

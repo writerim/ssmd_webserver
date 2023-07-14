@@ -11,6 +11,8 @@ if(!data){
                 this.lft = 0
                 this.rgt = 0
                 this.icon = ''
+                this.status = 0
+                this.is_exclude = false
     }else{
 
 
@@ -20,6 +22,8 @@ if(!data){
                 this.lft = typeof data.lft != 'undefined' ? data.lft : 0
                 this.rgt = typeof data.rgt != 'undefined' ? data.rgt : 0
                 this.icon = typeof data.icon != 'undefined' ? data.icon : ''
+                this.status = typeof data.status != 'undefined' ? data.status : 0
+                this.is_exclude = typeof data.is_exclude != 'undefined' ? data.is_exclude : false
     }
 }
             id = 0
@@ -28,4 +32,6 @@ if(!data){
                 lft = 0
                 rgt = 0
                 icon = ''
+                status = 0
+                is_exclude = false
     }

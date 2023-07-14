@@ -1,4 +1,4 @@
-                                                         
+                                                             
 
          
 
@@ -37,11 +37,12 @@ describe("repo: DB: Device", function () {
                                                             o['settings_connections'] = {'foo':'bar'}
                                                             o['lft'] = 10
                                                             o['rgt'] = 10
-                                                            o['place_id'] = 10
                                                             o['utc'] = 10
                                                             o['mod_id'] = 10
                                                             o['time_settings'] = {'foo':'bar'}
                                                             o['types'] = ['a','b']
+                                                            o['status'] = 10
+                                                            o['is_exclude'] = true
                             return DeviceAdd(o)
         .then(res => {
                                                 add_id = res.get('id')
@@ -56,8 +57,6 @@ describe("repo: DB: Device", function () {
                                             
                                         assert.equal(res.get('rgt'), 10)
                                             
-                                        assert.equal(res.get('place_id'), 10)
-                                            
                                         assert.equal(res.get('utc'), 10)
                                             
                                         assert.equal(res.get('mod_id'), 10)
@@ -65,6 +64,10 @@ describe("repo: DB: Device", function () {
                                     assert.deepStrictEqual(res.get('time_settings'), {'foo':'bar'})
                                             
                                     assert.deepStrictEqual(res.get('types'), ['a','b'])
+                                            
+                                        assert.equal(res.get('status'), 10)
+                                            
+                                    assert.equal(res.get('is_exclude'), true)
                                     })
     })
 
@@ -83,8 +86,6 @@ describe("repo: DB: Device", function () {
                                                         
                                                 assert.equal(res.get('rgt'), 10)
                                                         
-                                                assert.equal(res.get('place_id'), 10)
-                                                        
                                                 assert.equal(res.get('utc'), 10)
                                                         
                                                 assert.equal(res.get('mod_id'), 10)
@@ -92,6 +93,10 @@ describe("repo: DB: Device", function () {
                                             assert.deepStrictEqual(res.get('time_settings'), {'foo':'bar'})
                                                         
                                             assert.deepStrictEqual(res.get('types'), ['a','b'])
+                                                        
+                                                assert.equal(res.get('status'), 10)
+                                                        
+                                            assert.equal(res.get('is_exclude'), true)
                                                 }
         })
     })
@@ -113,8 +118,6 @@ describe("repo: DB: Device", function () {
                                             
                                         assert.equal(res.get('rgt'), 10)
                                             
-                                        assert.equal(res.get('place_id'), 10)
-                                            
                                         assert.equal(res.get('utc'), 10)
                                             
                                         assert.equal(res.get('mod_id'), 10)
@@ -122,6 +125,10 @@ describe("repo: DB: Device", function () {
                                     assert.deepStrictEqual(res.get('time_settings'), {'foo':'bar'})
                                             
                                     assert.deepStrictEqual(res.get('types'), ['a','b'])
+                                            
+                                        assert.equal(res.get('status'), 10)
+                                            
+                                    assert.equal(res.get('is_exclude'), true)
                                     })
     })
 
@@ -136,11 +143,12 @@ describe("repo: DB: Device", function () {
                                                             o['settings_connections'] = {'dd' : 'sss'}
                                                             o['lft'] = 54
                                                             o['rgt'] = 54
-                                                            o['place_id'] = 54
                                                             o['utc'] = 54
                                                             o['mod_id'] = 54
                                                             o['time_settings'] = {'dd' : 'sss'}
                                                             o['types'] = [1,2]
+                                                            o['status'] = 54
+                                                            o['is_exclude'] = false
                             
         return DeviceUpdate(o).then(res => {
                                                 assert.equal(res.get('id'), add_id)
@@ -155,8 +163,6 @@ describe("repo: DB: Device", function () {
                                             
                                     assert.equal(res.get('rgt'), 54)
                                             
-                                    assert.equal(res.get('place_id'), 54)
-                                            
                                     assert.equal(res.get('utc'), 54)
                                             
                                     assert.equal(res.get('mod_id'), 54)
@@ -164,6 +170,10 @@ describe("repo: DB: Device", function () {
                                     assert.deepStrictEqual(res.get('time_settings'), {'dd' : 'sss'})
                                             
                                     assert.deepStrictEqual(res.get('types'), [1,2])
+                                            
+                                    assert.equal(res.get('status'), 54)
+                                            
+                                    assert.equal(res.get('is_exclude'), false)
                                     })
     })
 

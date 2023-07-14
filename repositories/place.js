@@ -1,6 +1,6 @@
 // generated
 
-                                    
+                                            
 
 
 const { DataTypes, Op } = require('sequelize');
@@ -15,7 +15,7 @@ const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
         const ERROR_VALIDATE_NAME = 'error validate date name'
         const ERROR_VALIDATE_PARENTID = 'error validate date parent_id'
-                 
+                         
 
 const initional = ()=>{
 
@@ -38,6 +38,12 @@ const initional = ()=>{
                 }, {  mustExist: false }).catch(()=>{});
             GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'icon', { 
                     type: DataTypes.STRING,
+                }, {  mustExist: false }).catch(()=>{});
+            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'status', { 
+                    type: DataTypes.INTEGER,
+                }, {  mustExist: false }).catch(()=>{});
+            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'is_exclude', { 
+                    type: DataTypes.BOOLEAN,
                 }, {  mustExist: false }).catch(()=>{});
         
     setTimeout(()=>{
@@ -73,6 +79,12 @@ const Place = GetConnect({name: 'Place' , deamon : initional}).define(TABLENAME,
             icon: {
                             type: DataTypes.STRING,
                                 },
+            status: {
+                            type: DataTypes.INTEGER,
+                                },
+            is_exclude: {
+                            type: DataTypes.BOOLEAN,
+                                },
     })
 
 
@@ -80,7 +92,7 @@ const Place = GetConnect({name: 'Place' , deamon : initional}).define(TABLENAME,
 const Add = async (data) => {
 
     let uniques_where = {}
-                                                                                if(Object.keys(uniques_where).length){
+                                                                                                        if(Object.keys(uniques_where).length){
         return Place.findOne({
             where: uniques_where
         }).then(res=>{
@@ -149,7 +161,7 @@ const GetAll = async (params) => {
 
 const GetAllSerach = async (text, params) => {
     let filter_by_text = []
-                                                                                return Place.findAll({
+                                                                                                        return Place.findAll({
         where : {
             [Op.or]: filter_by_text, ...params
         }
@@ -189,7 +201,7 @@ const Validate = (data) => {
                     if (!data.parent_id) {
             return ERROR_VALIDATE_PARENTID
         }
-                                 
+                                                 
 
     return ``
 }
@@ -330,7 +342,7 @@ PLACE_ERROR_VALIDATE_INVALID_DATA: ERROR_VALIDATE_INVALID_DATA,
 PLACE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
                     PLACE_ERROR_VALIDATE_NAME: ERROR_VALIDATE_NAME,
                     PLACE_ERROR_VALIDATE_PARENTID: ERROR_VALIDATE_PARENTID,
-                                 
+                                                 
 
     PlaceGetAll: GetAll,
     PlaceGetAllCount: GetAllCount,

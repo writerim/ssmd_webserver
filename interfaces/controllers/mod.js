@@ -1,14 +1,14 @@
-const {
-    AddMod,
-    FindByIdMod,
-    EditMod,
-    DropMod,
-    GetAllCountMod,
-    GetAllSearchMod,
-    GetAllSearchCountMod,
-    GetAllByFilterMod,
-    GetAllByFilterCountMod,
-    GetAllMod
+const { 
+    AddMod, 
+    FindByIdMod, 
+    EditMod, 
+    DropMod, 
+    GetAllCountMod, 
+    GetAllSearchMod, 
+    GetAllSearchCountMod, 
+    GetAllByFilterMod, 
+    GetAllByFilterCountMod, 
+    GetAllMod 
 } = require("../../use_cases/Mod");
 
 const UserCtx = require("../../entity/User");
@@ -17,68 +17,68 @@ const CONTEXT_NOT_FOUND = 'not fount context'
 
 module.exports = {
 
-    /**
-    * @api {put} /api/mod/0 Добавление Модели
-    * @apiName AddMod
-    * @apiGroup Mod
-    *
-    *
-    * @apiHeader {String} Token Ключ авторизации полученный при авторизации
-    * @apiHeaderExample {Header} Token
-    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
-    *
-    * @apiBody {Number} id 
-    * @apiBody {String} name Полное имя
-    * @apiBody {String} manufactures Производитель
-    * @apiBody {String} mark марка
-    * @apiBody {String} model модель с которой работают
-    * @apiBody {String} series Уникальная серия
-    * @apiBody {String} sowt_version Уникальная версия софта
-    * @apiBody {Array} types_device Какие типы данных может собирать
-    * @apiBody {String} lib Какая бибблиотека с ним может работать
-    * @apiBody {Array} parameters С какими параметрами может работать
-    * @apiBody {Array} commands Какие поддерживает команжы
-    * @apiBody {Object} lib_description Параметры бибилиотеки
-    * @apiBody {Array} commands Какие команды поддерживает
-    *
-    * @apiSuccess {Number} id 
-    * @apiSuccess {String} name Полное имя
-    * @apiSuccess {String} manufactures Производитель
-    * @apiSuccess {String} mark марка
-    * @apiSuccess {String} model модель с которой работают
-    * @apiSuccess {String} series Уникальная серия
-    * @apiSuccess {String} sowt_version Уникальная версия софта
-    * @apiSuccess {Array} types_device Какие типы данных может собирать
-    * @apiSuccess {String} lib Какая бибблиотека с ним может работать
-    * @apiSuccess {Array} parameters С какими параметрами может работать
-    * @apiSuccess {Array} commands Какие поддерживает команжы
-    * @apiSuccess {Object} lib_description Параметры бибилиотеки
-    * @apiSuccess {Array} commands Какие команды поддерживает
-    * @apiErrorExample Response (example):
-    *     HTTP/1.1 200
-    *     {
-    *       "error": "invalid data",
-    *       "error": "not found"
-    *       "error": "permission denied"
-    *       "error": "not fount context"
-    *       "error": "not fount row"
-                    *       "error": "error validate date name",
-                        *       "error": "error validate date manufactures",
-                        *       "error": "error validate date mark",
-                        *       "error": "error validate date model",
-                                        *       "error": "error validate date types_device",
-                        *       "error": "error validate date lib",
-                        *       "error": "error validate date parameters",
-                        *       "error": "error validate date commands",
-                        *       "error": "error validate date lib_description",
-                        *       "error": "error validate date commands",
-                         
-    *     }
-    */
-    ApiAddMod(req, res, next) {
+/**
+* @api {put} /api/mod/0 Добавление Модели
+* @apiName AddMod
+* @apiGroup Mod
+*
+*
+* @apiHeader {String} Token Ключ авторизации полученный при авторизации
+* @apiHeaderExample {Header} Token
+*     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
+*
+* @apiBody {Number} id 
+* @apiBody {String} name Полное имя
+* @apiBody {String} manufactures Производитель
+* @apiBody {String} mark марка
+* @apiBody {String} model модель с которой работают
+* @apiBody {String} series Уникальная серия
+* @apiBody {String} sowt_version Уникальная версия софта
+* @apiBody {Array} types_device Какие типы данных может собирать
+* @apiBody {String} lib Какая бибблиотека с ним может работать
+* @apiBody {Array} parameters С какими параметрами может работать
+* @apiBody {Array} commands Какие поддерживает команжы
+* @apiBody {Object} lib_description Параметры бибилиотеки
+* @apiBody {Array} commands Какие команды поддерживает
+*
+* @apiSuccess {Number} id 
+* @apiSuccess {String} name Полное имя
+* @apiSuccess {String} manufactures Производитель
+* @apiSuccess {String} mark марка
+* @apiSuccess {String} model модель с которой работают
+* @apiSuccess {String} series Уникальная серия
+* @apiSuccess {String} sowt_version Уникальная версия софта
+* @apiSuccess {Array} types_device Какие типы данных может собирать
+* @apiSuccess {String} lib Какая бибблиотека с ним может работать
+* @apiSuccess {Array} parameters С какими параметрами может работать
+* @apiSuccess {Array} commands Какие поддерживает команжы
+* @apiSuccess {Object} lib_description Параметры бибилиотеки
+* @apiSuccess {Array} commands Какие команды поддерживает
+* @apiErrorExample Response (example):
+*     HTTP/1.1 200
+*     {
+*       "error": "invalid data",
+*       "error": "not found"
+*       "error": "permission denied"
+*       "error": "not fount context"
+*       "error": "not fount row"
+                *       "error": "error validate date name",
+                    *       "error": "error validate date manufactures",
+                    *       "error": "error validate date mark",
+                    *       "error": "error validate date model",
+                                    *       "error": "error validate date types_device",
+                    *       "error": "error validate date lib",
+                    *       "error": "error validate date parameters",
+                    *       "error": "error validate date commands",
+                    *       "error": "error validate date lib_description",
+                    *       "error": "error validate date commands",
+                     
+*     }
+*/
+    ApiAddMod (req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
-            if (!user) {
+            if(!user){
                 res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
                 return
             }
@@ -91,31 +91,31 @@ module.exports = {
         })
     },
 
-    /**
-    * @api {get} /api/mod/:id Получение по идентификатору Модели
-    * @apiName iGetByIdMod
-    * @apiGroup Mod
-    *
-    *
-    * @apiHeader {String} Token Ключ авторизации полученный при авторизации
-    * @apiHeaderExample {Header} Token
-    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
-    *
-    * @apiParam {Number} id Users unique ID.
-    *
-    * @apiErrorExample Response (example):
-    *     HTTP/1.1 200
-    *     {
-    *       "error": "not found"
-    *       "error": "permission denied"
-    *       "error": "not fount context"
-    *       "error": "not fount row"
-    *     }
-    */
-    ApiGetByIdMod(req, res, next) {
+/**
+* @api {get} /api/mod/:id Получение по идентификатору Модели
+* @apiName iGetByIdMod
+* @apiGroup Mod
+*
+*
+* @apiHeader {String} Token Ключ авторизации полученный при авторизации
+* @apiHeaderExample {Header} Token
+*     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
+*
+* @apiParam {Number} id Users unique ID.
+*
+* @apiErrorExample Response (example):
+*     HTTP/1.1 200
+*     {
+*       "error": "not found"
+*       "error": "permission denied"
+*       "error": "not fount context"
+*       "error": "not fount row"
+*     }
+*/
+    ApiGetByIdMod (req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
-            if (!user) {
+            if(!user){
                 res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
                 return
             }
@@ -128,75 +128,75 @@ module.exports = {
         })
     },
 
-    /**
-    * @api {put} /api/mod/:id Редактирование записи Модели
-    * @apiName EditMod
-    * @apiGroup Mod
-    *
-    *
-    * @apiHeader {String} Token Ключ авторизации полученный при авторизации
-    * @apiHeaderExample {Header} Token
-    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
-    *
-    * @apiParam {Number} id Идентификатор записи устройства
-    * @apiBody {Number} id 
-    * @apiBody {String} name Полное имя
-    * @apiBody {String} manufactures Производитель
-    * @apiBody {String} mark марка
-    * @apiBody {String} model модель с которой работают
-    * @apiBody {String} series Уникальная серия
-    * @apiBody {String} sowt_version Уникальная версия софта
-    * @apiBody {Array} types_device Какие типы данных может собирать
-    * @apiBody {String} lib Какая бибблиотека с ним может работать
-    * @apiBody {Array} parameters С какими параметрами может работать
-    * @apiBody {Array} commands Какие поддерживает команжы
-    * @apiBody {Object} lib_description Параметры бибилиотеки
-    * @apiBody {Array} commands Какие команды поддерживает
-    *
-    *
-    * @apiSuccess {Number} id=true 
-    * @apiSuccess {String} name Полное имя
-    * @apiSuccess {String} manufactures Производитель
-    * @apiSuccess {String} mark марка
-    * @apiSuccess {String} model модель с которой работают
-    * @apiSuccess {String} series Уникальная серия
-    * @apiSuccess {String} sowt_version Уникальная версия софта
-    * @apiSuccess {Array} types_device Какие типы данных может собирать
-    * @apiSuccess {String} lib Какая бибблиотека с ним может работать
-    * @apiSuccess {Array} parameters С какими параметрами может работать
-    * @apiSuccess {Array} commands Какие поддерживает команжы
-    * @apiSuccess {Object} lib_description Параметры бибилиотеки
-    * @apiSuccess {Array} commands Какие команды поддерживает
-    * @apiErrorExample Response (example):
-    *     HTTP/1.1 200
-    *     {
-    *       "error": "invalid data",
-    *       "error": "not found"
-    *       "error": "permission denied"
-    *       "error": "not fount context"
-    *       "error": "not fount row"
-                    *       "error": "error validate date name",
-                        *       "error": "error validate date manufactures",
-                        *       "error": "error validate date mark",
-                        *       "error": "error validate date model",
-                                        *       "error": "error validate date types_device",
-                        *       "error": "error validate date lib",
-                        *       "error": "error validate date parameters",
-                        *       "error": "error validate date commands",
-                        *       "error": "error validate date lib_description",
-                        *       "error": "error validate date commands",
-                         
-    *     }
-    */
-    ApiEditMod(req, res, next) {
+/**
+* @api {put} /api/mod/:id Редактирование записи Модели
+* @apiName EditMod
+* @apiGroup Mod
+*
+*
+* @apiHeader {String} Token Ключ авторизации полученный при авторизации
+* @apiHeaderExample {Header} Token
+*     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
+*
+* @apiParam {Number} id Идентификатор записи устройства
+* @apiBody {Number} id 
+* @apiBody {String} name Полное имя
+* @apiBody {String} manufactures Производитель
+* @apiBody {String} mark марка
+* @apiBody {String} model модель с которой работают
+* @apiBody {String} series Уникальная серия
+* @apiBody {String} sowt_version Уникальная версия софта
+* @apiBody {Array} types_device Какие типы данных может собирать
+* @apiBody {String} lib Какая бибблиотека с ним может работать
+* @apiBody {Array} parameters С какими параметрами может работать
+* @apiBody {Array} commands Какие поддерживает команжы
+* @apiBody {Object} lib_description Параметры бибилиотеки
+* @apiBody {Array} commands Какие команды поддерживает
+*
+*
+* @apiSuccess {Number} id=true 
+* @apiSuccess {String} name Полное имя
+* @apiSuccess {String} manufactures Производитель
+* @apiSuccess {String} mark марка
+* @apiSuccess {String} model модель с которой работают
+* @apiSuccess {String} series Уникальная серия
+* @apiSuccess {String} sowt_version Уникальная версия софта
+* @apiSuccess {Array} types_device Какие типы данных может собирать
+* @apiSuccess {String} lib Какая бибблиотека с ним может работать
+* @apiSuccess {Array} parameters С какими параметрами может работать
+* @apiSuccess {Array} commands Какие поддерживает команжы
+* @apiSuccess {Object} lib_description Параметры бибилиотеки
+* @apiSuccess {Array} commands Какие команды поддерживает
+* @apiErrorExample Response (example):
+*     HTTP/1.1 200
+*     {
+*       "error": "invalid data",
+*       "error": "not found"
+*       "error": "permission denied"
+*       "error": "not fount context"
+*       "error": "not fount row"
+                *       "error": "error validate date name",
+                    *       "error": "error validate date manufactures",
+                    *       "error": "error validate date mark",
+                    *       "error": "error validate date model",
+                                    *       "error": "error validate date types_device",
+                    *       "error": "error validate date lib",
+                    *       "error": "error validate date parameters",
+                    *       "error": "error validate date commands",
+                    *       "error": "error validate date lib_description",
+                    *       "error": "error validate date commands",
+                     
+*     }
+*/
+    ApiEditMod (req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
-            if (!user) {
+            if(!user){
                 res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            if (!req.body.id) {
+            if(!req.body.id){
                 return module.exports.ApiAddMod(req, res, next)
             }
             return EditMod(req.body, user_ctx).then(r => {
@@ -208,32 +208,32 @@ module.exports = {
     },
 
 
-    /**
-    * @api {delete} /api/mod/:id Удаление записи Модели
-    * @apiName DeleteMod
-    * @apiGroup Mod
-    *
-    * @apiHeader {String} Token Ключ авторизации полученный при авторизации
-    * @apiHeaderExample {Header} Token
-    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
-    *
-    * @apiParam {Number} id Users unique ID.
-    * @apiSuccess {Boolean} result <code>true</code>
-    *
-    * @apiErrorExample Response (example):
-    *     HTTP/1.1 200
-    *     {
-    *       "error": "invalid data",
-    *       "error": "not found"
-    *       "error": "permission denied"
-    *       "error": "not fount context"
-    *       "error": "not fount row"
-    *     }
-    */
-    ApiDeleteMod(req, res, next) {
+/**
+* @api {delete} /api/mod/:id Удаление записи Модели
+* @apiName DeleteMod
+* @apiGroup Mod
+*
+* @apiHeader {String} Token Ключ авторизации полученный при авторизации
+* @apiHeaderExample {Header} Token
+*     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
+*
+* @apiParam {Number} id Users unique ID.
+* @apiSuccess {Boolean} result <code>true</code>
+*
+* @apiErrorExample Response (example):
+*     HTTP/1.1 200
+*     {
+*       "error": "invalid data",
+*       "error": "not found"
+*       "error": "permission denied"
+*       "error": "not fount context"
+*       "error": "not fount row"
+*     }
+*/
+    ApiDeleteMod (req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
-            if (!user) {
+            if(!user){
                 res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
                 return
             }
@@ -247,61 +247,61 @@ module.exports = {
     },
 
 
-    /**
-    * @api {get} /api/mod/all?limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей Модели
-    * @apiName GetAllMod
-    * @apiGroup Mod
-    *
-    * @apiHeader {String} Token Ключ авторизации полученный при авторизации
-    * @apiHeaderExample {Header} Token
-    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
-    *
-    * @apiParam {int} limit_row=10   Сколько записей показывать
-    * @apiParam {int} offset_row=0   Сколько записей отступить от начала
-    * @apiParam {int} page_num=1  Какую страницу показывать
-    *
-    * @apiSuccess {Object[]} data Данные 
-    * @apiSuccess {Number} data.id 
-    * @apiSuccess {String} data.name Полное имя
-    * @apiSuccess {String} data.manufactures Производитель
-    * @apiSuccess {String} data.mark марка
-    * @apiSuccess {String} data.model модель с которой работают
-    * @apiSuccess {String} data.series Уникальная серия
-    * @apiSuccess {String} data.sowt_version Уникальная версия софта
-    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-    * @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
-    * @apiSuccess {Array} data.parameters С какими параметрами может работать
-    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-    * @apiSuccess {Object} data.lib_description Параметры бибилиотеки
-    * @apiSuccess {Array} data.commands Какие команды поддерживает
-    * @apiSuccess {Object} meta Метаданные для списка
-    * @apiSuccess {Number} meta.total Общее кол-во
-    * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
-    * @apiSuccess {Number} meta.offset Отступ в кол-ве позиций от начала списка
-    * @apiSuccess {Object[]} pages Данные о страницах для потсраничного вывода
-    * @apiSuccess {Number} pages.number Номер страинцы
-    * @apiSuccess {Number} pages.is_active Активная ли текущая страница
-    *
-    * @apiExample {js} Example usage:
-    * fetch('/api/mod/all?limit=10&offset=0&page=1', {
-    *   headers: {
-    *       Token: "ad302aca-13fe-45cc-a126-d27821f143fa"
-    *   }
-    * }).then(response => response.json())
-    *   .then(r => console.log(r));
-    *
-    * @apiErrorExample Response (example):
-    *     HTTP/1.1 200
-    *     {
-    *       "error": "permission denied"
-    *       "error": "not fount context"
-    *     }
-    *
-    */
-    ApiGetAllMod(req, res, next) {
+/**
+* @api {get} /api/mod/all?limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей Модели
+* @apiName GetAllMod
+* @apiGroup Mod
+*
+* @apiHeader {String} Token Ключ авторизации полученный при авторизации
+* @apiHeaderExample {Header} Token
+*     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
+*
+* @apiParam {int} limit_row=10   Сколько записей показывать
+* @apiParam {int} offset_row=0   Сколько записей отступить от начала
+* @apiParam {int} page_num=1  Какую страницу показывать
+*
+* @apiSuccess {Object[]} data Данные 
+* @apiSuccess {Number} data.id 
+* @apiSuccess {String} data.name Полное имя
+* @apiSuccess {String} data.manufactures Производитель
+* @apiSuccess {String} data.mark марка
+* @apiSuccess {String} data.model модель с которой работают
+* @apiSuccess {String} data.series Уникальная серия
+* @apiSuccess {String} data.sowt_version Уникальная версия софта
+* @apiSuccess {Array} data.types_device Какие типы данных может собирать
+* @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
+* @apiSuccess {Array} data.parameters С какими параметрами может работать
+* @apiSuccess {Array} data.commands Какие поддерживает команжы
+* @apiSuccess {Object} data.lib_description Параметры бибилиотеки
+* @apiSuccess {Array} data.commands Какие команды поддерживает
+* @apiSuccess {Object} meta Метаданные для списка
+* @apiSuccess {Number} meta.total Общее кол-во
+* @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
+* @apiSuccess {Number} meta.offset Отступ в кол-ве позиций от начала списка
+* @apiSuccess {Object[]} pages Данные о страницах для потсраничного вывода
+* @apiSuccess {Number} pages.number Номер страинцы
+* @apiSuccess {Number} pages.is_active Активная ли текущая страница
+*
+* @apiExample {js} Example usage:
+* fetch('/api/mod/all?limit=10&offset=0&page=1', {
+*   headers: {
+*       Token: "ad302aca-13fe-45cc-a126-d27821f143fa"
+*   }
+* }).then(response => response.json())
+*   .then(r => console.log(r));
+*
+* @apiErrorExample Response (example):
+*     HTTP/1.1 200
+*     {
+*       "error": "permission denied"
+*       "error": "not fount context"
+*     }
+*
+*/
+    ApiGetAllMod (req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
-            if (!user) {
+            if(!user){
                 throw new Error(CONTEXT_NOT_FOUND)
             }
             const user_ctx = new UserCtx(user.dataValues)
@@ -319,32 +319,32 @@ module.exports = {
             let limit = req.params.limit ? req.params.limit : 10
             let offset = req.params.offset ? req.params.offset : 0
             let page = req.params.page ? req.params.page : 1
-            if (!offset) {
-                offset = (page - 1) * limit
+            if( !offset ) {
+                offset = ( page - 1 ) * limit
             }
             return GetAllCountMod(user_ctx).then(r_count => {
-                return GetAllMod({ limit: Number(limit), offset: Number(offset) }, user_ctx).then(r => {
+                return GetAllMod({limit: Number(limit) , offset:Number(offset)},user_ctx).then(r => {
 
                     pages = []
                     let total_page = r_count / limit
-                    if (r_count % limit) {
+                    if(r_count % limit){
                         total_page++
                     }
-                    for (let i = 1; i <= total_page; i++) {
-                        pages.push({ number: i, is_active: page == i })
+                    for(let i = 1; i <= total_page; i++){
+                        pages.push({number: i, is_active: page==i})
                     }
 
                     res.end(JSON.stringify({
-                        data: r,
-                        meta: {
-                            page,
-                            limit,
-                            offset,
+                        data : r , 
+                        meta : {
+                            page, 
+                            limit, 
+                            offset, 
                             count: r_count
                         },
                         pages
                     })
-                    );
+                );
                 }).catch(e => next(e))
             })
         }).catch(e => {
@@ -373,76 +373,76 @@ module.exports = {
 
 
 
-
-    /**
-    * @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_lib=:filter_lib&?filters_by_parameters=:filter_parameters&?filters_by_commands=:filter_commands&?filters_by_lib_description=:filter_lib_description&?filters_by_commands=:filter_commands&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
-    * @apiName GetAllFilterMod
-    * @apiGroup Mod
-    *
-    * @apiHeader {String} Token Ключ авторизации полученный при авторизации
-    * @apiHeaderExample {Header} Token
-    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
-    *
-    * @apiParam { int } filter_id Фильтр по полю id
-    * @apiParam { string } filter_name Фильтр по полю name
-    * @apiParam { string } filter_manufactures Фильтр по полю manufactures
-    * @apiParam { string } filter_mark Фильтр по полю mark
-    * @apiParam { string } filter_model Фильтр по полю model
-    * @apiParam { string } filter_series Фильтр по полю series
-    * @apiParam { string } filter_sowt_version Фильтр по полю sowt_version
-    * @apiParam { array } filter_types_device Фильтр по полю types_device
-    * @apiParam { string } filter_lib Фильтр по полю lib
-    * @apiParam { array } filter_parameters Фильтр по полю parameters
-    * @apiParam { array } filter_commands Фильтр по полю commands
-    * @apiParam { json } filter_lib_description Фильтр по полю lib_description
-    * @apiParam { array } filter_commands Фильтр по полю commands
-    * @apiParam {int} limit_row=10   Сколько записей показывать
-    * @apiParam {int} offset_row=0   Сколько записей отступить от начала
-    * @apiParam {int} page_num=1  Какую страницу показывать
-    *
-    * @apiSuccess {Object[]} data Данные 
-    * @apiSuccess {Number} data.id 
-    * @apiSuccess {String} data.name Полное имя
-    * @apiSuccess {String} data.manufactures Производитель
-    * @apiSuccess {String} data.mark марка
-    * @apiSuccess {String} data.model модель с которой работают
-    * @apiSuccess {String} data.series Уникальная серия
-    * @apiSuccess {String} data.sowt_version Уникальная версия софта
-    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-    * @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
-    * @apiSuccess {Array} data.parameters С какими параметрами может работать
-    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-    * @apiSuccess {Object} data.lib_description Параметры бибилиотеки
-    * @apiSuccess {Array} data.commands Какие команды поддерживает
-    * @apiSuccess {Object} meta Метаданные для списка
-    * @apiSuccess {Number} meta.total Общее кол-во
-    * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
-    * @apiSuccess {Number} meta.offset Отступ в кол-ве позиций от начала списка
-    * @apiSuccess {Json} meta.filter Фильтр запроса
-    * @apiSuccess {Object[]} pages Данные о страницах для потсраничного вывода
-    * @apiSuccess {Number} pages.number Номер страинцы
-    * @apiSuccess {Number} pages.is_active Активная ли текущая страница
-    *
-    * @apiExample {js} Example usage:
-    * fetch('/api/mod/all?limit=10&offset=0&page=1', {
-    *   headers: {
-    *       Token: "ad302aca-13fe-45cc-a126-d27821f143fa"
-    *   }
-    * }).then(response => response.json())
-    *   .then(r => console.log(r));
-    *
-    * @apiErrorExample Response (example):
-    *     HTTP/1.1 200
-    *     {
-    *       "error": "permission denied"
-    *       "error": "not fount context"
-    *     }
-    *
-    */
-    ApiGetFilterMod(req, res, next) {
+    
+/**
+* @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_lib=:filter_lib&?filters_by_parameters=:filter_parameters&?filters_by_commands=:filter_commands&?filters_by_lib_description=:filter_lib_description&?filters_by_commands=:filter_commands&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
+* @apiName GetAllFilterMod
+* @apiGroup Mod
+*
+* @apiHeader {String} Token Ключ авторизации полученный при авторизации
+* @apiHeaderExample {Header} Token
+*     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
+*
+* @apiParam { int } filter_id Фильтр по полю id
+* @apiParam { string } filter_name Фильтр по полю name
+* @apiParam { string } filter_manufactures Фильтр по полю manufactures
+* @apiParam { string } filter_mark Фильтр по полю mark
+* @apiParam { string } filter_model Фильтр по полю model
+* @apiParam { string } filter_series Фильтр по полю series
+* @apiParam { string } filter_sowt_version Фильтр по полю sowt_version
+* @apiParam { array } filter_types_device Фильтр по полю types_device
+* @apiParam { string } filter_lib Фильтр по полю lib
+* @apiParam { array } filter_parameters Фильтр по полю parameters
+* @apiParam { array } filter_commands Фильтр по полю commands
+* @apiParam { json } filter_lib_description Фильтр по полю lib_description
+* @apiParam { array } filter_commands Фильтр по полю commands
+* @apiParam {int} limit_row=10   Сколько записей показывать
+* @apiParam {int} offset_row=0   Сколько записей отступить от начала
+* @apiParam {int} page_num=1  Какую страницу показывать
+*
+* @apiSuccess {Object[]} data Данные 
+* @apiSuccess {Number} data.id 
+* @apiSuccess {String} data.name Полное имя
+* @apiSuccess {String} data.manufactures Производитель
+* @apiSuccess {String} data.mark марка
+* @apiSuccess {String} data.model модель с которой работают
+* @apiSuccess {String} data.series Уникальная серия
+* @apiSuccess {String} data.sowt_version Уникальная версия софта
+* @apiSuccess {Array} data.types_device Какие типы данных может собирать
+* @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
+* @apiSuccess {Array} data.parameters С какими параметрами может работать
+* @apiSuccess {Array} data.commands Какие поддерживает команжы
+* @apiSuccess {Object} data.lib_description Параметры бибилиотеки
+* @apiSuccess {Array} data.commands Какие команды поддерживает
+* @apiSuccess {Object} meta Метаданные для списка
+* @apiSuccess {Number} meta.total Общее кол-во
+* @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
+* @apiSuccess {Number} meta.offset Отступ в кол-ве позиций от начала списка
+* @apiSuccess {Json} meta.filter Фильтр запроса
+* @apiSuccess {Object[]} pages Данные о страницах для потсраничного вывода
+* @apiSuccess {Number} pages.number Номер страинцы
+* @apiSuccess {Number} pages.is_active Активная ли текущая страница
+*
+* @apiExample {js} Example usage:
+* fetch('/api/mod/all?limit=10&offset=0&page=1', {
+*   headers: {
+*       Token: "ad302aca-13fe-45cc-a126-d27821f143fa"
+*   }
+* }).then(response => response.json())
+*   .then(r => console.log(r));
+*
+* @apiErrorExample Response (example):
+*     HTTP/1.1 200
+*     {
+*       "error": "permission denied"
+*       "error": "not fount context"
+*     }
+*
+*/
+    ApiGetFilterMod (req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
-            if (!user) {
+            if(!user){
                 res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
                 return
             }
@@ -457,132 +457,132 @@ module.exports = {
             if (!req.params.limit && req.query.limit) {
                 req.params.limit = req.query.limit
             }
-
+            
             let limit = req.params.limit ? req.params.limit : 10
             let offset = req.params.offset ? req.params.offset : 0
             let page = req.params.page ? req.params.page : 1
-            if (!offset) {
-                offset = (page - 1) * limit
+            if( !offset ) {
+                offset = ( page - 1 ) * limit
             }
 
             let filter = {}
 
-            if (typeof req.query.filters_by_id != 'undefined') {
-                filter['id'] = req.query.filters_by_id
-            }
+                            if( typeof req.query.filters_by_id != 'undefined' ){
+                    filter['id'] = req.query.filters_by_id
+                }
 
-            if (typeof req.params.filters_by_id != 'undefined') {
-                filter['id'] = req.params.filters_by_id
-            }
-            if (typeof req.query.filters_by_name != 'undefined') {
-                filter['name'] = req.query.filters_by_name
-            }
+                if( typeof req.params.filters_by_id != 'undefined' ){
+                    filter['id'] = req.params.filters_by_id
+                }
+                            if( typeof req.query.filters_by_name != 'undefined' ){
+                    filter['name'] = req.query.filters_by_name
+                }
 
-            if (typeof req.params.filters_by_name != 'undefined') {
-                filter['name'] = req.params.filters_by_name
-            }
-            if (typeof req.query.filters_by_manufactures != 'undefined') {
-                filter['manufactures'] = req.query.filters_by_manufactures
-            }
+                if( typeof req.params.filters_by_name != 'undefined' ){
+                    filter['name'] = req.params.filters_by_name
+                }
+                            if( typeof req.query.filters_by_manufactures != 'undefined' ){
+                    filter['manufactures'] = req.query.filters_by_manufactures
+                }
 
-            if (typeof req.params.filters_by_manufactures != 'undefined') {
-                filter['manufactures'] = req.params.filters_by_manufactures
-            }
-            if (typeof req.query.filters_by_mark != 'undefined') {
-                filter['mark'] = req.query.filters_by_mark
-            }
+                if( typeof req.params.filters_by_manufactures != 'undefined' ){
+                    filter['manufactures'] = req.params.filters_by_manufactures
+                }
+                            if( typeof req.query.filters_by_mark != 'undefined' ){
+                    filter['mark'] = req.query.filters_by_mark
+                }
 
-            if (typeof req.params.filters_by_mark != 'undefined') {
-                filter['mark'] = req.params.filters_by_mark
-            }
-            if (typeof req.query.filters_by_model != 'undefined') {
-                filter['model'] = req.query.filters_by_model
-            }
+                if( typeof req.params.filters_by_mark != 'undefined' ){
+                    filter['mark'] = req.params.filters_by_mark
+                }
+                            if( typeof req.query.filters_by_model != 'undefined' ){
+                    filter['model'] = req.query.filters_by_model
+                }
 
-            if (typeof req.params.filters_by_model != 'undefined') {
-                filter['model'] = req.params.filters_by_model
-            }
-            if (typeof req.query.filters_by_series != 'undefined') {
-                filter['series'] = req.query.filters_by_series
-            }
+                if( typeof req.params.filters_by_model != 'undefined' ){
+                    filter['model'] = req.params.filters_by_model
+                }
+                            if( typeof req.query.filters_by_series != 'undefined' ){
+                    filter['series'] = req.query.filters_by_series
+                }
 
-            if (typeof req.params.filters_by_series != 'undefined') {
-                filter['series'] = req.params.filters_by_series
-            }
-            if (typeof req.query.filters_by_sowt_version != 'undefined') {
-                filter['sowt_version'] = req.query.filters_by_sowt_version
-            }
+                if( typeof req.params.filters_by_series != 'undefined' ){
+                    filter['series'] = req.params.filters_by_series
+                }
+                            if( typeof req.query.filters_by_sowt_version != 'undefined' ){
+                    filter['sowt_version'] = req.query.filters_by_sowt_version
+                }
 
-            if (typeof req.params.filters_by_sowt_version != 'undefined') {
-                filter['sowt_version'] = req.params.filters_by_sowt_version
-            }
-            if (typeof req.query.filters_by_types_device != 'undefined') {
-                filter['types_device'] = req.query.filters_by_types_device
-            }
+                if( typeof req.params.filters_by_sowt_version != 'undefined' ){
+                    filter['sowt_version'] = req.params.filters_by_sowt_version
+                }
+                            if( typeof req.query.filters_by_types_device != 'undefined' ){
+                    filter['types_device'] = req.query.filters_by_types_device
+                }
 
-            if (typeof req.params.filters_by_types_device != 'undefined') {
-                filter['types_device'] = req.params.filters_by_types_device
-            }
-            if (typeof req.query.filters_by_lib != 'undefined') {
-                filter['lib'] = req.query.filters_by_lib
-            }
+                if( typeof req.params.filters_by_types_device != 'undefined' ){
+                    filter['types_device'] = req.params.filters_by_types_device
+                }
+                            if( typeof req.query.filters_by_lib != 'undefined' ){
+                    filter['lib'] = req.query.filters_by_lib
+                }
 
-            if (typeof req.params.filters_by_lib != 'undefined') {
-                filter['lib'] = req.params.filters_by_lib
-            }
-            if (typeof req.query.filters_by_parameters != 'undefined') {
-                filter['parameters'] = req.query.filters_by_parameters
-            }
+                if( typeof req.params.filters_by_lib != 'undefined' ){
+                    filter['lib'] = req.params.filters_by_lib
+                }
+                            if( typeof req.query.filters_by_parameters != 'undefined' ){
+                    filter['parameters'] = req.query.filters_by_parameters
+                }
 
-            if (typeof req.params.filters_by_parameters != 'undefined') {
-                filter['parameters'] = req.params.filters_by_parameters
-            }
-            if (typeof req.query.filters_by_commands != 'undefined') {
-                filter['commands'] = req.query.filters_by_commands
-            }
+                if( typeof req.params.filters_by_parameters != 'undefined' ){
+                    filter['parameters'] = req.params.filters_by_parameters
+                }
+                            if( typeof req.query.filters_by_commands != 'undefined' ){
+                    filter['commands'] = req.query.filters_by_commands
+                }
 
-            if (typeof req.params.filters_by_commands != 'undefined') {
-                filter['commands'] = req.params.filters_by_commands
-            }
-            if (typeof req.query.filters_by_lib_description != 'undefined') {
-                filter['lib_description'] = req.query.filters_by_lib_description
-            }
+                if( typeof req.params.filters_by_commands != 'undefined' ){
+                    filter['commands'] = req.params.filters_by_commands
+                }
+                            if( typeof req.query.filters_by_lib_description != 'undefined' ){
+                    filter['lib_description'] = req.query.filters_by_lib_description
+                }
 
-            if (typeof req.params.filters_by_lib_description != 'undefined') {
-                filter['lib_description'] = req.params.filters_by_lib_description
-            }
-            if (typeof req.query.filters_by_commands != 'undefined') {
-                filter['commands'] = req.query.filters_by_commands
-            }
+                if( typeof req.params.filters_by_lib_description != 'undefined' ){
+                    filter['lib_description'] = req.params.filters_by_lib_description
+                }
+                            if( typeof req.query.filters_by_commands != 'undefined' ){
+                    filter['commands'] = req.query.filters_by_commands
+                }
 
-            if (typeof req.params.filters_by_commands != 'undefined') {
-                filter['commands'] = req.params.filters_by_commands
-            }
-
+                if( typeof req.params.filters_by_commands != 'undefined' ){
+                    filter['commands'] = req.params.filters_by_commands
+                }
+            
             return GetAllByFilterCountMod(filter, user_ctx).then(r_count => {
-                return GetAllByFilterMod(filter, { limit: Number(limit), offset: Number(offset) }, user_ctx).then(r => {
+                return GetAllByFilterMod(filter, {limit: Number(limit) , offset:Number(offset)}, user_ctx).then(r => {
 
                     pages = []
                     let total_page = r_count / limit
-                    if (r_count % limit) {
+                    if(r_count % limit){
                         total_page++
                     }
-                    for (let i = 1; i <= total_page; i++) {
-                        pages.push({ number: i, is_active: page == i })
+                    for(let i = 1; i <= total_page; i++){
+                        pages.push({number: i, is_active: page==i})
                     }
 
                     res.end(JSON.stringify({
-                        data: r,
-                        meta: {
-                            page,
-                            limit,
-                            offset,
+                        data : r , 
+                        meta : {
+                            page, 
+                            limit, 
+                            offset, 
                             count: r_count,
                             filter
                         },
                         pages
                     })
-                    );
+                );
                 }).catch(e => next(e))
             })
         }).catch(e => {
@@ -599,64 +599,64 @@ module.exports = {
 
 
 
+    
 
-
-    /**
-    * @api {get} /api/mod/search?text=:text&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей Модели
-    * @apiName GetAllMod
-    * @apiGroup Mod
-    *
-    * @apiHeader {String} Token Ключ авторизации полученный при авторизации
-    * @apiHeaderExample {Header} Token
-    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
-    *
-    * @apiParam {String} text   Поисковая строка
-    * @apiParam {int} limit_row=10   Сколько записей показывать
-    * @apiParam {int} offset_row=0   Сколько записей отступить от начала
-    * @apiParam {int} page_num=1  Какую страницу показывать
-    *
-    * @apiSuccess {Object[]} data Данные 
-    * @apiSuccess {Number} data.id 
-    * @apiSuccess {String} data.name Полное имя
-    * @apiSuccess {String} data.manufactures Производитель
-    * @apiSuccess {String} data.mark марка
-    * @apiSuccess {String} data.model модель с которой работают
-    * @apiSuccess {String} data.series Уникальная серия
-    * @apiSuccess {String} data.sowt_version Уникальная версия софта
-    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-    * @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
-    * @apiSuccess {Array} data.parameters С какими параметрами может работать
-    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-    * @apiSuccess {Object} data.lib_description Параметры бибилиотеки
-    * @apiSuccess {Array} data.commands Какие команды поддерживает
-    * @apiSuccess {Object} meta Метаданные для списка
-    * @apiSuccess {Number} meta.total Общее кол-во
-    * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
-    * @apiSuccess {Number} meta.offset Отступ в кол-ве позиций от начала списка
-    * @apiSuccess {Object[]} pages Данные о страницах для потсраничного вывода
-    * @apiSuccess {Number} pages.number Номер страинцы
-    * @apiSuccess {Number} pages.is_active Активная ли текущая страница
-    *
-    * @apiExample {js} Example usage:
-    * fetch('/api/mod/filter?limit=10&offset=0&page=1', {
-    *   headers: {
-    *       Token: "ad302aca-13fe-45cc-a126-d27821f143fa"
-    *   }
-    * }).then(response => response.json())
-    *   .then(r => console.log(r));
-    *
-    * @apiErrorExample Response (example):
-    *     HTTP/1.1 200
-    *     {
-    *       "error": "permission denied"
-    *       "error": "not fount context"
-    *     }
-    *
-    */
-    ApiGetSearchMod(req, res, next) {
+/**
+* @api {get} /api/mod/search?text=:text&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей Модели
+* @apiName GetAllMod
+* @apiGroup Mod
+*
+* @apiHeader {String} Token Ключ авторизации полученный при авторизации
+* @apiHeaderExample {Header} Token
+*     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
+*
+* @apiParam {String} text   Поисковая строка
+* @apiParam {int} limit_row=10   Сколько записей показывать
+* @apiParam {int} offset_row=0   Сколько записей отступить от начала
+* @apiParam {int} page_num=1  Какую страницу показывать
+*
+* @apiSuccess {Object[]} data Данные 
+* @apiSuccess {Number} data.id 
+* @apiSuccess {String} data.name Полное имя
+* @apiSuccess {String} data.manufactures Производитель
+* @apiSuccess {String} data.mark марка
+* @apiSuccess {String} data.model модель с которой работают
+* @apiSuccess {String} data.series Уникальная серия
+* @apiSuccess {String} data.sowt_version Уникальная версия софта
+* @apiSuccess {Array} data.types_device Какие типы данных может собирать
+* @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
+* @apiSuccess {Array} data.parameters С какими параметрами может работать
+* @apiSuccess {Array} data.commands Какие поддерживает команжы
+* @apiSuccess {Object} data.lib_description Параметры бибилиотеки
+* @apiSuccess {Array} data.commands Какие команды поддерживает
+* @apiSuccess {Object} meta Метаданные для списка
+* @apiSuccess {Number} meta.total Общее кол-во
+* @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
+* @apiSuccess {Number} meta.offset Отступ в кол-ве позиций от начала списка
+* @apiSuccess {Object[]} pages Данные о страницах для потсраничного вывода
+* @apiSuccess {Number} pages.number Номер страинцы
+* @apiSuccess {Number} pages.is_active Активная ли текущая страница
+*
+* @apiExample {js} Example usage:
+* fetch('/api/mod/filter?limit=10&offset=0&page=1', {
+*   headers: {
+*       Token: "ad302aca-13fe-45cc-a126-d27821f143fa"
+*   }
+* }).then(response => response.json())
+*   .then(r => console.log(r));
+*
+* @apiErrorExample Response (example):
+*     HTTP/1.1 200
+*     {
+*       "error": "permission denied"
+*       "error": "not fount context"
+*     }
+*
+*/
+    ApiGetSearchMod (req, res, next) {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
-            if (!user) {
+            if(!user){
                 res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
                 return
             }
@@ -678,32 +678,32 @@ module.exports = {
             let limit = req.params.limit ? req.params.limit : 10
             let offset = req.params.offset ? req.params.offset : 0
             let page = req.params.page ? req.params.page : 1
-            if (!offset) {
-                offset = (page - 1) * limit
+            if( !offset ) {
+                offset = ( page - 1 ) * limit
             }
             return GetAllSerachCountMod(req.params.text, user_ctx).then(r_count => {
-                return GetAllSerachMod(req.params.text, { limit: Number(limit), offset: Number(offset) }, user_ctx).then(r => {
+                return GetAllSerachMod(req.params.text, {limit:Number(limit) , offset:Number(offset)},user_ctx).then(r => {
 
                     pages = []
                     let total_page = r_count / limit
-                    if (r_count % limit) {
+                    if(r_count % limit){
                         total_page++
                     }
-                    for (let i = 1; i <= total_page; i++) {
-                        pages.push({ number: i, is_active: page == i })
+                    for(let i = 1; i <= total_page; i++){
+                        pages.push({number: i, is_active: page==i})
                     }
 
                     res.end(JSON.stringify({
-                        data: r,
-                        meta: {
-                            page,
-                            limit,
-                            offset,
+                        data : r , 
+                        meta : {
+                            page, 
+                            limit, 
+                            offset, 
                             count: r_count
                         },
                         pages
                     })
-                    );
+                );
                 }).catch(e => next(e))
             })
         }).catch(e => {

@@ -8,7 +8,7 @@
             ApiEditData,
             ApiDeleteData
         } = require("./controllers/data");
-                                                                                                                                                    const { 
+                                                                                                                                                                const { 
             ApiGetAllDevice,
             ApiGetFilterDevice,
                         ApiGetByIdDevice,
@@ -48,7 +48,7 @@
             ApiEditParameter,
             ApiDeleteParameter
         } = require("./controllers/parameter");
-                                                                                        const { 
+                                                                                                                const { 
             ApiGetAllPlace,
             ApiGetFilterPlace,
                         ApiGetByIdPlace,
@@ -189,7 +189,7 @@ const BaseRouter = (app) => {
     app.post('/api/data/0', ApiAddData.bind(ContextApi));
     app.put('/api/data/:id', ApiEditData.bind(ContextApi));
     app.delete('/api/data/:id', ApiDeleteData.bind(ContextApi));
-                                                                                                                                                app.get('/api/device/all', ApiGetAllDevice.bind(ContextApi));
+                                                                                                                                                            app.get('/api/device/all', ApiGetAllDevice.bind(ContextApi));
     app.get('/api/device/filter', ApiGetFilterDevice.bind(ContextApi));
     app.get('/api/device/:id', ApiGetByIdDevice.bind(ContextApi));
     app.post('/api/device/0', ApiAddDevice.bind(ContextApi));
@@ -219,7 +219,7 @@ const BaseRouter = (app) => {
     app.post('/api/parameter/0', ApiAddParameter.bind(ContextApi));
     app.put('/api/parameter/:id', ApiEditParameter.bind(ContextApi));
     app.delete('/api/parameter/:id', ApiDeleteParameter.bind(ContextApi));
-                                                                                    app.get('/api/place/all', ApiGetAllPlace.bind(ContextApi));
+                                                                                                            app.get('/api/place/all', ApiGetAllPlace.bind(ContextApi));
     app.get('/api/place/filter', ApiGetFilterPlace.bind(ContextApi));
     app.get('/api/place/:id', ApiGetByIdPlace.bind(ContextApi));
     app.post('/api/place/0', ApiAddPlace.bind(ContextApi));

@@ -33,11 +33,12 @@ module.exports = {
 * @apiBody {Object} settings_connections Настройки подключения
 * @apiBody {Number} lft Левый казатель
 * @apiBody {Number} rgt Правый указатель
-* @apiBody {Number} place_id Место прикрепелния на карте
 * @apiBody {Number} utc Сколько часов по гринфичу
 * @apiBody {Number} mod_id Какой мобификатор будет опрашивать прибор
 * @apiBody {Object} time_settings Временные интервалы для отображения
 * @apiBody {Array} types Какие типы поддерживает
+* @apiBody {Number} status Статус устройства
+* @apiBody {Boolean} is_exclude Исключен из опроса
 *
 * @apiSuccess {Number} id 
 * @apiSuccess {Number} paren_id Родтельское устройство
@@ -45,11 +46,12 @@ module.exports = {
 * @apiSuccess {Object} settings_connections Настройки подключения
 * @apiSuccess {Number} lft Левый казатель
 * @apiSuccess {Number} rgt Правый указатель
-* @apiSuccess {Number} place_id Место прикрепелния на карте
 * @apiSuccess {Number} utc Сколько часов по гринфичу
 * @apiSuccess {Number} mod_id Какой мобификатор будет опрашивать прибор
 * @apiSuccess {Object} time_settings Временные интервалы для отображения
 * @apiSuccess {Array} types Какие типы поддерживает
+* @apiSuccess {Number} status Статус устройства
+* @apiSuccess {Boolean} is_exclude Исключен из опроса
 * @apiErrorExample Response (example):
 *     HTTP/1.1 200
 *     {
@@ -60,8 +62,8 @@ module.exports = {
 *       "error": "not fount row"
                         *       "error": "error validate date name",
                     *       "error": "error validate date settings_connections",
-                                                    *       "error": "error validate date mod_id",
-                                     
+                                            *       "error": "error validate date mod_id",
+                                                     
 *     }
 */
     ApiAddDevice (req, res, next) {
@@ -134,11 +136,12 @@ module.exports = {
 * @apiBody {Object} settings_connections Настройки подключения
 * @apiBody {Number} lft Левый казатель
 * @apiBody {Number} rgt Правый указатель
-* @apiBody {Number} place_id Место прикрепелния на карте
 * @apiBody {Number} utc Сколько часов по гринфичу
 * @apiBody {Number} mod_id Какой мобификатор будет опрашивать прибор
 * @apiBody {Object} time_settings Временные интервалы для отображения
 * @apiBody {Array} types Какие типы поддерживает
+* @apiBody {Number} status Статус устройства
+* @apiBody {Boolean} is_exclude Исключен из опроса
 *
 *
 * @apiSuccess {Number} id=true 
@@ -147,11 +150,12 @@ module.exports = {
 * @apiSuccess {Object} settings_connections Настройки подключения
 * @apiSuccess {Number} lft=true Левый казатель
 * @apiSuccess {Number} rgt=true Правый указатель
-* @apiSuccess {Number} place_id=true Место прикрепелния на карте
 * @apiSuccess {Number} utc=true Сколько часов по гринфичу
 * @apiSuccess {Number} mod_id=true Какой мобификатор будет опрашивать прибор
 * @apiSuccess {Object} time_settings Временные интервалы для отображения
 * @apiSuccess {Array} types Какие типы поддерживает
+* @apiSuccess {Number} status=true Статус устройства
+* @apiSuccess {Boolean} is_exclude Исключен из опроса
 * @apiErrorExample Response (example):
 *     HTTP/1.1 200
 *     {
@@ -162,8 +166,8 @@ module.exports = {
 *       "error": "not fount row"
                         *       "error": "error validate date name",
                     *       "error": "error validate date settings_connections",
-                                                    *       "error": "error validate date mod_id",
-                                     
+                                            *       "error": "error validate date mod_id",
+                                                     
 *     }
 */
     ApiEditDevice (req, res, next) {
@@ -245,11 +249,12 @@ module.exports = {
 * @apiSuccess {Object} data.settings_connections Настройки подключения
 * @apiSuccess {Number} data.lft Левый казатель
 * @apiSuccess {Number} data.rgt Правый указатель
-* @apiSuccess {Number} data.place_id Место прикрепелния на карте
 * @apiSuccess {Number} data.utc Сколько часов по гринфичу
 * @apiSuccess {Number} data.mod_id Какой мобификатор будет опрашивать прибор
 * @apiSuccess {Object} data.time_settings Временные интервалы для отображения
 * @apiSuccess {Array} data.types Какие типы поддерживает
+* @apiSuccess {Number} data.status Статус устройства
+* @apiSuccess {Boolean} data.is_exclude Исключен из опроса
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -351,7 +356,7 @@ module.exports = {
 
     
 /**
-* @api {get} /api/device/filter?filters_by_id=:filter_id&?filters_by_paren_id=:filter_paren_id&?filters_by_name=:filter_name&?filters_by_settings_connections=:filter_settings_connections&?filters_by_lft=:filter_lft&?filters_by_rgt=:filter_rgt&?filters_by_place_id=:filter_place_id&?filters_by_utc=:filter_utc&?filters_by_mod_id=:filter_mod_id&?filters_by_time_settings=:filter_time_settings&?filters_by_types=:filter_types&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Устройства
+* @api {get} /api/device/filter?filters_by_id=:filter_id&?filters_by_paren_id=:filter_paren_id&?filters_by_name=:filter_name&?filters_by_settings_connections=:filter_settings_connections&?filters_by_lft=:filter_lft&?filters_by_rgt=:filter_rgt&?filters_by_utc=:filter_utc&?filters_by_mod_id=:filter_mod_id&?filters_by_time_settings=:filter_time_settings&?filters_by_types=:filter_types&?filters_by_status=:filter_status&?filters_by_is_exclude=:filter_is_exclude&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Устройства
 * @apiName GetAllFilterDevice
 * @apiGroup Device
 *
@@ -365,11 +370,12 @@ module.exports = {
 * @apiParam { json } filter_settings_connections Фильтр по полю settings_connections
 * @apiParam { int } filter_lft Фильтр по полю lft
 * @apiParam { int } filter_rgt Фильтр по полю rgt
-* @apiParam { int } filter_place_id Фильтр по полю place_id
 * @apiParam { int } filter_utc Фильтр по полю utc
 * @apiParam { int } filter_mod_id Фильтр по полю mod_id
 * @apiParam { json } filter_time_settings Фильтр по полю time_settings
 * @apiParam { array } filter_types Фильтр по полю types
+* @apiParam { int } filter_status Фильтр по полю status
+* @apiParam { bool } filter_is_exclude Фильтр по полю is_exclude
 * @apiParam {int} limit_row=10   Сколько записей показывать
 * @apiParam {int} offset_row=0   Сколько записей отступить от начала
 * @apiParam {int} page_num=1  Какую страницу показывать
@@ -381,11 +387,12 @@ module.exports = {
 * @apiSuccess {Object} data.settings_connections Настройки подключения
 * @apiSuccess {Number} data.lft Левый казатель
 * @apiSuccess {Number} data.rgt Правый указатель
-* @apiSuccess {Number} data.place_id Место прикрепелния на карте
 * @apiSuccess {Number} data.utc Сколько часов по гринфичу
 * @apiSuccess {Number} data.mod_id Какой мобификатор будет опрашивать прибор
 * @apiSuccess {Object} data.time_settings Временные интервалы для отображения
 * @apiSuccess {Array} data.types Какие типы поддерживает
+* @apiSuccess {Number} data.status Статус устройства
+* @apiSuccess {Boolean} data.is_exclude Исключен из опроса
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -481,13 +488,6 @@ module.exports = {
                 if( typeof req.params.filters_by_rgt != 'undefined' ){
                     filter['rgt'] = req.params.filters_by_rgt
                 }
-                            if( typeof req.query.filters_by_place_id != 'undefined' ){
-                    filter['place_id'] = req.query.filters_by_place_id
-                }
-
-                if( typeof req.params.filters_by_place_id != 'undefined' ){
-                    filter['place_id'] = req.params.filters_by_place_id
-                }
                             if( typeof req.query.filters_by_utc != 'undefined' ){
                     filter['utc'] = req.query.filters_by_utc
                 }
@@ -515,6 +515,20 @@ module.exports = {
 
                 if( typeof req.params.filters_by_types != 'undefined' ){
                     filter['types'] = req.params.filters_by_types
+                }
+                            if( typeof req.query.filters_by_status != 'undefined' ){
+                    filter['status'] = req.query.filters_by_status
+                }
+
+                if( typeof req.params.filters_by_status != 'undefined' ){
+                    filter['status'] = req.params.filters_by_status
+                }
+                            if( typeof req.query.filters_by_is_exclude != 'undefined' ){
+                    filter['is_exclude'] = req.query.filters_by_is_exclude
+                }
+
+                if( typeof req.params.filters_by_is_exclude != 'undefined' ){
+                    filter['is_exclude'] = req.params.filters_by_is_exclude
                 }
             
             return GetAllByFilterCountDevice(filter, user_ctx).then(r_count => {
@@ -580,11 +594,12 @@ module.exports = {
 * @apiSuccess {Object} data.settings_connections Настройки подключения
 * @apiSuccess {Number} data.lft Левый казатель
 * @apiSuccess {Number} data.rgt Правый указатель
-* @apiSuccess {Number} data.place_id Место прикрепелния на карте
 * @apiSuccess {Number} data.utc Сколько часов по гринфичу
 * @apiSuccess {Number} data.mod_id Какой мобификатор будет опрашивать прибор
 * @apiSuccess {Object} data.time_settings Временные интервалы для отображения
 * @apiSuccess {Array} data.types Какие типы поддерживает
+* @apiSuccess {Number} data.status Статус устройства
+* @apiSuccess {Boolean} data.is_exclude Исключен из опроса
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
