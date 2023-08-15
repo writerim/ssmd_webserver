@@ -14,6 +14,10 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
+        if(!data.login || !data.password){
+            throw new Error('invalid data. Used login and password') 
+        }
+
         let pass_h = crypto.createHash('md5').update(data.password).digest("hex")
 
         return UserFindByLoginByPassword(data.login, pass_h).then(res => {

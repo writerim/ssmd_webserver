@@ -1,4 +1,5 @@
 const { CustomApiGetDeviceByType } = require("./controllers/device.custom");
+const { CustomApiLoginUser } = require("./controllers/user.custom");
 
 const Context = {
 
@@ -52,6 +53,7 @@ const ContextApi = {
 const CustomBaseRouter = (app) => {
 
     app.get('/api/device/all/:type_id', CustomApiGetDeviceByType.bind(ContextApi));
+    app.post('/api/login', CustomApiLoginUser.bind(ContextApi));
 
 }
 
