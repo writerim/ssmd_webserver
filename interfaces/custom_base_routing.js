@@ -1,5 +1,8 @@
 const { CustomApiGetDeviceByType } = require("./controllers/device.custom");
-const { CustomApiLoginUser } = require("./controllers/user.custom");
+const { ApiGetByIdUser } = require("./controllers/user");
+const UserCtx = require("../entity/User");
+const { CustomApiLoginUser, GetChatBySessionToken, CustomApiCheckTokenUser } = require("./controllers/user.custom");
+const { GetUserBySessionToken } = require("../use_cases/user.custom");
 
 const Context = {
 
@@ -18,9 +21,9 @@ const Context = {
         let token = req.header('Token') || req.cookies.Token
         if (!token) {
             Context.fInvalidToken(res)
-            throw new Error(this.INVALID_TOKEN)
+            return
         }
-        return GetChatBySessionToken(token, new Chat()).then(chat => {
+        return GetUserBySessionToken(token, new UserCtx()).then(chat => {
             if (chat) {
                 return chat
             }
@@ -54,6 +57,7 @@ const CustomBaseRouter = (app) => {
 
     app.get('/api/device/all/:type_id', CustomApiGetDeviceByType.bind(ContextApi));
     app.post('/api/login', CustomApiLoginUser.bind(ContextApi));
+    app.get('/api/check_token', CustomApiCheckTokenUser.bind(ContextApi));
 
 }
 
