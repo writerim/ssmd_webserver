@@ -13,9 +13,9 @@ const TABLENAME = 'placetype'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_IDENT = 'error validate date ident'
-        const ERROR_VALIDATE_ICON = 'error validate date icon'
-     
+        const ERROR_VALIDATE_IDENT = 'error validate data: ident'
+    const ERROR_VALIDATE_ICON = 'error validate data: icon'
+ 
 
 const initional = ()=>{
 
@@ -234,9 +234,27 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.ident) {
+            return ERROR_VALIDATE_IDENT
+        }
+                    if (!data.icon) {
+            return ERROR_VALIDATE_ICON
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -271,7 +289,8 @@ PLACETYPE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     PlaceTypeAdd: Add,
     PlaceTypeDrop: Drop,
     PlaceTypeFindById: FindById,
-    PlaceTypeValidate: Validate,
+    PlaceTypeValidateUpdate: ValidateUpdate,
+    PlaceTypeValidateInsert: ValidateInsert,
     PlaceTypeModel: PlaceType,
     PlaceTypeGetAllFilter: GetAllFilter,
     PlaceTypeGetAllFilterCount: GetAllFilterCount,

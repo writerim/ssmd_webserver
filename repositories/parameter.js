@@ -13,8 +13,8 @@ const TABLENAME = 'parameter'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_IDENT = 'error validate date ident'
-     
+        const ERROR_VALIDATE_IDENT = 'error validate data: ident'
+ 
 
 const initional = ()=>{
 
@@ -143,9 +143,24 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.ident) {
+            return ERROR_VALIDATE_IDENT
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -176,7 +191,8 @@ PARAMETER_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     ParameterAdd: Add,
     ParameterDrop: Drop,
     ParameterFindById: FindById,
-    ParameterValidate: Validate,
+    ParameterValidateUpdate: ValidateUpdate,
+    ParameterValidateInsert: ValidateInsert,
     ParameterModel: Parameter,
     ParameterGetAllFilter: GetAllFilter,
     ParameterGetAllFilterCount: GetAllFilterCount,

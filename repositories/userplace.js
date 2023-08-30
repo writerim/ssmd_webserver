@@ -13,9 +13,9 @@ const TABLENAME = 'userplace'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_PLACEID = 'error validate date plce_id'
-        const ERROR_VALIDATE_USERID = 'error validate date user_id'
-     
+        const ERROR_VALIDATE_PLACEID = 'error validate data: plce_id'
+    const ERROR_VALIDATE_USERID = 'error validate data: user_id'
+ 
 
 const initional = ()=>{
 
@@ -149,9 +149,27 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.plce_id) {
+            return ERROR_VALIDATE_PLACEID
+        }
+                    if (!data.user_id) {
+            return ERROR_VALIDATE_USERID
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -186,7 +204,8 @@ USERPLACE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     UserPlaceAdd: Add,
     UserPlaceDrop: Drop,
     UserPlaceFindById: FindById,
-    UserPlaceValidate: Validate,
+    UserPlaceValidateUpdate: ValidateUpdate,
+    UserPlaceValidateInsert: ValidateInsert,
     UserPlaceModel: UserPlace,
     UserPlaceGetAllFilter: GetAllFilter,
     UserPlaceGetAllFilterCount: GetAllFilterCount,

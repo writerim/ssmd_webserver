@@ -44,10 +44,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date description",
-                    *       "error": "error validate date index",
-                    *       "error": "error validate date value",
-                     
+                                         
 *     }
 */
     ApiAddSettingsEnterprise (req, res, next) {
@@ -132,10 +129,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date description",
-                    *       "error": "error validate date index",
-                    *       "error": "error validate date value",
-                     
+                                         
 *     }
 */
     ApiEditSettingsEnterprise (req, res, next) {

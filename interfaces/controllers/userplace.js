@@ -42,9 +42,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date plce_id",
-                    *       "error": "error validate date user_id",
-                     
+                                 
 *     }
 */
     ApiAddUserPlace (req, res, next) {
@@ -127,9 +125,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date plce_id",
-                    *       "error": "error validate date user_id",
-                     
+                                 
 *     }
 */
     ApiEditUserPlace (req, res, next) {

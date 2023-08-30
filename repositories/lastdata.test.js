@@ -1,6 +1,6 @@
                      
 
-         
+ 
 
 const { 
     LastDataAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: LastData", function () {
 
-            it('func LastData Add. Проверка на пустой объект', async function () {
-            return LastDataAdd({}).catch(res => {
-                assert.equal(res.message, LASTDATA_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

@@ -46,11 +46,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date device_id",
-                    *       "error": "error validate date parameter_id",
-                    *       "error": "error validate date device_donor_id",
-                    *       "error": "error validate date parameter_donor_id",
-                     
+                                                 
 *     }
 */
     ApiAddDevice2Device (req, res, next) {
@@ -137,11 +133,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date device_id",
-                    *       "error": "error validate date parameter_id",
-                    *       "error": "error validate date device_donor_id",
-                    *       "error": "error validate date parameter_donor_id",
-                     
+                                                 
 *     }
 */
     ApiEditDevice2Device (req, res, next) {

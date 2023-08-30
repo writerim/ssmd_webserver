@@ -62,17 +62,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                    *       "error": "error validate date manufactures",
-                    *       "error": "error validate date mark",
-                    *       "error": "error validate date model",
-                                    *       "error": "error validate date types_device",
-                    *       "error": "error validate date lib",
-                    *       "error": "error validate date parameters",
-                    *       "error": "error validate date commands",
-                    *       "error": "error validate date lib_description",
-                    *       "error": "error validate date commands",
-                     
+                                                                                                                 
 *     }
 */
     ApiAddMod (req, res, next) {
@@ -175,17 +165,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                    *       "error": "error validate date manufactures",
-                    *       "error": "error validate date mark",
-                    *       "error": "error validate date model",
-                                    *       "error": "error validate date types_device",
-                    *       "error": "error validate date lib",
-                    *       "error": "error validate date parameters",
-                    *       "error": "error validate date commands",
-                    *       "error": "error validate date lib_description",
-                    *       "error": "error validate date commands",
-                     
+                                                                                                                 
 *     }
 */
     ApiEditMod (req, res, next) {

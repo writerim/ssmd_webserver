@@ -4,7 +4,8 @@ const Role = require("../entity/role");
 const UserCtx = require("../entity/user");
 
 const { 
-    RoleValidate, 
+    RoleValidateInsert, 
+    RoleValidateUpdate, 
     RoleAdd, 
     RoleFindById, 
     RoleUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = RoleValidate(data)
+        var error_validate = RoleValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = RoleValidate(data)
+        var error_validate = RoleValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

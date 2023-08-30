@@ -13,11 +13,11 @@ const TABLENAME = 'data'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_DEVICEID = 'error validate date device_id'
-        const ERROR_VALIDATE_PARAMETERID = 'error validate date parameter_id'
-        const ERROR_VALIDATE_DATA = 'error validate date data'
-        const ERROR_VALIDATE_DATE = 'error validate date date'
-     
+        const ERROR_VALIDATE_DEVICEID = 'error validate data: device_id'
+    const ERROR_VALIDATE_PARAMETERID = 'error validate data: parameter_id'
+    const ERROR_VALIDATE_DATA = 'error validate data: data'
+    const ERROR_VALIDATE_DATE = 'error validate data: date'
+ 
 
 const initional = ()=>{
 
@@ -163,9 +163,33 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.device_id) {
+            return ERROR_VALIDATE_DEVICEID
+        }
+                    if (!data.parameter_id) {
+            return ERROR_VALIDATE_PARAMETERID
+        }
+                    if (!data.data) {
+            return ERROR_VALIDATE_DATA
+        }
+                    if (!data.date) {
+            return ERROR_VALIDATE_DATE
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -208,7 +232,8 @@ DATA_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     DataAdd: Add,
     DataDrop: Drop,
     DataFindById: FindById,
-    DataValidate: Validate,
+    DataValidateUpdate: ValidateUpdate,
+    DataValidateInsert: ValidateInsert,
     DataModel: Data,
     DataGetAllFilter: GetAllFilter,
     DataGetAllFilterCount: GetAllFilterCount,

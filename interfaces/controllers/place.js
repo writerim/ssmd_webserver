@@ -52,9 +52,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                    *       "error": "error validate date parent_id",
-                                                             
+                                                                         
 *     }
 */
     ApiAddPlace (req, res, next) {
@@ -147,9 +145,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                    *       "error": "error validate date parent_id",
-                                                             
+                                                                         
 *     }
 */
     ApiEditPlace (req, res, next) {

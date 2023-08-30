@@ -42,9 +42,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date ident",
-                    *       "error": "error validate date icon",
-                     
+                                 
 *     }
 */
     ApiAddPlaceType (req, res, next) {
@@ -127,9 +125,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date ident",
-                    *       "error": "error validate date icon",
-                     
+                                 
 *     }
 */
     ApiEditPlaceType (req, res, next) {

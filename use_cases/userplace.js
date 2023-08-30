@@ -4,7 +4,8 @@ const UserPlace = require("../entity/userplace");
 const UserCtx = require("../entity/user");
 
 const { 
-    UserPlaceValidate, 
+    UserPlaceValidateInsert, 
+    UserPlaceValidateUpdate, 
     UserPlaceAdd, 
     UserPlaceFindById, 
     UserPlaceUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = UserPlaceValidate(data)
+        var error_validate = UserPlaceValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = UserPlaceValidate(data)
+        var error_validate = UserPlaceValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

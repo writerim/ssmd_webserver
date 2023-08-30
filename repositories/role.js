@@ -13,9 +13,9 @@ const TABLENAME = 'role'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_NAME = 'error validate date name'
-        const ERROR_VALIDATE_DESCRIPTION = 'error validate date description'
-     
+        const ERROR_VALIDATE_NAME = 'error validate data: name'
+    const ERROR_VALIDATE_DESCRIPTION = 'error validate data: description'
+ 
 
 const initional = ()=>{
 
@@ -149,9 +149,27 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.name) {
+            return ERROR_VALIDATE_NAME
+        }
+                    if (!data.description) {
+            return ERROR_VALIDATE_DESCRIPTION
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -186,7 +204,8 @@ ROLE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     RoleAdd: Add,
     RoleDrop: Drop,
     RoleFindById: FindById,
-    RoleValidate: Validate,
+    RoleValidateUpdate: ValidateUpdate,
+    RoleValidateInsert: ValidateInsert,
     RoleModel: Role,
     RoleGetAllFilter: GetAllFilter,
     RoleGetAllFilterCount: GetAllFilterCount,

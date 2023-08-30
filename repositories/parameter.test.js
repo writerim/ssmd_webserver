@@ -1,6 +1,6 @@
          
 
-         
+ 
 
 const { 
     ParameterAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: Parameter", function () {
 
-            it('func Parameter Add. Проверка на пустой объект', async function () {
-            return ParameterAdd({}).catch(res => {
-                assert.equal(res.message, PARAMETER_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

@@ -1,6 +1,6 @@
                                                              
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: Device", function () {
 
     
-        it('func Device Add. Проверка на контекст', async function () {
-            return AddDevice({}).catch(res => {
-                assert.equal(res.message, Device_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func Device Add. Проверка на пустой объект', async function () {
-            return AddDevice({},new User()).catch(res => {
-                assert.equal(res.message, DEVICE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

@@ -46,11 +46,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date device_id",
-                    *       "error": "error validate date parameter_id",
-                    *       "error": "error validate date data",
-                    *       "error": "error validate date date",
-                     
+                                                 
 *     }
 */
     ApiAddLastData (req, res, next) {
@@ -137,11 +133,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date device_id",
-                    *       "error": "error validate date parameter_id",
-                    *       "error": "error validate date data",
-                    *       "error": "error validate date date",
-                     
+                                                 
 *     }
 */
     ApiEditLastData (req, res, next) {

@@ -13,9 +13,9 @@ const TABLENAME = 'rolerule'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_ROLEID = 'error validate date role_id'
-        const ERROR_VALIDATE_RULEID = 'error validate date rule_id'
-     
+        const ERROR_VALIDATE_ROLEID = 'error validate data: role_id'
+    const ERROR_VALIDATE_RULEID = 'error validate data: rule_id'
+ 
 
 const initional = ()=>{
 
@@ -149,9 +149,27 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.role_id) {
+            return ERROR_VALIDATE_ROLEID
+        }
+                    if (!data.rule_id) {
+            return ERROR_VALIDATE_RULEID
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -186,7 +204,8 @@ ROLERULE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     RoleRuleAdd: Add,
     RoleRuleDrop: Drop,
     RoleRuleFindById: FindById,
-    RoleRuleValidate: Validate,
+    RoleRuleValidateUpdate: ValidateUpdate,
+    RoleRuleValidateInsert: ValidateInsert,
     RoleRuleModel: RoleRule,
     RoleRuleGetAllFilter: GetAllFilter,
     RoleRuleGetAllFilterCount: GetAllFilterCount,

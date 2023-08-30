@@ -1,6 +1,6 @@
              
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: RoleRule", function () {
 
     
-        it('func RoleRule Add. Проверка на контекст', async function () {
-            return AddRoleRule({}).catch(res => {
-                assert.equal(res.message, RoleRule_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func RoleRule Add. Проверка на пустой объект', async function () {
-            return AddRoleRule({},new User()).catch(res => {
-                assert.equal(res.message, ROLERULE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

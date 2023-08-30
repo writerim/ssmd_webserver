@@ -4,7 +4,8 @@ const Parameter = require("../entity/parameter");
 const UserCtx = require("../entity/user");
 
 const { 
-    ParameterValidate, 
+    ParameterValidateInsert, 
+    ParameterValidateUpdate, 
     ParameterAdd, 
     ParameterFindById, 
     ParameterUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = ParameterValidate(data)
+        var error_validate = ParameterValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = ParameterValidate(data)
+        var error_validate = ParameterValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

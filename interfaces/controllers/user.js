@@ -58,11 +58,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                            *       "error": "error validate date login",
-                    *       "error": "error validate date password",
-                            *       "error": "error validate date is_group",
-                                                     
+                                                                                                 
 *     }
 */
     ApiAddUser (req, res, next) {
@@ -161,11 +157,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                            *       "error": "error validate date login",
-                    *       "error": "error validate date password",
-                            *       "error": "error validate date is_group",
-                                                     
+                                                                                                 
 *     }
 */
     ApiEditUser (req, res, next) {

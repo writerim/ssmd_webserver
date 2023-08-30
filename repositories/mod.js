@@ -13,17 +13,17 @@ const TABLENAME = 'mod'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_NAME = 'error validate date name'
-        const ERROR_VALIDATE_MANUFACTURES = 'error validate date manufactures'
-        const ERROR_VALIDATE_MARK = 'error validate date mark'
-        const ERROR_VALIDATE_MODEL = 'error validate date model'
-                const ERROR_VALIDATE_TYPESDEVICE = 'error validate date types_device'
-        const ERROR_VALIDATE_LIB = 'error validate date lib'
-        const ERROR_VALIDATE_PARAMETERS = 'error validate date parameters'
-        const ERROR_VALIDATE_COMMANDS = 'error validate date commands'
-        const ERROR_VALIDATE_LIBDESCRIPTION = 'error validate date lib_description'
-        const ERROR_VALIDATE_СOMMANDS = 'error validate date commands'
-     
+        const ERROR_VALIDATE_NAME = 'error validate data: name'
+    const ERROR_VALIDATE_MANUFACTURES = 'error validate data: manufactures'
+    const ERROR_VALIDATE_MARK = 'error validate data: mark'
+    const ERROR_VALIDATE_MODEL = 'error validate data: model'
+            const ERROR_VALIDATE_TYPESDEVICE = 'error validate data: types_device'
+    const ERROR_VALIDATE_LIB = 'error validate data: lib'
+    const ERROR_VALIDATE_PARAMETERS = 'error validate data: parameters'
+    const ERROR_VALIDATE_COMMANDS = 'error validate data: commands'
+    const ERROR_VALIDATE_LIBDESCRIPTION = 'error validate data: lib_description'
+    const ERROR_VALIDATE_СOMMANDS = 'error validate data: commands'
+ 
 
 const initional = ()=>{
 
@@ -218,9 +218,51 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.name) {
+            return ERROR_VALIDATE_NAME
+        }
+                    if (!data.manufactures) {
+            return ERROR_VALIDATE_MANUFACTURES
+        }
+                    if (!data.mark) {
+            return ERROR_VALIDATE_MARK
+        }
+                    if (!data.model) {
+            return ERROR_VALIDATE_MODEL
+        }
+                                    if (!data.types_device) {
+            return ERROR_VALIDATE_TYPESDEVICE
+        }
+                    if (!data.lib) {
+            return ERROR_VALIDATE_LIB
+        }
+                    if (!data.parameters) {
+            return ERROR_VALIDATE_PARAMETERS
+        }
+                    if (!data.commands) {
+            return ERROR_VALIDATE_COMMANDS
+        }
+                    if (!data.lib_description) {
+            return ERROR_VALIDATE_LIBDESCRIPTION
+        }
+                    if (!data.commands) {
+            return ERROR_VALIDATE_СOMMANDS
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -287,7 +329,8 @@ MOD_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     ModAdd: Add,
     ModDrop: Drop,
     ModFindById: FindById,
-    ModValidate: Validate,
+    ModValidateUpdate: ValidateUpdate,
+    ModValidateInsert: ValidateInsert,
     ModModel: Mod,
     ModGetAllFilter: GetAllFilter,
     ModGetAllFilterCount: GetAllFilterCount,

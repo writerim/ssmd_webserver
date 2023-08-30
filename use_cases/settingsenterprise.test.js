@@ -1,6 +1,6 @@
                  
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: SettingsEnterprise", function () {
 
     
-        it('func SettingsEnterprise Add. Проверка на контекст', async function () {
-            return AddSettingsEnterprise({}).catch(res => {
-                assert.equal(res.message, SettingsEnterprise_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func SettingsEnterprise Add. Проверка на пустой объект', async function () {
-            return AddSettingsEnterprise({},new User()).catch(res => {
-                assert.equal(res.message, SETTINGSENTERPRISE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

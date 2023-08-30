@@ -13,11 +13,11 @@ const TABLENAME = 'device2device'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_DEVICEID = 'error validate date device_id'
-        const ERROR_VALIDATE_PARAMETERID = 'error validate date parameter_id'
-        const ERROR_VALIDATE_DEVICEDONORID = 'error validate date device_donor_id'
-        const ERROR_VALIDATE_PARAMETERDONORID = 'error validate date parameter_donor_id'
-     
+        const ERROR_VALIDATE_DEVICEID = 'error validate data: device_id'
+    const ERROR_VALIDATE_PARAMETERID = 'error validate data: parameter_id'
+    const ERROR_VALIDATE_DEVICEDONORID = 'error validate data: device_donor_id'
+    const ERROR_VALIDATE_PARAMETERDONORID = 'error validate data: parameter_donor_id'
+ 
 
 const initional = ()=>{
 
@@ -163,9 +163,33 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.device_id) {
+            return ERROR_VALIDATE_DEVICEID
+        }
+                    if (!data.parameter_id) {
+            return ERROR_VALIDATE_PARAMETERID
+        }
+                    if (!data.device_donor_id) {
+            return ERROR_VALIDATE_DEVICEDONORID
+        }
+                    if (!data.parameter_donor_id) {
+            return ERROR_VALIDATE_PARAMETERDONORID
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -208,7 +232,8 @@ DEVICE2DEVICE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     Device2DeviceAdd: Add,
     Device2DeviceDrop: Drop,
     Device2DeviceFindById: FindById,
-    Device2DeviceValidate: Validate,
+    Device2DeviceValidateUpdate: ValidateUpdate,
+    Device2DeviceValidateInsert: ValidateInsert,
     Device2DeviceModel: Device2Device,
     Device2DeviceGetAllFilter: GetAllFilter,
     Device2DeviceGetAllFilterCount: GetAllFilterCount,

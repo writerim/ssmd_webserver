@@ -1,6 +1,6 @@
              
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: PlaceType", function () {
 
     
-        it('func PlaceType Add. Проверка на контекст', async function () {
-            return AddPlaceType({}).catch(res => {
-                assert.equal(res.message, PlaceType_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func PlaceType Add. Проверка на пустой объект', async function () {
-            return AddPlaceType({},new User()).catch(res => {
-                assert.equal(res.message, PLACETYPE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

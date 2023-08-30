@@ -4,7 +4,8 @@ const PlaceType = require("../entity/placetype");
 const UserCtx = require("../entity/user");
 
 const { 
-    PlaceTypeValidate, 
+    PlaceTypeValidateInsert, 
+    PlaceTypeValidateUpdate, 
     PlaceTypeAdd, 
     PlaceTypeFindById, 
     PlaceTypeUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = PlaceTypeValidate(data)
+        var error_validate = PlaceTypeValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = PlaceTypeValidate(data)
+        var error_validate = PlaceTypeValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

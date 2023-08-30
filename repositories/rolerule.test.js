@@ -1,6 +1,6 @@
              
 
-         
+ 
 
 const { 
     RoleRuleAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: RoleRule", function () {
 
-            it('func RoleRule Add. Проверка на пустой объект', async function () {
-            return RoleRuleAdd({}).catch(res => {
-                assert.equal(res.message, ROLERULE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

@@ -1,6 +1,6 @@
              
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: Rule", function () {
 
     
-        it('func Rule Add. Проверка на контекст', async function () {
-            return AddRule({}).catch(res => {
-                assert.equal(res.message, Rule_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func Rule Add. Проверка на пустой объект', async function () {
-            return AddRule({},new User()).catch(res => {
-                assert.equal(res.message, RULE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

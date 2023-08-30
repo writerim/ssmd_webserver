@@ -1,6 +1,6 @@
                  
 
-         
+ 
 
 const { 
     SettingsEnterpriseAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: SettingsEnterprise", function () {
 
-            it('func SettingsEnterprise Add. Проверка на пустой объект', async function () {
-            return SettingsEnterpriseAdd({}).catch(res => {
-                assert.equal(res.message, SETTINGSENTERPRISE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

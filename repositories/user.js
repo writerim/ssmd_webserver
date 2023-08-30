@@ -13,11 +13,11 @@ const TABLENAME = 'user'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_NAME = 'error validate date name'
-            const ERROR_VALIDATE_LOGIN = 'error validate date login'
-        const ERROR_VALIDATE_PASSWORD = 'error validate date password'
-            const ERROR_VALIDATE_ISGROUP = 'error validate date is_group'
-                     
+        const ERROR_VALIDATE_NAME = 'error validate data: name'
+        const ERROR_VALIDATE_LOGIN = 'error validate data: login'
+    const ERROR_VALIDATE_PASSWORD = 'error validate data: password'
+        const ERROR_VALIDATE_ISGROUP = 'error validate data: is_group'
+                 
 
 const initional = ()=>{
 
@@ -199,9 +199,18 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                                                                                 
 
+    
+                                                                                             
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -368,7 +377,8 @@ USER_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     UserAdd: Add,
     UserDrop: Drop,
     UserFindById: FindById,
-    UserValidate: Validate,
+    UserValidateUpdate: ValidateUpdate,
+    UserValidateInsert: ValidateInsert,
     UserModel: User,
     UserGetAllFilter: GetAllFilter,
     UserGetAllFilterCount: GetAllFilterCount,

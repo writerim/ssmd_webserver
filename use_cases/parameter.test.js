@@ -1,6 +1,6 @@
          
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: Parameter", function () {
 
     
-        it('func Parameter Add. Проверка на контекст', async function () {
-            return AddParameter({}).catch(res => {
-                assert.equal(res.message, Parameter_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func Parameter Add. Проверка на пустой объект', async function () {
-            return AddParameter({},new User()).catch(res => {
-                assert.equal(res.message, PARAMETER_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

@@ -42,9 +42,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                    *       "error": "error validate date description",
-                     
+                                 
 *     }
 */
     ApiAddRole (req, res, next) {
@@ -127,9 +125,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date name",
-                    *       "error": "error validate date description",
-                     
+                                 
 *     }
 */
     ApiEditRole (req, res, next) {

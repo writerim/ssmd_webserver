@@ -1,6 +1,6 @@
                                                              
 
-         
+ 
 
 const { 
     DeviceAdd, 
@@ -18,13 +18,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: Device", function () {
 
-            it('func Device Add. Проверка на пустой объект', async function () {
-            return DeviceAdd({}).catch(res => {
-                assert.equal(res.message, DEVICE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

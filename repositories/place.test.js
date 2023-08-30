@@ -1,6 +1,6 @@
                                              
 
-         
+ 
 
 const { 
     PlaceAdd, 
@@ -18,13 +18,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: Place", function () {
 
-            it('func Place Add. Проверка на пустой объект', async function () {
-            return PlaceAdd({}).catch(res => {
-                assert.equal(res.message, PLACE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

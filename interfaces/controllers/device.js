@@ -60,10 +60,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                        *       "error": "error validate date name",
-                    *       "error": "error validate date settings_connections",
-                                            *       "error": "error validate date mod_id",
-                                                     
+                                                                                                         
 *     }
 */
     ApiAddDevice (req, res, next) {
@@ -164,10 +161,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                        *       "error": "error validate date name",
-                    *       "error": "error validate date settings_connections",
-                                            *       "error": "error validate date mod_id",
-                                                     
+                                                                                                         
 *     }
 */
     ApiEditDevice (req, res, next) {

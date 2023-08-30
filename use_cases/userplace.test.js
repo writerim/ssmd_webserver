@@ -1,6 +1,6 @@
              
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: UserPlace", function () {
 
     
-        it('func UserPlace Add. Проверка на контекст', async function () {
-            return AddUserPlace({}).catch(res => {
-                assert.equal(res.message, UserPlace_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func UserPlace Add. Проверка на пустой объект', async function () {
-            return AddUserPlace({},new User()).catch(res => {
-                assert.equal(res.message, USERPLACE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

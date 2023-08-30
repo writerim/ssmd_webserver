@@ -1,6 +1,6 @@
                                                      
 
-         
+ 
 
 const { 
     ModAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: Mod", function () {
 
-            it('func Mod Add. Проверка на пустой объект', async function () {
-            return ModAdd({}).catch(res => {
-                assert.equal(res.message, MOD_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

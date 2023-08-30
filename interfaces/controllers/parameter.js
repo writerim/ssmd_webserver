@@ -40,8 +40,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date ident",
-                     
+                         
 *     }
 */
     ApiAddParameter (req, res, next) {
@@ -122,8 +121,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date ident",
-                     
+                         
 *     }
 */
     ApiEditParameter (req, res, next) {

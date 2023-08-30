@@ -13,10 +13,10 @@ const TABLENAME = 'device'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-            const ERROR_VALIDATE_NAME = 'error validate date name'
-        const ERROR_VALIDATE_SETTINGSCONNECTIONS = 'error validate date settings_connections'
-                    const ERROR_VALIDATE_MODID = 'error validate date mod_id'
-                     
+            const ERROR_VALIDATE_NAME = 'error validate data: name'
+    const ERROR_VALIDATE_SETTINGSCONNECTIONS = 'error validate data: settings_connections'
+                const ERROR_VALIDATE_MODID = 'error validate data: mod_id'
+                 
 
 const initional = ()=>{
 
@@ -204,9 +204,30 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                             
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                                if (!data.name) {
+            return ERROR_VALIDATE_NAME
+        }
+                    if (!data.settings_connections) {
+            return ERROR_VALIDATE_SETTINGSCONNECTIONS
+        }
+                                            if (!data.mod_id) {
+            return ERROR_VALIDATE_MODID
+        }
+                                         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                              
 
             if (!data || !Object.keys(data).length) {
@@ -372,7 +393,8 @@ DEVICE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     DeviceAdd: Add,
     DeviceDrop: Drop,
     DeviceFindById: FindById,
-    DeviceValidate: Validate,
+    DeviceValidateUpdate: ValidateUpdate,
+    DeviceValidateInsert: ValidateInsert,
     DeviceModel: Device,
     DeviceGetAllFilter: GetAllFilter,
     DeviceGetAllFilterCount: GetAllFilterCount,

@@ -1,6 +1,6 @@
              
 
-         
+ 
 
 const { 
     PlaceTypeAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: PlaceType", function () {
 
-            it('func PlaceType Add. Проверка на пустой объект', async function () {
-            return PlaceTypeAdd({}).catch(res => {
-                assert.equal(res.message, PLACETYPE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

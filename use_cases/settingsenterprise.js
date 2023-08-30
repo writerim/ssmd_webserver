@@ -4,7 +4,8 @@ const SettingsEnterprise = require("../entity/settingsenterprise");
 const UserCtx = require("../entity/user");
 
 const { 
-    SettingsEnterpriseValidate, 
+    SettingsEnterpriseValidateInsert, 
+    SettingsEnterpriseValidateUpdate, 
     SettingsEnterpriseAdd, 
     SettingsEnterpriseFindById, 
     SettingsEnterpriseUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = SettingsEnterpriseValidate(data)
+        var error_validate = SettingsEnterpriseValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = SettingsEnterpriseValidate(data)
+        var error_validate = SettingsEnterpriseValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

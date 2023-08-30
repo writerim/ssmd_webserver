@@ -4,7 +4,8 @@ const Rule = require("../entity/rule");
 const UserCtx = require("../entity/user");
 
 const { 
-    RuleValidate, 
+    RuleValidateInsert, 
+    RuleValidateUpdate, 
     RuleAdd, 
     RuleFindById, 
     RuleUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = RuleValidate(data)
+        var error_validate = RuleValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = RuleValidate(data)
+        var error_validate = RuleValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

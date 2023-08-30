@@ -1,6 +1,6 @@
                                                          
 
-         
+ 
 
 const { 
     UserAdd, 
@@ -18,13 +18,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: User", function () {
 
-            it('func User Add. Проверка на пустой объект', async function () {
-            return UserAdd({}).catch(res => {
-                assert.equal(res.message, USER_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

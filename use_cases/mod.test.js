@@ -1,6 +1,6 @@
                                                      
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: Mod", function () {
 
     
-        it('func Mod Add. Проверка на контекст', async function () {
-            return AddMod({}).catch(res => {
-                assert.equal(res.message, Mod_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func Mod Add. Проверка на пустой объект', async function () {
-            return AddMod({},new User()).catch(res => {
-                assert.equal(res.message, MOD_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

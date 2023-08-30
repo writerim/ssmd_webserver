@@ -13,10 +13,10 @@ const TABLENAME = 'settingsenterprise'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_DESCRIPTION = 'error validate date description'
-        const ERROR_VALIDATE_INDEX = 'error validate date index'
-        const ERROR_VALIDATE_VALUE = 'error validate date value'
-     
+        const ERROR_VALIDATE_DESCRIPTION = 'error validate data: description'
+    const ERROR_VALIDATE_INDEX = 'error validate data: index'
+    const ERROR_VALIDATE_VALUE = 'error validate data: value'
+ 
 
 const initional = ()=>{
 
@@ -164,9 +164,30 @@ const GetAllFilter = async (filter, params) => {
 }
 
 
+// Валидация для обновления данных
+const ValidateUpdate = (data) => {
+                                     
 
+            if (!data || !Object.keys(data).length) {
+            return ERROR_VALIDATE_INVALID_DATA
+        }
+    
+                        if (!data.description) {
+            return ERROR_VALIDATE_DESCRIPTION
+        }
+                    if (!data.index) {
+            return ERROR_VALIDATE_INDEX
+        }
+                    if (!data.value) {
+            return ERROR_VALIDATE_VALUE
+        }
+         
 
-const Validate = (data) => {
+    return ``
+}
+
+// Валидация для вставки данных
+const ValidateInsert = (data) => {
                                      
 
             if (!data || !Object.keys(data).length) {
@@ -205,7 +226,8 @@ SETTINGSENTERPRISE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
     SettingsEnterpriseAdd: Add,
     SettingsEnterpriseDrop: Drop,
     SettingsEnterpriseFindById: FindById,
-    SettingsEnterpriseValidate: Validate,
+    SettingsEnterpriseValidateUpdate: ValidateUpdate,
+    SettingsEnterpriseValidateInsert: ValidateInsert,
     SettingsEnterpriseModel: SettingsEnterprise,
     SettingsEnterpriseGetAllFilter: GetAllFilter,
     SettingsEnterpriseGetAllFilterCount: GetAllFilterCount,

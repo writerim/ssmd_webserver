@@ -4,7 +4,8 @@ const Device2Device = require("../entity/device2device");
 const UserCtx = require("../entity/user");
 
 const { 
-    Device2DeviceValidate, 
+    Device2DeviceValidateInsert, 
+    Device2DeviceValidateUpdate, 
     Device2DeviceAdd, 
     Device2DeviceFindById, 
     Device2DeviceUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = Device2DeviceValidate(data)
+        var error_validate = Device2DeviceValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = Device2DeviceValidate(data)
+        var error_validate = Device2DeviceValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

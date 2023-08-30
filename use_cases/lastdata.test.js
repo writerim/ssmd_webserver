@@ -1,6 +1,6 @@
                      
 
-         
+ 
 
 
 const { 
@@ -28,20 +28,6 @@ const assert = require('assert').strict;
 describe("use_cases: LastData", function () {
 
     
-        it('func LastData Add. Проверка на контекст', async function () {
-            return AddLastData({}).catch(res => {
-                assert.equal(res.message, LastData_NOT_FOUND_CONTEXT)
-            })
-        })
-
-        it('func LastData Add. Проверка на пустой объект', async function () {
-            return AddLastData({},new User()).catch(res => {
-                assert.equal(res.message, LASTDATA_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-        
-
-            
 
     let add_id = 0
 

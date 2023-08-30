@@ -42,9 +42,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date role_id",
-                    *       "error": "error validate date rule_id",
-                     
+                                 
 *     }
 */
     ApiAddRoleRule (req, res, next) {
@@ -127,9 +125,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                *       "error": "error validate date role_id",
-                    *       "error": "error validate date rule_id",
-                     
+                                 
 *     }
 */
     ApiEditRoleRule (req, res, next) {

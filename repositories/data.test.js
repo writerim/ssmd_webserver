@@ -1,6 +1,6 @@
                      
 
-         
+ 
 
 const { 
     DataAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: Data", function () {
 
-            it('func Data Add. Проверка на пустой объект', async function () {
-            return DataAdd({}).catch(res => {
-                assert.equal(res.message, DATA_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 

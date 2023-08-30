@@ -4,7 +4,8 @@ const LastData = require("../entity/lastdata");
 const UserCtx = require("../entity/user");
 
 const { 
-    LastDataValidate, 
+    LastDataValidateInsert, 
+    LastDataValidateUpdate, 
     LastDataAdd, 
     LastDataFindById, 
     LastDataUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = LastDataValidate(data)
+        var error_validate = LastDataValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = LastDataValidate(data)
+        var error_validate = LastDataValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

@@ -4,7 +4,8 @@ const Mod = require("../entity/mod");
 const UserCtx = require("../entity/user");
 
 const { 
-    ModValidate, 
+    ModValidateInsert, 
+    ModValidateUpdate, 
     ModAdd, 
     ModFindById, 
     ModUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = ModValidate(data)
+        var error_validate = ModValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = ModValidate(data)
+        var error_validate = ModValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

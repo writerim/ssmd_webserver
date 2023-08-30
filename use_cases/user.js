@@ -4,7 +4,8 @@ const User = require("../entity/user");
 const UserCtx = require("../entity/user");
 
 const { 
-    UserValidate, 
+    UserValidateInsert, 
+    UserValidateUpdate, 
     UserAdd, 
     UserFindById, 
     UserUpdate, 
@@ -31,7 +32,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = UserValidate(data)
+        var error_validate = UserValidateInsert(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }
@@ -45,7 +46,7 @@ module.exports = {
             throw new Error(NOT_FOUND_CONTEXT)
         }
 
-        var error_validate = UserValidate(data)
+        var error_validate = UserValidateUpdate(data)
         if (error_validate != '') {
             throw new Error(error_validate)
         }

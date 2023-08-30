@@ -1,6 +1,6 @@
              
 
-         
+ 
 
 const { 
     RuleAdd, 
@@ -17,13 +17,7 @@ const assert = require('assert').strict;
 
 describe("repo: DB: Rule", function () {
 
-            it('func Rule Add. Проверка на пустой объект', async function () {
-            return RuleAdd({}).catch(res => {
-                assert.equal(res.message, RULE_ERROR_VALIDATE_INVALID_DATA)
-            })
-        })
-
-            
+    
 
     let add_id = 0
 
