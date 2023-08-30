@@ -1,7 +1,7 @@
 // generated
 
 const RoleRule = require("../entity/rolerule");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     RoleRuleValidate, 
@@ -15,7 +15,7 @@ const {
     RoleRuleGetAllFilter,
     RoleRuleGetAllFilterCount,
     RoleRuleGetAll 
-} = require("../repositories/RoleRule");
+} = require("../repositories/rolerule");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

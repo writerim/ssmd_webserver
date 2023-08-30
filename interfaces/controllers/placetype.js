@@ -9,9 +9,9 @@ const {
     GetAllByFilterPlaceType, 
     GetAllByFilterCountPlaceType, 
     GetAllPlaceType 
-} = require("../../use_cases/PlaceType");
+} = require("../../use_cases/placetype");
 
-const UserCtx = require("../../entity/User");
+const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
 

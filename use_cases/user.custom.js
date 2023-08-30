@@ -1,5 +1,5 @@
-const UserCtx = require("../entity/User");
-const { UserValidate } = require("../repositories/User");
+const UserCtx = require("../entity/user");
+const { UserValidate } = require("../repositories/user");
 const { UserFindByLoginByPassword, UserGetBySessionToken } = require("../repositories/user.custom");
 var crypto = require('crypto');
 const { EditUser } = require("./user");

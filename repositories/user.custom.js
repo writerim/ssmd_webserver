@@ -1,4 +1,4 @@
-const { UserModel, UserAdd } = require("./User")
+const { UserModel, UserAdd } = require("./user")
 const { GetConnect } = require("./connect")
 
 

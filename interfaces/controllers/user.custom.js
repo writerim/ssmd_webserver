@@ -1,5 +1,5 @@
 const { Login } = require("../../use_cases/user.custom");
-const UserCtx = require("../../entity/User");
+const UserCtx = require("../../entity/user");
 
 module.exports = {
 

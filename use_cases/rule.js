@@ -1,7 +1,7 @@
 // generated
 
 const Rule = require("../entity/rule");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     RuleValidate, 
@@ -15,7 +15,7 @@ const {
     RuleGetAllFilter,
     RuleGetAllFilterCount,
     RuleGetAll 
-} = require("../repositories/Rule");
+} = require("../repositories/rule");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

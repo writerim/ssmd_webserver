@@ -1,7 +1,7 @@
 // generated
 
 const Data = require("../entity/data");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     DataValidate, 
@@ -15,7 +15,7 @@ const {
     DataGetAllFilter,
     DataGetAllFilterCount,
     DataGetAll 
-} = require("../repositories/Data");
+} = require("../repositories/data");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

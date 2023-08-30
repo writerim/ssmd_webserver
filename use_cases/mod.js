@@ -1,7 +1,7 @@
 // generated
 
 const Mod = require("../entity/mod");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     ModValidate, 
@@ -15,7 +15,7 @@ const {
     ModGetAllFilter,
     ModGetAllFilterCount,
     ModGetAll 
-} = require("../repositories/Mod");
+} = require("../repositories/mod");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

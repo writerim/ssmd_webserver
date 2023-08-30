@@ -47,7 +47,8 @@ module.exports = {
             console.log("new connect")
             connect = new Sequelize(config.db, config.login, config.password, {
                 logging: config.logging,
-                dialect: config.type
+                dialect: config.type,
+                host: config.host
             })
         }
         if (init_callers_deamons[caller.name] != "") {

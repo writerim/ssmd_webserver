@@ -1,7 +1,7 @@
 // generated
 
 const LastData = require("../entity/lastdata");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     LastDataValidate, 
@@ -15,7 +15,7 @@ const {
     LastDataGetAllFilter,
     LastDataGetAllFilterCount,
     LastDataGetAll 
-} = require("../repositories/LastData");
+} = require("../repositories/lastdata");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

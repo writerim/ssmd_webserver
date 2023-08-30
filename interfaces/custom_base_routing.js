@@ -1,6 +1,6 @@
 const { CustomApiGetDeviceByType } = require("./controllers/device.custom");
 const { ApiGetByIdUser } = require("./controllers/user");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 const { CustomApiLoginUser, GetChatBySessionToken, CustomApiCheckTokenUser } = require("./controllers/user.custom");
 const { GetUserBySessionToken } = require("../use_cases/user.custom");
 

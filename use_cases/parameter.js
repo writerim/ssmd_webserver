@@ -1,7 +1,7 @@
 // generated
 
 const Parameter = require("../entity/parameter");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     ParameterValidate, 
@@ -15,7 +15,7 @@ const {
     ParameterGetAllFilter,
     ParameterGetAllFilterCount,
     ParameterGetAll 
-} = require("../repositories/Parameter");
+} = require("../repositories/parameter");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

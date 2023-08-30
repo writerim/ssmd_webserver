@@ -114,8 +114,7 @@
         } = require("./controllers/userplace");
 
 const UserCtx = require("../entity/User");
-const { GetUserBySessionToken , GetChatBySessionToken } = require("../use_cases/user.custom");
-const { CustomApiCheckTokenUser } = require("./controllers/user.custom");
+const { GetUserBySessionToken } = require("../use_cases/user.custom");
 
 
 const Context = {

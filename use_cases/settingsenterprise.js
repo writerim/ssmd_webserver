@@ -1,7 +1,7 @@
 // generated
 
 const SettingsEnterprise = require("../entity/settingsenterprise");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     SettingsEnterpriseValidate, 
@@ -15,7 +15,7 @@ const {
     SettingsEnterpriseGetAllFilter,
     SettingsEnterpriseGetAllFilterCount,
     SettingsEnterpriseGetAll 
-} = require("../repositories/SettingsEnterprise");
+} = require("../repositories/settingsenterprise");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

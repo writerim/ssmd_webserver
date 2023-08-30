@@ -9,9 +9,9 @@ const {
     GetAllByFilterRole, 
     GetAllByFilterCountRole, 
     GetAllRole 
-} = require("../../use_cases/Role");
+} = require("../../use_cases/role");
 
-const UserCtx = require("../../entity/User");
+const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
 

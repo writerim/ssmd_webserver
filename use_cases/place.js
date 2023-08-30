@@ -1,7 +1,7 @@
 // generated
 
 const Place = require("../entity/place");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     PlaceValidate, 
@@ -15,7 +15,7 @@ const {
     PlaceGetAllFilter,
     PlaceGetAllFilterCount,
     PlaceGetAll 
-} = require("../repositories/Place");
+} = require("../repositories/place");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

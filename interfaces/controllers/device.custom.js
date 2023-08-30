@@ -1,5 +1,5 @@
 const { CustomGetDeviceByType } = require("../../use_cases/device.custom");
-const UserCtx = require("../../entity/User");
+const UserCtx = require("../../entity/user");
 
 module.exports = {
     // Получение приборов по их типу

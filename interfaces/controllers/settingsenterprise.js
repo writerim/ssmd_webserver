@@ -9,9 +9,9 @@ const {
     GetAllByFilterSettingsEnterprise, 
     GetAllByFilterCountSettingsEnterprise, 
     GetAllSettingsEnterprise 
-} = require("../../use_cases/SettingsEnterprise");
+} = require("../../use_cases/settingsenterprise");
 
-const UserCtx = require("../../entity/User");
+const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
 

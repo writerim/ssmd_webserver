@@ -9,9 +9,9 @@ const {
     GetAllByFilterDevice, 
     GetAllByFilterCountDevice, 
     GetAllDevice 
-} = require("../../use_cases/Device");
+} = require("../../use_cases/device");
 
-const UserCtx = require("../../entity/User");
+const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
 

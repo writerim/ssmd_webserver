@@ -1,7 +1,7 @@
 // generated
 
 const Device2Device = require("../entity/device2device");
-const UserCtx = require("../entity/User");
+const UserCtx = require("../entity/user");
 
 const { 
     Device2DeviceValidate, 
@@ -15,7 +15,7 @@ const {
     Device2DeviceGetAllFilter,
     Device2DeviceGetAllFilterCount,
     Device2DeviceGetAll 
-} = require("../repositories/Device2Device");
+} = require("../repositories/device2device");
 
 
 const NOT_FOUND_CONTEXT = 'not fount context';

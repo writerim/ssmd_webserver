@@ -1,4 +1,4 @@
-const { DeviceModel } = require("./Device")
+const { DeviceModel } = require("./device")
 const { GetConnect } = require("./connect");
 
 module.exports = {
