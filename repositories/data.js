@@ -85,7 +85,7 @@ const Add = async (data) => {
       if (res) {
         return FindById(res.get('id'))
       } else {
-        let error = Validate(data)
+        let error = ValidateInsert(data)
         if (error) {
           throw new Error(error)
         }
@@ -94,7 +94,7 @@ const Add = async (data) => {
     })
   }
 
-  let error = Validate(data)
+  let error = ValidateInsert(data)
   if (error) {
     throw new Error(error)
   }
@@ -134,7 +134,7 @@ const Drop = async (id) => {
 }
 
 const Update = async (data) => {
-  let error = Validate(data)
+  let error = ValidateUpdate(data)
   if (error) {
     throw new Error(error)
   }
