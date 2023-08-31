@@ -1,240 +1,249 @@
 // generated
 
-                    
-
-
-const { DataTypes, Op } = require('sequelize');
-const { GetConnect } = require('./connect');
+const {
+  DataTypes,
+  Op
+} = require('sequelize');
+const {
+  GetConnect
+} = require('./connect');
 var events = require('events');
 
 const TABLENAME = 'device2device'
 
-
-
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-        const ERROR_VALIDATE_DEVICEID = 'error validate data: device_id'
-    const ERROR_VALIDATE_PARAMETERID = 'error validate data: parameter_id'
-    const ERROR_VALIDATE_DEVICEDONORID = 'error validate data: device_donor_id'
-    const ERROR_VALIDATE_PARAMETERDONORID = 'error validate data: parameter_donor_id'
- 
+const ERROR_VALIDATE_DEVICEID = 'error validate data: device_id'
+const ERROR_VALIDATE_PARAMETERID = 'error validate data: parameter_id'
+const ERROR_VALIDATE_DEVICEDONORID = 'error validate data: device_donor_id'
+const ERROR_VALIDATE_PARAMETERDONORID = 'error validate data: parameter_donor_id'
 
-const initional = ()=>{
+const initional = () => {
 
-    
-                    
-            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', { 
-                    type: DataTypes.INTEGER,
-                }, {  mustExist: false }).catch(()=>{});
-            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'device_id', { 
-                    type: DataTypes.INTEGER,
-                }, {  mustExist: false }).catch(()=>{});
-            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parameter_id', { 
-                    type: DataTypes.INTEGER,
-                }, {  mustExist: false }).catch(()=>{});
-            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'device_donor_id', { 
-                    type: DataTypes.INTEGER,
-                }, {  mustExist: false }).catch(()=>{});
-            GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parameter_donor_id', { 
-                    type: DataTypes.INTEGER,
-                }, {  mustExist: false }).catch(()=>{});
-        
-    setTimeout(()=>{
-        let data = {}
-            }, 500)
+  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', {
+    type: DataTypes.INTEGER,
+  }, {
+    mustExist: false
+  }).catch(() => {});
+  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'device_id', {
+    type: DataTypes.INTEGER,
+  }, {
+    mustExist: false
+  }).catch(() => {});
+  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parameter_id', {
+    type: DataTypes.INTEGER,
+  }, {
+    mustExist: false
+  }).catch(() => {});
+  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'device_donor_id', {
+    type: DataTypes.INTEGER,
+  }, {
+    mustExist: false
+  }).catch(() => {});
+  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parameter_donor_id', {
+    type: DataTypes.INTEGER,
+  }, {
+    mustExist: false
+  }).catch(() => {});
+
+  setTimeout(() => {
+    let data = {}
+  }, 500)
 }
 
-const Device2Device = GetConnect({name: 'Device2Device' , deamon : initional}).define(TABLENAME, {
-            id: {
-                            type: DataTypes.INTEGER,
-                                        autoIncrement: true,
-                primaryKey: true
-                    },
-            device_id: {
-                            type: DataTypes.INTEGER,
-                                },
-            parameter_id: {
-                            type: DataTypes.INTEGER,
-                                },
-            device_donor_id: {
-                            type: DataTypes.INTEGER,
-                                },
-            parameter_donor_id: {
-                            type: DataTypes.INTEGER,
-                                },
-    })
-
+const Device2Device = GetConnect({
+  name: 'Device2Device',
+  deamon: initional
+}).define(TABLENAME, {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  device_id: {
+    type: DataTypes.INTEGER,
+  },
+  parameter_id: {
+    type: DataTypes.INTEGER,
+  },
+  device_donor_id: {
+    type: DataTypes.INTEGER,
+  },
+  parameter_donor_id: {
+    type: DataTypes.INTEGER,
+  },
+})
 
 // Добавление сообщения к смене
 const Add = async (data) => {
 
-    let uniques_where = {}
-                                                                    if(Object.keys(uniques_where).length){
-        return Device2Device.findOne({
-            where: uniques_where
-        }).then(res=>{
-            if(res){
-                return FindById(res.get('id'))
-            }else{
-                let error = Validate(data)
-                if (error) {
-                    throw new Error(error)
-                }
-                return Device2Device.create(data);
-            }
-        })
-    }
+  let uniques_where = {}
+  if (Object.keys(uniques_where).length) {
+    return Device2Device.findOne({
+      where: uniques_where
+    }).then(res => {
+      if (res) {
+        return FindById(res.get('id'))
+      } else {
+        let error = Validate(data)
+        if (error) {
+          throw new Error(error)
+        }
+        return Device2Device.create(data);
+      }
+    })
+  }
 
-    let error = Validate(data)
-    if (error) {
-        throw new Error(error)
-    }
-    return Device2Device.create(data);
+  let error = Validate(data)
+  if (error) {
+    throw new Error(error)
+  }
+  return Device2Device.create(data);
 }
-
 
 // Поиск по id
 const FindById = async (id) => {
-    return Device2Device.findOne({
-        where: {
-            id: id
-        }
-    })
+  return Device2Device.findOne({
+    where: {
+      id: id
+    }
+  })
 }
 
 const GetAllCount = async (id) => {
-    return Device2Device.count()
+  return Device2Device.count()
 }
 
 // Поиск по id
 const Drop = async (id) => {
-    return FindById(id).then(res => {
-        if(!res){
-            throw new Error(ERROR_NOT_FOUND)
+  return FindById(id).then(res => {
+    if (!res) {
+      throw new Error(ERROR_NOT_FOUND)
+    }
+    return res.destroy().then(res => {
+      return new Promise(resolve => {
+        if (res._modelOptions.whereCollection) {
+          resolve({
+            result: true
+          })
         }
-        return res.destroy().then(res => {
-            return new Promise(resolve => {
-                if(res._modelOptions.whereCollection){
-                    resolve({result : true})
-                }
-                throw new Error(ERROR_DROP_MODEL)
-            })
-        })
+        throw new Error(ERROR_DROP_MODEL)
+      })
     })
+  })
 }
 
 const Update = async (data) => {
-    let error = Validate(data)
-    if (error) {
-        throw new Error(error)
+  let error = Validate(data)
+  if (error) {
+    throw new Error(error)
+  }
+  await Device2Device.update(data, {
+    where: {
+      id: data.id
     }
-    await Device2Device.update(data, { where: { id: data.id } })
-    return FindById(data.id)
+  })
+  return FindById(data.id)
 }
 
 const GetAll = async (params) => {
-    return Device2Device.findAll(params)
+  return Device2Device.findAll(params)
 }
 
 const GetAllSerach = async (text, params) => {
-    let filter_by_text = []
-                                                                    return Device2Device.findAll({
-        where : {
-            [Op.or]: filter_by_text, ...params
-        }
-    })
+  let filter_by_text = []
+  return Device2Device.findAll({
+    where: {
+      [Op.or]: filter_by_text,
+      ...params
+    }
+  })
 }
 
 const GetAllFilterCount = async (filter) => {
-    if( Object.keys(filter).length == 0 ){
-        return 0;
-    }
-    return Device2Device.count({ where:filter,...filter})
+  if (Object.keys(filter).length == 0) {
+    return 0;
+  }
+  return Device2Device.count({
+    where: filter,
+    ...filter
+  })
 }
 
 const GetAllFilter = async (filter, params) => {
-    if( Object.keys(filter).length == 0 ){
-        return [];
-    }
-    return Device2Device.findAll({
-        where : filter,
-        ...params
-    })
+  if (Object.keys(filter).length == 0) {
+    return [];
+  }
+  return Device2Device.findAll({
+    where: filter,
+    ...params
+  })
 }
-
 
 // Валидация для обновления данных
 const ValidateUpdate = (data) => {
-                                     
 
-            if (!data || !Object.keys(data).length) {
-            return ERROR_VALIDATE_INVALID_DATA
-        }
-    
-                        if (!data.device_id) {
-            return ERROR_VALIDATE_DEVICEID
-        }
-                    if (!data.parameter_id) {
-            return ERROR_VALIDATE_PARAMETERID
-        }
-                    if (!data.device_donor_id) {
-            return ERROR_VALIDATE_DEVICEDONORID
-        }
-                    if (!data.parameter_donor_id) {
-            return ERROR_VALIDATE_PARAMETERDONORID
-        }
-         
+  if (!data || !Object.keys(data).length) {
+    return ERROR_VALIDATE_INVALID_DATA
+  }
 
-    return ``
+  if (!data.device_id) {
+    return ERROR_VALIDATE_DEVICEID
+  }
+  if (!data.parameter_id) {
+    return ERROR_VALIDATE_PARAMETERID
+  }
+  if (!data.device_donor_id) {
+    return ERROR_VALIDATE_DEVICEDONORID
+  }
+  if (!data.parameter_donor_id) {
+    return ERROR_VALIDATE_PARAMETERDONORID
+  }
+
+  return ``
 }
 
 // Валидация для вставки данных
 const ValidateInsert = (data) => {
-                                     
 
-            if (!data || !Object.keys(data).length) {
-            return ERROR_VALIDATE_INVALID_DATA
-        }
-    
-                        if (!data.device_id) {
-            return ERROR_VALIDATE_DEVICEID
-        }
-                    if (!data.parameter_id) {
-            return ERROR_VALIDATE_PARAMETERID
-        }
-                    if (!data.device_donor_id) {
-            return ERROR_VALIDATE_DEVICEDONORID
-        }
-                    if (!data.parameter_donor_id) {
-            return ERROR_VALIDATE_PARAMETERDONORID
-        }
-         
+  if (!data || !Object.keys(data).length) {
+    return ERROR_VALIDATE_INVALID_DATA
+  }
 
-    return ``
+  if (!data.device_id) {
+    return ERROR_VALIDATE_DEVICEID
+  }
+  if (!data.parameter_id) {
+    return ERROR_VALIDATE_PARAMETERID
+  }
+  if (!data.device_donor_id) {
+    return ERROR_VALIDATE_DEVICEDONORID
+  }
+  if (!data.parameter_donor_id) {
+    return ERROR_VALIDATE_PARAMETERDONORID
+  }
+
+  return ``
 }
-
-
-
 
 module.exports = {
 
-DEVICE2DEVICE_ERROR_VALIDATE_INVALID_DATA: ERROR_VALIDATE_INVALID_DATA,
-DEVICE2DEVICE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
-                    DEVICE2DEVICE_ERROR_VALIDATE_DEVICEID: ERROR_VALIDATE_DEVICEID,
-                    DEVICE2DEVICE_ERROR_VALIDATE_PARAMETERID: ERROR_VALIDATE_PARAMETERID,
-                    DEVICE2DEVICE_ERROR_VALIDATE_DEVICEDONORID: ERROR_VALIDATE_DEVICEDONORID,
-                    DEVICE2DEVICE_ERROR_VALIDATE_PARAMETERDONORID: ERROR_VALIDATE_PARAMETERDONORID,
-         
+  DEVICE2DEVICE_ERROR_VALIDATE_INVALID_DATA: ERROR_VALIDATE_INVALID_DATA,
+  DEVICE2DEVICE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
+  DEVICE2DEVICE_ERROR_VALIDATE_DEVICEID: ERROR_VALIDATE_DEVICEID,
+  DEVICE2DEVICE_ERROR_VALIDATE_PARAMETERID: ERROR_VALIDATE_PARAMETERID,
+  DEVICE2DEVICE_ERROR_VALIDATE_DEVICEDONORID: ERROR_VALIDATE_DEVICEDONORID,
+  DEVICE2DEVICE_ERROR_VALIDATE_PARAMETERDONORID: ERROR_VALIDATE_PARAMETERDONORID,
 
-    Device2DeviceGetAll: GetAll,
-    Device2DeviceGetAllCount: GetAllCount,
-    Device2DeviceUpdate: Update,
-    Device2DeviceAdd: Add,
-    Device2DeviceDrop: Drop,
-    Device2DeviceFindById: FindById,
-    Device2DeviceValidateUpdate: ValidateUpdate,
-    Device2DeviceValidateInsert: ValidateInsert,
-    Device2DeviceModel: Device2Device,
-    Device2DeviceGetAllFilter: GetAllFilter,
-    Device2DeviceGetAllFilterCount: GetAllFilterCount,
-    }
+  Device2DeviceGetAll: GetAll,
+  Device2DeviceGetAllCount: GetAllCount,
+  Device2DeviceUpdate: Update,
+  Device2DeviceAdd: Add,
+  Device2DeviceDrop: Drop,
+  Device2DeviceFindById: FindById,
+  Device2DeviceValidateUpdate: ValidateUpdate,
+  Device2DeviceValidateInsert: ValidateInsert,
+  Device2DeviceModel: Device2Device,
+  Device2DeviceGetAllFilter: GetAllFilter,
+  Device2DeviceGetAllFilterCount: GetAllFilterCount,
+}
