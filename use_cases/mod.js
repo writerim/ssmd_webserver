@@ -51,12 +51,29 @@ module.exports = {
             throw new Error(error_validate)
         }
 
-        return ModUpdate(data).then(res => {
-            if (!res) {
-                throw new Error(NOT_FOUND_ROW)
+        // Если какие то поля не были переданы, то нам надо их взять
+        // из текущей модели и вставить чтобы не перетереть
+        return ModFindById(id).then(row => {
+            if (row) {
+
+                row.dataValues.forEach((key,value) => {
+                    if(typeof data[key] == 'undefined'){
+                        data[key] = value
+                    }
+                })
+
+                return ModUpdate(data).then(res => {
+                    if (!res) {
+                        throw new Error(NOT_FOUND_ROW)
+                    }
+                    return new Mod(res.dataValues)
+                })
             }
-            return new Mod(res.dataValues)
+            return new Promise((resolve) => resolve({ result: false }))
+        }).catch(e => {
+            throw new Error(e)
         })
+
     },
 
     async DropMod(id,user_ctx) {
