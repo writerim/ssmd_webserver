@@ -27,11 +27,11 @@ describe("use_cases: Parameter", function () {
 
     o['ident'] = 'test'
     return AddParameter(o, new User())
-      .then(res => {
-        add_id = res.id
+    .then(res => {
+      add_id = res.id
 
-        assert.equal(res.ident, 'test')
-      })
+      assert.equal(res.ident, 'test')
+    })
   })
 
   it('func Parameter GetAll. Получение всех записей', async function () {
@@ -79,9 +79,9 @@ describe("use_cases: Parameter", function () {
 
   it('func Parameter Drop. Корректное удаление', async function () {
     return DropParameter(add_id, new User())
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

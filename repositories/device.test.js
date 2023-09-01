@@ -36,35 +36,35 @@ describe("repo: DB: Device", function () {
     o['status'] = 10
     o['is_exclude'] = true
     return DeviceAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('paren_id'), 10)
+      assert.equal(res.get('paren_id'), 10)
 
-        assert.equal(res.get('name'), 'test')
+      assert.equal(res.get('name'), 'test')
 
-        assert.deepStrictEqual(res.get('settings_connections'), {
-          'foo': 'bar'
-        })
-
-        assert.equal(res.get('lft'), 10)
-
-        assert.equal(res.get('rgt'), 10)
-
-        assert.equal(res.get('utc'), 10)
-
-        assert.equal(res.get('mod_id'), 10)
-
-        assert.deepStrictEqual(res.get('time_settings'), {
-          'foo': 'bar'
-        })
-
-        assert.deepStrictEqual(res.get('types'), ['a', 'b'])
-
-        assert.equal(res.get('status'), 10)
-
-        assert.equal(res.get('is_exclude'), true)
+      assert.deepStrictEqual(res.get('settings_connections'), {
+        'foo': 'bar'
       })
+
+      assert.equal(res.get('lft'), 10)
+
+      assert.equal(res.get('rgt'), 10)
+
+      assert.equal(res.get('utc'), 10)
+
+      assert.equal(res.get('mod_id'), 10)
+
+      assert.deepStrictEqual(res.get('time_settings'), {
+        'foo': 'bar'
+      })
+
+      assert.deepStrictEqual(res.get('types'), ['a', 'b'])
+
+      assert.equal(res.get('status'), 10)
+
+      assert.equal(res.get('is_exclude'), true)
+    })
   })
 
   it('func Device GetAll. Получение всех записей', async function () {
@@ -194,9 +194,9 @@ describe("repo: DB: Device", function () {
 
   it('func Device Drop. Корректное удаление', async function () {
     return DeviceDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

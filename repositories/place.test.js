@@ -28,23 +28,23 @@ describe("repo: DB: Place", function () {
     o['status'] = 10
     o['is_exclude'] = true
     return PlaceAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('name'), 'test')
+      assert.equal(res.get('name'), 'test')
 
-        assert.equal(res.get('parent_id'), 10)
+      assert.equal(res.get('parent_id'), 10)
 
-        assert.equal(res.get('lft'), 10)
+      assert.equal(res.get('lft'), 10)
 
-        assert.equal(res.get('rgt'), 10)
+      assert.equal(res.get('rgt'), 10)
 
-        assert.equal(res.get('icon'), 'test')
+      assert.equal(res.get('icon'), 'test')
 
-        assert.equal(res.get('status'), 10)
+      assert.equal(res.get('status'), 10)
 
-        assert.equal(res.get('is_exclude'), true)
-      })
+      assert.equal(res.get('is_exclude'), true)
+    })
   })
 
   it('func Place GetAll. Получение всех записей', async function () {
@@ -130,9 +130,9 @@ describe("repo: DB: Place", function () {
 
   it('func Place Drop. Корректное удаление', async function () {
     return PlaceDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

@@ -22,13 +22,13 @@ describe("repo: DB: UserPlace", function () {
     o['plce_id'] = 10
     o['user_id'] = 10
     return UserPlaceAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('plce_id'), 10)
+      assert.equal(res.get('plce_id'), 10)
 
-        assert.equal(res.get('user_id'), 10)
-      })
+      assert.equal(res.get('user_id'), 10)
+    })
   })
 
   it('func UserPlace GetAll. Получение всех записей', async function () {
@@ -79,9 +79,9 @@ describe("repo: DB: UserPlace", function () {
 
   it('func UserPlace Drop. Корректное удаление', async function () {
     return UserPlaceDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

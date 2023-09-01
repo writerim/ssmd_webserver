@@ -34,25 +34,25 @@ describe("use_cases: User", function () {
     o['token'] = 'test'
     o['is_system'] = true
     return AddUser(o, new User())
-      .then(res => {
-        add_id = res.id
+    .then(res => {
+      add_id = res.id
 
-        assert.equal(res.name, 'test')
+      assert.equal(res.name, 'test')
 
-        assert.equal(res.last_name, 'test')
+      assert.equal(res.last_name, 'test')
 
-        assert.equal(res.login, 'test')
+      assert.equal(res.login, 'test')
 
-        assert.equal(res.password, 'test')
+      assert.equal(res.password, 'test')
 
-        assert.equal(res.parent_id, 10)
+      assert.equal(res.parent_id, 10)
 
-        assert.equal(res.is_group, true)
+      assert.equal(res.is_group, true)
 
-        assert.equal(res.token, 'test')
+      assert.equal(res.token, 'test')
 
-        assert.equal(res.is_system, true)
-      })
+      assert.equal(res.is_system, true)
+    })
   })
 
   it('func User GetAll. Получение всех записей', async function () {
@@ -156,9 +156,9 @@ describe("use_cases: User", function () {
 
   it('func User Drop. Корректное удаление', async function () {
     return DropUser(add_id, new User())
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

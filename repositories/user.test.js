@@ -31,29 +31,29 @@ describe("repo: DB: User", function () {
     o['token'] = 'test'
     o['is_system'] = true
     return UserAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('name'), 'test')
+      assert.equal(res.get('name'), 'test')
 
-        assert.equal(res.get('last_name'), 'test')
+      assert.equal(res.get('last_name'), 'test')
 
-        assert.equal(res.get('login'), 'test')
+      assert.equal(res.get('login'), 'test')
 
-        assert.equal(res.get('password'), 'test')
+      assert.equal(res.get('password'), 'test')
 
-        assert.equal(res.get('parent_id'), 10)
+      assert.equal(res.get('parent_id'), 10)
 
-        assert.equal(res.get('is_group'), true)
+      assert.equal(res.get('is_group'), true)
 
-        assert.equal(res.get('lft'), 10)
+      assert.equal(res.get('lft'), 10)
 
-        assert.equal(res.get('rgt'), 10)
+      assert.equal(res.get('rgt'), 10)
 
-        assert.equal(res.get('token'), 'test')
+      assert.equal(res.get('token'), 'test')
 
-        assert.equal(res.get('is_system'), true)
-      })
+      assert.equal(res.get('is_system'), true)
+    })
   })
 
   it('func User GetAll. Получение всех записей', async function () {
@@ -160,9 +160,9 @@ describe("repo: DB: User", function () {
 
   it('func User Drop. Корректное удаление', async function () {
     return UserDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

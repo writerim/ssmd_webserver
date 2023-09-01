@@ -24,17 +24,17 @@ describe("repo: DB: Device2Device", function () {
     o['device_donor_id'] = 10
     o['parameter_donor_id'] = 10
     return Device2DeviceAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('device_id'), 10)
+      assert.equal(res.get('device_id'), 10)
 
-        assert.equal(res.get('parameter_id'), 10)
+      assert.equal(res.get('parameter_id'), 10)
 
-        assert.equal(res.get('device_donor_id'), 10)
+      assert.equal(res.get('device_donor_id'), 10)
 
-        assert.equal(res.get('parameter_donor_id'), 10)
-      })
+      assert.equal(res.get('parameter_donor_id'), 10)
+    })
   })
 
   it('func Device2Device GetAll. Получение всех записей', async function () {
@@ -99,9 +99,9 @@ describe("repo: DB: Device2Device", function () {
 
   it('func Device2Device Drop. Корректное удаление', async function () {
     return Device2DeviceDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

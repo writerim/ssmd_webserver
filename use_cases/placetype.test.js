@@ -28,13 +28,13 @@ describe("use_cases: PlaceType", function () {
     o['ident'] = 'test'
     o['icon'] = 'test'
     return AddPlaceType(o, new User())
-      .then(res => {
-        add_id = res.id
+    .then(res => {
+      add_id = res.id
 
-        assert.equal(res.ident, 'test')
+      assert.equal(res.ident, 'test')
 
-        assert.equal(res.icon, 'test')
-      })
+      assert.equal(res.icon, 'test')
+    })
   })
 
   it('func PlaceType GetAll. Получение всех записей', async function () {
@@ -90,9 +90,9 @@ describe("use_cases: PlaceType", function () {
 
   it('func PlaceType Drop. Корректное удаление', async function () {
     return DropPlaceType(add_id, new User())
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

@@ -209,7 +209,7 @@ const GetAllSerach = async (text, params) => {
   let filter_by_text = []
   return Device.findAll({
     where: {
-      [Op.or]: filter_by_text,
+            [Op.or]: filter_by_text,
       ...params
     }
   })

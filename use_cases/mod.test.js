@@ -40,35 +40,35 @@ describe("use_cases: Mod", function () {
     }
     o['commands'] = ['a', 'b']
     return AddMod(o, new User())
-      .then(res => {
-        add_id = res.id
+    .then(res => {
+      add_id = res.id
 
-        assert.equal(res.name, 'test')
+      assert.equal(res.name, 'test')
 
-        assert.equal(res.manufactures, 'test')
+      assert.equal(res.manufactures, 'test')
 
-        assert.equal(res.mark, 'test')
+      assert.equal(res.mark, 'test')
 
-        assert.equal(res.model, 'test')
+      assert.equal(res.model, 'test')
 
-        assert.equal(res.series, 'test')
+      assert.equal(res.series, 'test')
 
-        assert.equal(res.sowt_version, 'test')
+      assert.equal(res.sowt_version, 'test')
 
-        assert.deepStrictEqual(res.types_device, ['a', 'b'])
+      assert.deepStrictEqual(res.types_device, ['a', 'b'])
 
-        assert.equal(res.lib, 'test')
+      assert.equal(res.lib, 'test')
 
-        assert.deepStrictEqual(res.parameters, ['a', 'b'])
+      assert.deepStrictEqual(res.parameters, ['a', 'b'])
 
-        assert.deepStrictEqual(res.commands, ['a', 'b'])
+      assert.deepStrictEqual(res.commands, ['a', 'b'])
 
-        assert.deepStrictEqual(res.lib_description, {
-          'foo': 'bar'
-        })
-
-        assert.deepStrictEqual(res.commands, ['a', 'b'])
+      assert.deepStrictEqual(res.lib_description, {
+        'foo': 'bar'
       })
+
+      assert.deepStrictEqual(res.commands, ['a', 'b'])
+    })
   })
 
   it('func Mod GetAll. Получение всех записей', async function () {
@@ -212,9 +212,9 @@ describe("use_cases: Mod", function () {
 
   it('func Mod Drop. Корректное удаление', async function () {
     return DropMod(add_id, new User())
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

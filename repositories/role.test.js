@@ -22,13 +22,13 @@ describe("repo: DB: Role", function () {
     o['name'] = 'test'
     o['description'] = 'test'
     return RoleAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('name'), 'test')
+      assert.equal(res.get('name'), 'test')
 
-        assert.equal(res.get('description'), 'test')
-      })
+      assert.equal(res.get('description'), 'test')
+    })
   })
 
   it('func Role GetAll. Получение всех записей', async function () {
@@ -79,9 +79,9 @@ describe("repo: DB: Role", function () {
 
   it('func Role Drop. Корректное удаление', async function () {
     return RoleDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

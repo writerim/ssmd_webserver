@@ -39,31 +39,31 @@ describe("use_cases: Device", function () {
     o['status'] = 10
     o['is_exclude'] = true
     return AddDevice(o, new User())
-      .then(res => {
-        add_id = res.id
+    .then(res => {
+      add_id = res.id
 
-        assert.equal(res.paren_id, 10)
+      assert.equal(res.paren_id, 10)
 
-        assert.equal(res.name, 'test')
+      assert.equal(res.name, 'test')
 
-        assert.deepStrictEqual(res.settings_connections, {
-          'foo': 'bar'
-        })
-
-        assert.equal(res.utc, 10)
-
-        assert.equal(res.mod_id, 10)
-
-        assert.deepStrictEqual(res.time_settings, {
-          'foo': 'bar'
-        })
-
-        assert.deepStrictEqual(res.types, ['a', 'b'])
-
-        assert.equal(res.status, 10)
-
-        assert.equal(res.is_exclude, true)
+      assert.deepStrictEqual(res.settings_connections, {
+        'foo': 'bar'
       })
+
+      assert.equal(res.utc, 10)
+
+      assert.equal(res.mod_id, 10)
+
+      assert.deepStrictEqual(res.time_settings, {
+        'foo': 'bar'
+      })
+
+      assert.deepStrictEqual(res.types, ['a', 'b'])
+
+      assert.equal(res.status, 10)
+
+      assert.equal(res.is_exclude, true)
+    })
   })
 
   it('func Device GetAll. Получение всех записей', async function () {
@@ -191,9 +191,9 @@ describe("use_cases: Device", function () {
 
   it('func Device Drop. Корректное удаление', async function () {
     return DropDevice(add_id, new User())
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

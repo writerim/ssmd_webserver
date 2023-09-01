@@ -23,15 +23,15 @@ describe("repo: DB: SettingsEnterprise", function () {
     o['index'] = 'test'
     o['value'] = 'test'
     return SettingsEnterpriseAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('description'), 'test')
+      assert.equal(res.get('description'), 'test')
 
-        assert.equal(res.get('index'), 'test')
+      assert.equal(res.get('index'), 'test')
 
-        assert.equal(res.get('value'), 'test')
-      })
+      assert.equal(res.get('value'), 'test')
+    })
   })
 
   it('func SettingsEnterprise GetAll. Получение всех записей', async function () {
@@ -89,9 +89,9 @@ describe("repo: DB: SettingsEnterprise", function () {
 
   it('func SettingsEnterprise Drop. Корректное удаление', async function () {
     return SettingsEnterpriseDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

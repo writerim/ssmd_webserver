@@ -34,35 +34,35 @@ describe("repo: DB: Mod", function () {
     }
     o['commands'] = ['a', 'b']
     return ModAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('name'), 'test')
+      assert.equal(res.get('name'), 'test')
 
-        assert.equal(res.get('manufactures'), 'test')
+      assert.equal(res.get('manufactures'), 'test')
 
-        assert.equal(res.get('mark'), 'test')
+      assert.equal(res.get('mark'), 'test')
 
-        assert.equal(res.get('model'), 'test')
+      assert.equal(res.get('model'), 'test')
 
-        assert.equal(res.get('series'), 'test')
+      assert.equal(res.get('series'), 'test')
 
-        assert.equal(res.get('sowt_version'), 'test')
+      assert.equal(res.get('sowt_version'), 'test')
 
-        assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
 
-        assert.equal(res.get('lib'), 'test')
+      assert.equal(res.get('lib'), 'test')
 
-        assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
 
-        assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
 
-        assert.deepStrictEqual(res.get('lib_description'), {
-          'foo': 'bar'
-        })
-
-        assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('lib_description'), {
+        'foo': 'bar'
       })
+
+      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+    })
   })
 
   it('func Mod GetAll. Получение всех записей', async function () {
@@ -191,9 +191,9 @@ describe("repo: DB: Mod", function () {
 
   it('func Mod Drop. Корректное удаление', async function () {
     return ModDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

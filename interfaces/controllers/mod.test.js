@@ -48,96 +48,96 @@ describe("controllers: Mod", function (done) {
 
   it('GET /api/mod/all Запрос без токена', function (done) {
     request(app)
-      .get('/api/mod/all')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/mod/all')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/mod/filter Запрос без токена', function (done) {
     request(app)
-      .get('/api/mod/filter')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/mod/filter')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/mod/search Запрос без токена', function (done) {
     request(app)
-      .get('/api/mod/search')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/mod/search')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/mod/:id Запрос без токена', function (done) {
     request(app)
-      .get('/api/mod/10')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/mod/10')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('POST /api/mod/:id Запрос без токена', function (done) {
     request(app)
-      .post('/api/mod/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .post('/api/mod/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('PUT /api/mod/:id Запрос без токена', function (done) {
     request(app)
-      .put('/api/mod/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .put('/api/mod/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('DELETE /api/mod/:id Запрос без токена', function (done) {
     request(app)
-      .delete('/api/mod/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .delete('/api/mod/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/mod/all Чтение всех', function (done) {
     request(app)
-      .get('/api/mod/all')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENMod')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        lastId_Mod = Number(res.body.meta.count) + 1
-        lastPage_Mod = res.body.pages.length + 100
-        assert(true, true)
-        return done();
-      });
+    .get('/api/mod/all')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENMod')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      lastId_Mod = Number(res.body.meta.count) + 1
+      lastPage_Mod = res.body.pages.length + 100
+      assert(true, true)
+      return done();
+    });
   })
 
   it('GET /api/mod/all?limit=2 Чтение всех лимит', function (done) {
     request(app)
-      .get('/api/mod/all?limit=2')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENMod')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        assert(res.body.data.length, 2)
-        assert(res.body.meta.limit, 2)
-        return done();
-      });
+    .get('/api/mod/all?limit=2')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENMod')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      assert(res.body.data.length, 2)
+      assert(res.body.meta.limit, 2)
+      return done();
+    });
   })
 
 })

@@ -21,11 +21,11 @@ describe("repo: DB: Parameter", function () {
 
     o['ident'] = 'test'
     return ParameterAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('ident'), 'test')
-      })
+      assert.equal(res.get('ident'), 'test')
+    })
   })
 
   it('func Parameter GetAll. Получение всех записей', async function () {
@@ -69,9 +69,9 @@ describe("repo: DB: Parameter", function () {
 
   it('func Parameter Drop. Корректное удаление', async function () {
     return ParameterDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

@@ -48,96 +48,96 @@ describe("controllers: Rule", function (done) {
 
   it('GET /api/rule/all Запрос без токена', function (done) {
     request(app)
-      .get('/api/rule/all')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/rule/all')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/rule/filter Запрос без токена', function (done) {
     request(app)
-      .get('/api/rule/filter')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/rule/filter')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/rule/search Запрос без токена', function (done) {
     request(app)
-      .get('/api/rule/search')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/rule/search')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/rule/:id Запрос без токена', function (done) {
     request(app)
-      .get('/api/rule/10')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/rule/10')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('POST /api/rule/:id Запрос без токена', function (done) {
     request(app)
-      .post('/api/rule/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .post('/api/rule/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('PUT /api/rule/:id Запрос без токена', function (done) {
     request(app)
-      .put('/api/rule/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .put('/api/rule/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('DELETE /api/rule/:id Запрос без токена', function (done) {
     request(app)
-      .delete('/api/rule/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .delete('/api/rule/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/rule/all Чтение всех', function (done) {
     request(app)
-      .get('/api/rule/all')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENRule')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        lastId_Rule = Number(res.body.meta.count) + 1
-        lastPage_Rule = res.body.pages.length + 100
-        assert(true, true)
-        return done();
-      });
+    .get('/api/rule/all')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENRule')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      lastId_Rule = Number(res.body.meta.count) + 1
+      lastPage_Rule = res.body.pages.length + 100
+      assert(true, true)
+      return done();
+    });
   })
 
   it('GET /api/rule/all?limit=2 Чтение всех лимит', function (done) {
     request(app)
-      .get('/api/rule/all?limit=2')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENRule')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        assert(res.body.data.length, 2)
-        assert(res.body.meta.limit, 2)
-        return done();
-      });
+    .get('/api/rule/all?limit=2')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENRule')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      assert(res.body.data.length, 2)
+      assert(res.body.meta.limit, 2)
+      return done();
+    });
   })
 
 })

@@ -48,96 +48,96 @@ describe("controllers: UserPlace", function (done) {
 
   it('GET /api/userplace/all Запрос без токена', function (done) {
     request(app)
-      .get('/api/userplace/all')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/userplace/all')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/userplace/filter Запрос без токена', function (done) {
     request(app)
-      .get('/api/userplace/filter')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/userplace/filter')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/userplace/search Запрос без токена', function (done) {
     request(app)
-      .get('/api/userplace/search')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/userplace/search')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/userplace/:id Запрос без токена', function (done) {
     request(app)
-      .get('/api/userplace/10')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/userplace/10')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('POST /api/userplace/:id Запрос без токена', function (done) {
     request(app)
-      .post('/api/userplace/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .post('/api/userplace/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('PUT /api/userplace/:id Запрос без токена', function (done) {
     request(app)
-      .put('/api/userplace/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .put('/api/userplace/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('DELETE /api/userplace/:id Запрос без токена', function (done) {
     request(app)
-      .delete('/api/userplace/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .delete('/api/userplace/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/userplace/all Чтение всех', function (done) {
     request(app)
-      .get('/api/userplace/all')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENUserPlace')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        lastId_UserPlace = Number(res.body.meta.count) + 1
-        lastPage_UserPlace = res.body.pages.length + 100
-        assert(true, true)
-        return done();
-      });
+    .get('/api/userplace/all')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENUserPlace')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      lastId_UserPlace = Number(res.body.meta.count) + 1
+      lastPage_UserPlace = res.body.pages.length + 100
+      assert(true, true)
+      return done();
+    });
   })
 
   it('GET /api/userplace/all?limit=2 Чтение всех лимит', function (done) {
     request(app)
-      .get('/api/userplace/all?limit=2')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENUserPlace')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        assert(res.body.data.length, 2)
-        assert(res.body.meta.limit, 2)
-        return done();
-      });
+    .get('/api/userplace/all?limit=2')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENUserPlace')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      assert(res.body.data.length, 2)
+      assert(res.body.meta.limit, 2)
+      return done();
+    });
   })
 
 })

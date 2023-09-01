@@ -22,13 +22,13 @@ describe("repo: DB: PlaceType", function () {
     o['ident'] = 'test'
     o['icon'] = 'test'
     return PlaceTypeAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('ident'), 'test')
+      assert.equal(res.get('ident'), 'test')
 
-        assert.equal(res.get('icon'), 'test')
-      })
+      assert.equal(res.get('icon'), 'test')
+    })
   })
 
   it('func PlaceType GetAll. Получение всех записей', async function () {
@@ -79,9 +79,9 @@ describe("repo: DB: PlaceType", function () {
 
   it('func PlaceType Drop. Корректное удаление', async function () {
     return PlaceTypeDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

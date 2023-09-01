@@ -48,96 +48,96 @@ describe("controllers: Role", function (done) {
 
   it('GET /api/role/all Запрос без токена', function (done) {
     request(app)
-      .get('/api/role/all')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/role/all')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/role/filter Запрос без токена', function (done) {
     request(app)
-      .get('/api/role/filter')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/role/filter')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/role/search Запрос без токена', function (done) {
     request(app)
-      .get('/api/role/search')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/role/search')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/role/:id Запрос без токена', function (done) {
     request(app)
-      .get('/api/role/10')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .get('/api/role/10')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('POST /api/role/:id Запрос без токена', function (done) {
     request(app)
-      .post('/api/role/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .post('/api/role/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('PUT /api/role/:id Запрос без токена', function (done) {
     request(app)
-      .put('/api/role/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .put('/api/role/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('DELETE /api/role/:id Запрос без токена', function (done) {
     request(app)
-      .delete('/api/role/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(done);
+    .delete('/api/role/0')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(401)
+    .end(done);
   })
 
   it('GET /api/role/all Чтение всех', function (done) {
     request(app)
-      .get('/api/role/all')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENRole')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        lastId_Role = Number(res.body.meta.count) + 1
-        lastPage_Role = res.body.pages.length + 100
-        assert(true, true)
-        return done();
-      });
+    .get('/api/role/all')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENRole')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      lastId_Role = Number(res.body.meta.count) + 1
+      lastPage_Role = res.body.pages.length + 100
+      assert(true, true)
+      return done();
+    });
   })
 
   it('GET /api/role/all?limit=2 Чтение всех лимит', function (done) {
     request(app)
-      .get('/api/role/all?limit=2')
-      .set('Accept', 'application/json')
-      .set('Token', 'TOKENRole')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function (err, res) {
-        if (err) throw err;
-        assert(res.body.data.length, 2)
-        assert(res.body.meta.limit, 2)
-        return done();
-      });
+    .get('/api/role/all?limit=2')
+    .set('Accept', 'application/json')
+    .set('Token', 'TOKENRole')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end(function (err, res) {
+      if (err) throw err;
+      assert(res.body.data.length, 2)
+      assert(res.body.meta.limit, 2)
+      return done();
+    });
   })
 
 })

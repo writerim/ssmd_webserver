@@ -31,19 +31,19 @@ describe("use_cases: Place", function () {
     o['status'] = 10
     o['is_exclude'] = true
     return AddPlace(o, new User())
-      .then(res => {
-        add_id = res.id
+    .then(res => {
+      add_id = res.id
 
-        assert.equal(res.name, 'test')
+      assert.equal(res.name, 'test')
 
-        assert.equal(res.parent_id, 10)
+      assert.equal(res.parent_id, 10)
 
-        assert.equal(res.icon, 'test')
+      assert.equal(res.icon, 'test')
 
-        assert.equal(res.status, 10)
+      assert.equal(res.status, 10)
 
-        assert.equal(res.is_exclude, true)
-      })
+      assert.equal(res.is_exclude, true)
+    })
   })
 
   it('func Place GetAll. Получение всех записей', async function () {
@@ -123,9 +123,9 @@ describe("use_cases: Place", function () {
 
   it('func Place Drop. Корректное удаление', async function () {
     return DropPlace(add_id, new User())
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })

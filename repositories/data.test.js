@@ -25,18 +25,18 @@ describe("repo: DB: Data", function () {
       'foo': 'bar'
     }
     return DataAdd(o)
-      .then(res => {
-        add_id = res.get('id')
+    .then(res => {
+      add_id = res.get('id')
 
-        assert.equal(res.get('device_id'), 10)
+      assert.equal(res.get('device_id'), 10)
 
-        assert.equal(res.get('parameter_id'), 10)
+      assert.equal(res.get('parameter_id'), 10)
 
-        assert.deepStrictEqual(res.get('data'), {
-          'foo': 'bar'
-        })
-
+      assert.deepStrictEqual(res.get('data'), {
+        'foo': 'bar'
       })
+
+    })
   })
 
   it('func Data GetAll. Получение всех записей', async function () {
@@ -105,9 +105,9 @@ describe("repo: DB: Data", function () {
 
   it('func Data Drop. Корректное удаление', async function () {
     return DataDrop(add_id)
-      .then(res => assert.deepStrictEqual(res, {
-        result: true
-      }))
+    .then(res => assert.deepStrictEqual(res, {
+      result: true
+    }))
   })
 
 })
