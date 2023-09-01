@@ -27,8 +27,6 @@ describe("use_cases: Place", function () {
 
     o['name'] = 'test'
     o['parent_id'] = 10
-    o['lft'] = 10
-    o['rgt'] = 10
     o['icon'] = 'test'
     o['status'] = 10
     o['is_exclude'] = true
@@ -39,10 +37,6 @@ describe("use_cases: Place", function () {
         assert.equal(res.name, 'test')
 
         assert.equal(res.parent_id, 10)
-
-        assert.equal(res.lft, 10)
-
-        assert.equal(res.rgt, 10)
 
         assert.equal(res.icon, 'test')
 
@@ -64,10 +58,6 @@ describe("use_cases: Place", function () {
 
         assert.equal(res.parent_id, 10)
 
-        assert.equal(res.lft, 10)
-
-        assert.equal(res.rgt, 10)
-
         assert.equal(res.icon, 'test')
 
         assert.equal(res.status, 10)
@@ -88,10 +78,6 @@ describe("use_cases: Place", function () {
 
       assert.equal(res.parent_id, 10)
 
-      assert.equal(res.lft, 10)
-
-      assert.equal(res.rgt, 10)
-
       assert.equal(res.icon, 'test')
 
       assert.equal(res.status, 10)
@@ -105,12 +91,15 @@ describe("use_cases: Place", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['name'] = 'test 2'
+
     o['parent_id'] = 54
-    o['lft'] = 54
-    o['rgt'] = 54
+
     o['icon'] = 'test 2'
+
     o['status'] = 54
+
     o['is_exclude'] = false
 
     return EditPlace(o, new User()).then(res => {
@@ -119,10 +108,6 @@ describe("use_cases: Place", function () {
       assert.equal(res.name, 'test 2')
 
       assert.equal(res.parent_id, 54)
-
-      assert.equal(res.lft, 54)
-
-      assert.equal(res.rgt, 54)
 
       assert.equal(res.icon, 'test 2')
 

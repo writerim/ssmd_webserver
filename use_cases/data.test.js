@@ -88,8 +88,11 @@ describe("use_cases: Data", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['device_id'] = 54
+
     o['parameter_id'] = 54
+
     o['data'] = {
       'dd': 'sss'
     }

@@ -77,8 +77,11 @@ describe("use_cases: SettingsEnterprise", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['description'] = 'test 2'
+
     o['index'] = 'test 2'
+
     o['value'] = 'test 2'
 
     return EditSettingsEnterprise(o, new User()).then(res => {

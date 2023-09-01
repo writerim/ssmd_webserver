@@ -70,7 +70,9 @@ describe("use_cases: RoleRule", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['role_id'] = 54
+
     o['rule_id'] = 54
 
     return EditRoleRule(o, new User()).then(res => {

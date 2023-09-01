@@ -31,6 +31,13 @@ module.exports = {
       throw new Error(NOT_FOUND_CONTEXT)
     }
 
+    if (typeof data.lft !== 'undefined') {
+      delete data.lft
+    }
+    if (typeof data.rgt !== 'undefined') {
+      delete data.rgt
+    }
+
     var error_validate = DeviceValidateInsert(data)
     if (error_validate != '') {
       throw new Error(error_validate)
@@ -54,6 +61,13 @@ module.exports = {
     return DeviceFindById(id).then(row => {
       if (row) {
 
+        if (typeof data.lft !== 'undefined') {
+          delete data.lft
+        }
+        if (typeof data.rgt !== 'undefined') {
+          delete data.rgt
+        }
+
         row.dataValues.forEach((key, value) => {
           if (typeof data[key] == 'undefined') {
             data[key] = value
@@ -71,6 +85,7 @@ module.exports = {
         result: false
       }))
     }).catch(e => {
+      console.log(e);
       throw new Error(e)
     })
 
@@ -94,6 +109,7 @@ module.exports = {
           }))
         }).catch(e => {
           console.log(e)
+          throw new Error(e)
         })
       }
       return new Promise((resolve) => resolve({
@@ -101,6 +117,7 @@ module.exports = {
       }))
     }).catch(e => {
       console.log(e)
+      throw new Error(e)
     })
   },
 

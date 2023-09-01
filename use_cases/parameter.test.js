@@ -63,6 +63,7 @@ describe("use_cases: Parameter", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['ident'] = 'test 2'
 
     return EditParameter(o, new User()).then(res => {

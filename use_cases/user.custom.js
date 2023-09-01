@@ -1,11 +1,13 @@
-const UserCtx = require("../entity/user");
-const { UserValidate } = require("../repositories/user");
-const { UserFindByLoginByPassword, UserGetBySessionToken } = require("../repositories/user.custom");
 var crypto = require('crypto');
+
+const { UserFindByLoginByPassword, UserGetBySessionToken } = require("../repositories/user.custom");
 const { EditUser } = require("./user");
+const UserCtx = require("../entity/user");
 
 const NOT_FOUND_CONTEXT = "context not found"
 const INVALID_TOKEN = "token invalid"
+const USER_NOT_FOUND = 'user not found'
+const INVALID_DATA = 'invalid data. Used login and password'
 
 module.exports = {
 
@@ -15,14 +17,14 @@ module.exports = {
         }
 
         if(!data.login || !data.password){
-            throw new Error('invalid data. Used login and password') 
+            throw new Error(INVALID_DATA) 
         }
 
         let pass_h = crypto.createHash('md5').update(data.password).digest("hex")
 
         return UserFindByLoginByPassword(data.login, pass_h).then(res => {
             if (!res) {
-                throw new Error('user not found')
+                throw new Error(USER_NOT_FOUND)
             }
             if (!res.dataValues.token) {
                 res.dataValues.token = crypto.randomUUID()

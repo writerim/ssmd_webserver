@@ -70,7 +70,9 @@ describe("use_cases: PlaceType", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['ident'] = 'test 2'
+
     o['icon'] = 'test 2'
 
     return EditPlaceType(o, new User()).then(res => {

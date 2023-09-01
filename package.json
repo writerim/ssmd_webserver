@@ -8,8 +8,7 @@
     "watch": "npm-watch",
     "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",
     "start": "node index.js",
-    "test": "SET NODE_ENV=test && mocha --timeout 10000 --colors ./repositories/**/*.test.js ./use_cases/**/*.test.js ./interfaces/controllers/**/*.test.js",
-    "test2": "SET NODE_ENV=test && mocha --timeout 10000 --colors  ./interfaces/controllers/**/*.test.js"
+    "test": "SET NODE_ENV=test && mocha --timeout 10000 --colors ./repositories/**/*.test.js ./use_cases/**/*.test.js ./interfaces/controllers/**/*.test.js"
   },
   "apidoc": {
     "header": {

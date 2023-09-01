@@ -71,6 +71,7 @@ module.exports = {
         result: false
       }))
     }).catch(e => {
+      console.log(e);
       throw new Error(e)
     })
 
@@ -94,6 +95,7 @@ module.exports = {
           }))
         }).catch(e => {
           console.log(e)
+          throw new Error(e)
         })
       }
       return new Promise((resolve) => resolve({
@@ -101,6 +103,7 @@ module.exports = {
       }))
     }).catch(e => {
       console.log(e)
+      throw new Error(e)
     })
   },
 

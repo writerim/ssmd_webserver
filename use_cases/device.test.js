@@ -30,8 +30,6 @@ describe("use_cases: Device", function () {
     o['settings_connections'] = {
       'foo': 'bar'
     }
-    o['lft'] = 10
-    o['rgt'] = 10
     o['utc'] = 10
     o['mod_id'] = 10
     o['time_settings'] = {
@@ -51,10 +49,6 @@ describe("use_cases: Device", function () {
         assert.deepStrictEqual(res.settings_connections, {
           'foo': 'bar'
         })
-
-        assert.equal(res.lft, 10)
-
-        assert.equal(res.rgt, 10)
 
         assert.equal(res.utc, 10)
 
@@ -88,10 +82,6 @@ describe("use_cases: Device", function () {
           'foo': 'bar'
         })
 
-        assert.equal(res.lft, 10)
-
-        assert.equal(res.rgt, 10)
-
         assert.equal(res.utc, 10)
 
         assert.equal(res.mod_id, 10)
@@ -124,10 +114,6 @@ describe("use_cases: Device", function () {
         'foo': 'bar'
       })
 
-      assert.equal(res.lft, 10)
-
-      assert.equal(res.rgt, 10)
-
       assert.equal(res.utc, 10)
 
       assert.equal(res.mod_id, 10)
@@ -149,20 +135,27 @@ describe("use_cases: Device", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['paren_id'] = 54
+
     o['name'] = 'test 2'
+
     o['settings_connections'] = {
       'dd': 'sss'
     }
-    o['lft'] = 54
-    o['rgt'] = 54
+
     o['utc'] = 54
+
     o['mod_id'] = 54
+
     o['time_settings'] = {
       'dd': 'sss'
     }
+
     o['types'] = [1, 2]
+
     o['status'] = 54
+
     o['is_exclude'] = false
 
     return EditDevice(o, new User()).then(res => {
@@ -175,10 +168,6 @@ describe("use_cases: Device", function () {
       assert.deepStrictEqual(res.settings_connections, {
         'dd': 'sss'
       })
-
-      assert.equal(res.lft, 54)
-
-      assert.equal(res.rgt, 54)
 
       assert.equal(res.utc, 54)
 

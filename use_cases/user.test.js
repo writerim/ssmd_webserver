@@ -31,8 +31,6 @@ describe("use_cases: User", function () {
     o['password'] = 'test'
     o['parent_id'] = 10
     o['is_group'] = true
-    o['lft'] = 10
-    o['rgt'] = 10
     o['token'] = 'test'
     o['is_system'] = true
     return AddUser(o, new User())
@@ -50,10 +48,6 @@ describe("use_cases: User", function () {
         assert.equal(res.parent_id, 10)
 
         assert.equal(res.is_group, true)
-
-        assert.equal(res.lft, 10)
-
-        assert.equal(res.rgt, 10)
 
         assert.equal(res.token, 'test')
 
@@ -81,10 +75,6 @@ describe("use_cases: User", function () {
 
         assert.equal(res.is_group, true)
 
-        assert.equal(res.lft, 10)
-
-        assert.equal(res.rgt, 10)
-
         assert.equal(res.token, 'test')
 
         assert.equal(res.is_system, true)
@@ -111,10 +101,6 @@ describe("use_cases: User", function () {
 
       assert.equal(res.is_group, true)
 
-      assert.equal(res.lft, 10)
-
-      assert.equal(res.rgt, 10)
-
       assert.equal(res.token, 'test')
 
       assert.equal(res.is_system, true)
@@ -126,15 +112,21 @@ describe("use_cases: User", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['name'] = 'test 2'
+
     o['last_name'] = 'test 2'
+
     o['login'] = 'test 2'
+
     o['password'] = 'test 2'
+
     o['parent_id'] = 54
+
     o['is_group'] = false
-    o['lft'] = 54
-    o['rgt'] = 54
+
     o['token'] = 'test 2'
+
     o['is_system'] = false
 
     return EditUser(o, new User()).then(res => {
@@ -151,10 +143,6 @@ describe("use_cases: User", function () {
       assert.equal(res.parent_id, 54)
 
       assert.equal(res.is_group, false)
-
-      assert.equal(res.lft, 54)
-
-      assert.equal(res.rgt, 54)
 
       assert.equal(res.token, 'test 2')
 

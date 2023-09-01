@@ -70,7 +70,9 @@ describe("use_cases: Rule", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['name'] = 'test 2'
+
     o['description'] = 'test 2'
 
     return EditRule(o, new User()).then(res => {

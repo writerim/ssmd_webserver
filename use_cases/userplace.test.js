@@ -70,7 +70,9 @@ describe("use_cases: UserPlace", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['plce_id'] = 54
+
     o['user_id'] = 54
 
     return EditUserPlace(o, new User()).then(res => {

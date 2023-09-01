@@ -148,19 +148,31 @@ describe("use_cases: Mod", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['name'] = 'test 2'
+
     o['manufactures'] = 'test 2'
+
     o['mark'] = 'test 2'
+
     o['model'] = 'test 2'
+
     o['series'] = 'test 2'
+
     o['sowt_version'] = 'test 2'
+
     o['types_device'] = [1, 2]
+
     o['lib'] = 'test 2'
+
     o['parameters'] = [1, 2]
+
     o['commands'] = [1, 2]
+
     o['lib_description'] = {
       'dd': 'sss'
     }
+
     o['commands'] = [1, 2]
 
     return EditMod(o, new User()).then(res => {

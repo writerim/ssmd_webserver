@@ -84,9 +84,13 @@ describe("use_cases: Device2Device", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['device_id'] = 54
+
     o['parameter_id'] = 54
+
     o['device_donor_id'] = 54
+
     o['parameter_donor_id'] = 54
 
     return EditDevice2Device(o, new User()).then(res => {

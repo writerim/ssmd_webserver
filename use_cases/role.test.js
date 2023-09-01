@@ -70,7 +70,9 @@ describe("use_cases: Role", function () {
     let o = {}
 
     o['id'] = add_id
+
     o['name'] = 'test 2'
+
     o['description'] = 'test 2'
 
     return EditRole(o, new User()).then(res => {
