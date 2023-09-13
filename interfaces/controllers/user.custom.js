@@ -17,7 +17,7 @@ module.exports = {
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
-                // res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
+                res.end(JSON.stringify({ error: CONTEXT_NOT_FOUND }));
                 return
             }
             return res.end(JSON.stringify(user));

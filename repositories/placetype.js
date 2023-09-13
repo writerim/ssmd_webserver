@@ -16,6 +16,7 @@ const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_IDENT = 'error validate data: ident'
 const ERROR_VALIDATE_ICON = 'error validate data: icon'
 
+// Демон
 const initional = () => {
 
   GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', {
@@ -123,6 +124,7 @@ const initional = () => {
   }, 500)
 }
 
+// Инициализация модели
 const PlaceType = GetConnect({
   name: 'PlaceType',
   deamon: initional
@@ -140,7 +142,7 @@ const PlaceType = GetConnect({
   },
 })
 
-// Добавление сообщения к смене
+// Добавление записи
 const Add = async (data) => {
 
   let uniques_where = {}
@@ -177,11 +179,12 @@ const FindById = async (id) => {
   })
 }
 
+// Получение всех записей
 const GetAllCount = async (id) => {
   return PlaceType.count()
 }
 
-// Поиск по id
+// Удаление записи по id
 const Drop = async (id) => {
   return FindById(id).then(res => {
     if (!res) {
@@ -200,6 +203,7 @@ const Drop = async (id) => {
   })
 }
 
+// Обновление записи
 const Update = async (data) => {
   let error = ValidateUpdate(data)
   if (error) {
@@ -213,10 +217,12 @@ const Update = async (data) => {
   return FindById(data.id)
 }
 
+// Получение всех записей
 const GetAll = async (params) => {
   return PlaceType.findAll(params)
 }
 
+// Получение всех записей по вхождению строки куда либо
 const GetAllSerach = async (text, params) => {
   let filter_by_text = []
   return PlaceType.findAll({
@@ -227,6 +233,7 @@ const GetAllSerach = async (text, params) => {
   })
 }
 
+// Получение общего кол-ва записей по фильтру. Подходит для касточных запросов
 const GetAllFilterCount = async (filter) => {
   if (Object.keys(filter).length == 0) {
     return 0;
@@ -237,6 +244,7 @@ const GetAllFilterCount = async (filter) => {
   })
 }
 
+// Фильтрация записей. Подходит для касточных запросов
 const GetAllFilter = async (filter, params) => {
   if (Object.keys(filter).length == 0) {
     return [];

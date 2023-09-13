@@ -18,6 +18,7 @@ const ERROR_VALIDATE_LOGIN = 'error validate data: login'
 const ERROR_VALIDATE_PASSWORD = 'error validate data: password'
 const ERROR_VALIDATE_ISGROUP = 'error validate data: is_group'
 
+// Демон
 const initional = () => {
 
   GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', {
@@ -81,6 +82,7 @@ const initional = () => {
   }, 500)
 }
 
+// Инициализация модели
 const User = GetConnect({
   name: 'User',
   deamon: initional
@@ -122,7 +124,7 @@ const User = GetConnect({
   },
 })
 
-// Добавление сообщения к смене
+// Добавление записи
 const Add = async (data) => {
 
   let uniques_where = {}
@@ -158,11 +160,12 @@ const FindById = async (id) => {
   })
 }
 
+// Получение всех записей
 const GetAllCount = async (id) => {
   return User.count()
 }
 
-// Поиск по id
+// Удаление записи по id
 const Drop = async (id) => {
   return FindById(id).then(res => {
     if (!res) {
@@ -181,6 +184,7 @@ const Drop = async (id) => {
   })
 }
 
+// Обновление записи
 const Update = async (data) => {
   let error = ValidateUpdate(data)
   if (error) {
@@ -194,10 +198,12 @@ const Update = async (data) => {
   return FindById(data.id)
 }
 
+// Получение всех записей
 const GetAll = async (params) => {
   return User.findAll(params)
 }
 
+// Получение всех записей по вхождению строки куда либо
 const GetAllSerach = async (text, params) => {
   let filter_by_text = []
   return User.findAll({
@@ -208,6 +214,7 @@ const GetAllSerach = async (text, params) => {
   })
 }
 
+// Получение общего кол-ва записей по фильтру. Подходит для касточных запросов
 const GetAllFilterCount = async (filter) => {
   if (Object.keys(filter).length == 0) {
     return 0;
@@ -218,6 +225,7 @@ const GetAllFilterCount = async (filter) => {
   })
 }
 
+// Фильтрация записей. Подходит для касточных запросов
 const GetAllFilter = async (filter, params) => {
   if (Object.keys(filter).length == 0) {
     return [];
