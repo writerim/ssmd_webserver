@@ -5,7 +5,7 @@ var config = {
         login: 'sergey',
         password: 'writer',
         logging: false,
-        host : '172.20.240.1',
+        host : '127.0.0.1',
         options: {
             "encrypt": true,
             //"enableArithAbort": true,

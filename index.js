@@ -14,7 +14,7 @@ const {
 var cookieParser = require('cookie-parser');
 
 var env = process.env.NODE_ENV || 'production';
-var config = require(dirname(require.main.filename) + '/config')[env];
+var config = require('./config.js')[env];
 
 var pjson = require('./package.json');
 

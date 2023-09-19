@@ -30,7 +30,7 @@ const Context = {
             Context.fUnauthUser(res)
             // throw new Error(this.UNAUTH_USER)
         }).catch(e => {
-            LogError(e)
+            console.log(e)
         })
     },
     // Исключения

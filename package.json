@@ -1,10 +1,11 @@
 {
   "name": "web_server",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
+    "build": "pkg --compress GZip index.js -o my-program",
     "watch": "npm-watch",
     "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",
     "start": "node index.js",
