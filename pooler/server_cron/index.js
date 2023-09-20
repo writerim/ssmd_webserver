@@ -35,26 +35,27 @@ const ForeachIssues = function(){
             issue.CountRepeat = 0
             issue.CountSuccessClosed =+ 1
             issue.Running = false
-            issue.session = undefined
+            if(!issue.session.mods.length){
+                console.log(`Close Issue:`, e)
+                issue.session = undefined
+                session_e.removeAllListeners()
+            }
 
-            console.log(`Close Issue:`, e)
-
-            session_e.removeAllListeners()
         }).on('timeout', (e) => {
             issue.Running = false
-            issue.session = undefined
-
-            console.log(`Timeout Issue:`, e)
-            
-            session_e.removeAllListeners()
+            if(!issue.session.mods.length){
+                console.log(`Close Issue:`, e)
+                issue.session = undefined
+                session_e.removeAllListeners()
+            }
         }).on('error', (e) => {
             Issues.splice(index, 1);
             issue.Running = false
-            issue.session = undefined
-            
-            console.log(`Error Issue:`, e)
-            
-            session_e.removeAllListeners()
+            if(!issue.session || !issue.session.mods.length){
+                console.log(`Close Issue:`, e)
+                issue.session = undefined
+                session_e.removeAllListeners()
+            }
         }).on('start', (e) => {
             issue.Running = true
         });

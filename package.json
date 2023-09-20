@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "pkg --compress GZip index.js -o my-program",
+    "build": "pkg index.js",
     "watch": "npm-watch",
     "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",
     "start": "node index.js",
@@ -20,6 +20,12 @@
       "title": "Best practices",
       "filename": "footer.md"
     }
+  },
+  "pkg": {
+    "scripts": "build/**/*.js",
+    "assets": ["interfaces/web/static/**/*","interfaces/apidoc/**/*"],
+    "targets": [ "node18-linux-arm64", "node18-win-x64" ],
+    "outputPath": "."
   },
   "author": "Sergey Ivanov",
   "license": "MIT",

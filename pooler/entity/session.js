@@ -77,12 +77,12 @@ module.exports = class Session {
             // 
         })
 
-        SetEmit(this.mods, e)
+        // SetEmit(this.mods, e)
 
-        // Вешаем события чтобы можно было их обрабатывать
-        // this.mods.forEach()
+        // // Вешаем события чтобы можно было их обрабатывать
+        // // this.mods.forEach()
 
-        mod_device.Start(issue)
+        // mod_device.Start(issue)
 
     }
     mods = [] // SessionBlock

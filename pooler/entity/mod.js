@@ -10,10 +10,26 @@ module.exports = class Mod{
             const ModDescription = require(`../mods/${mod}`)
             const m = new ModDescription()
             this.settings = m
-            const { ParseData, CreateData, Start } = require(`../protocols/${m.protocol}`)
-            this.CreateData = CreateData
-            this.ParseData = ParseData
-            this.Start = Start
+            const Protocol = require(`../protocols/${m.protocol}`)
+
+            this.protocol = new Protocol(e)
+
+            // const Close = function(){
+            //     this.settings = undefined
+            //     this.CreateData = undefined
+            //     this.ParseData = undefined
+            //     this.ParseData = undefined
+            // }
+
+            e.on('close', () => {
+                console.log('произошло событие!');
+            }).on('timeout', () => {
+                console.log('произошло событие!');
+            }).on('error', (e) => {
+                // 
+            })
+
+
         } catch(e) {
             return e
         }
@@ -21,5 +37,6 @@ module.exports = class Mod{
     }
     settings = {}
     device_id = 0
+    protocol = null
     e = null
 }

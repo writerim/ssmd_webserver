@@ -4,7 +4,7 @@ const path = require("path");
 
 
 const env = process.env.NODE_ENV && process.env.NODE_ENV.trim() || 'production';
-const conf = require(__dirname + '/config');
+const conf = require('../config.js');
 
 // Соединение
 var connect = null
@@ -27,7 +27,7 @@ module.exports = {
     // Принимает объект для вызова какой нибудь функции разово при например инициализации объекта
     // Полезно для создания демонов очисщения данных в модулях
     GetConnect: (caller = { name: "", deamon: () => { } }) => {
-        const config = conf[env];
+        const config = conf.database[env];
 
         if (connect) {
             return connect
