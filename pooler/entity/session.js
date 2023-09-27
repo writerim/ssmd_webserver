@@ -69,20 +69,15 @@ module.exports = class Session {
             this.mods.push(mod_parent)
         });
 
-        e.on('close', () => {
+        e.once('close', () => {
             console.log('произошло событие!');
-        }).on('timeout', () => {
+        }).once('timeout', () => {
             console.log('произошло событие!');
-        }).on('error', (e) => {
+        }).once('error', (e) => {
             // 
         })
 
-        // SetEmit(this.mods, e)
-
-        // // Вешаем события чтобы можно было их обрабатывать
-        // // this.mods.forEach()
-
-        // mod_device.Start(issue)
+        mod_device.protocol.Start(issue, e)
 
     }
     mods = [] // SessionBlock

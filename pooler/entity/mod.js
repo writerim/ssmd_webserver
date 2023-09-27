@@ -3,7 +3,7 @@
 module.exports = class Mod{
     constructor(
         mod = '',
-        device_id = 0,
+        device = null,
         e = null,
     ){
         try{
@@ -14,20 +14,21 @@ module.exports = class Mod{
 
             this.protocol = new Protocol(e)
 
-            // const Close = function(){
-            //     this.settings = undefined
-            //     this.CreateData = undefined
-            //     this.ParseData = undefined
-            //     this.ParseData = undefined
-            // }
+            e.once('close', () => {
+                console.log('произошло событие!');
+            }).once('timeout', () => {
+                console.log('произошло событие!');
+            }).once('error', (e) => {
 
-            e.on('close', () => {
-                console.log('произошло событие!');
-            }).on('timeout', () => {
-                console.log('произошло событие!');
-            }).on('error', (e) => {
+                // Дочернее устройство смогло составить пакет и готово отдать родителю
+            }).on(`done_create_${device.parent_id}`, (pack) => {
+                console.log(pack)
+                // Родительское устройство смогло разобрать пакет и дочернее может его взять
+            }).on(`done_parse_${device.parent_id}`, (pack) => {
                 // 
             })
+
+            this.device = device
 
 
         } catch(e) {
@@ -36,7 +37,7 @@ module.exports = class Mod{
 
     }
     settings = {}
-    device_id = 0
+    device = ''
     protocol = null
     e = null
 }

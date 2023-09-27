@@ -1,10 +1,4 @@
 const {
-    CMD_TEST_MODE_CLOSE,
-    CMD_TEST_MODE_ERROR,
-    CMD_TEST_MODE_TIMEOUT,
-    GET_ACTUAL_DATA
-} = require("../contsants/issue");
-const {
     PARAMETER_ENEMGY_TARIF_1,
     PARAMETER_ENEMGY_TARIF_2,
     PARAMETER_ENEMGY_TARIF_SUM
@@ -15,10 +9,10 @@ const {
 const {
     ELECTRICAL_COUNTER
 } = require("../contsants/type_devices");
+const Protocol = require("../protocols/emulate");
 
-module.exports = class ModDescription {
+module.exports = class ModDescription extends Protocol {
 
-    protocol = 'emulate'
     name = 'empty'
     manufactures = 'empty'
     mark = 'empty'
@@ -28,16 +22,17 @@ module.exports = class ModDescription {
     types_device = [
         ELECTRICAL_COUNTER
     ]
-    parameters = [
-        PARAMETER_ENEMGY_TARIF_1,
-        PARAMETER_ENEMGY_TARIF_2,
-        PARAMETER_ENEMGY_TARIF_SUM,
-    ]
-    commands = [
-        CMD_TEST_MODE_CLOSE,
-        CMD_TEST_MODE_ERROR,
-        CMD_TEST_MODE_TIMEOUT,
-        GET_ACTUAL_DATA
+    user_commands = [{
+        export: false,
+        name: "Получение текущих данных",
+        command: "GetActualData",
+        args: []
+    }]
+
+    system_commands = [
+        {
+            ident : "GetActualData",
+        }
     ]
     export = false
 

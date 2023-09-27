@@ -1,10 +1,10 @@
 const { PARAMETER_ENEMGY_TARIF_1, PARAMETER_ENEMGY_TARIF_2, PARAMETER_ENEMGY_TARIF_SUM } = require("../contsants/parameters");
 const { TCP } = require("../contsants/type_connects");
 const { ELECTRICAL_COUNTER } = require("../contsants/type_devices");
+const Protocol = require("../protocols/ce301");
 
-module.exports = class ModDescription{
+module.exports = class ModDescription extends Protocol{
     
-    protocol = 'ce301' 
     name = 'CE 102 R5'
     manufactures = 'Энергомера'
     mark = 'CE'
