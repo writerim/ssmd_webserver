@@ -12,10 +12,8 @@ module.exports = class Mod {
       this.series = ''
       this.sowt_version = ''
       this.types_device = []
-      this.lib = ''
       this.parameters = []
       this.commands = []
-      this.lib_description = {}
       this.commands = []
     } else {
 
@@ -27,10 +25,8 @@ module.exports = class Mod {
       this.series = typeof data.series != 'undefined' ? data.series : ''
       this.sowt_version = typeof data.sowt_version != 'undefined' ? data.sowt_version : ''
       this.types_device = typeof data.types_device != 'undefined' ? data.types_device : []
-      this.lib = typeof data.lib != 'undefined' ? data.lib : ''
       this.parameters = typeof data.parameters != 'undefined' ? data.parameters : []
       this.commands = typeof data.commands != 'undefined' ? data.commands : []
-      this.lib_description = typeof data.lib_description != 'undefined' ? data.lib_description : {}
       this.commands = typeof data.commands != 'undefined' ? data.commands : []
     }
   }
@@ -42,9 +38,7 @@ module.exports = class Mod {
   series = ''
   sowt_version = ''
   types_device = []
-  lib = ''
   parameters = []
   commands = []
-  lib_description = {}
   commands = []
 }

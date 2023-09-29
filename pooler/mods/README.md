@@ -63,6 +63,13 @@ settings_connection = {
 	
 }
 
+parameters = [
+	{
+		delay : 60 * 60
+		cmd : ""
+	}
+]
+
 export = BOOL // Отдаем ли мы в БД это значение
 
 

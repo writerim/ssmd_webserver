@@ -14,6 +14,7 @@ const TABLENAME = 'parameter'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_IDENT = 'error validate data: ident'
+const ERROR_UPDATE_ISSET_IDENT = 'error: undefined data: ident'
 
 // Демон
 const initional = () => {
@@ -53,6 +54,9 @@ const Parameter = GetConnect({
 const Add = async (data) => {
 
   let uniques_where = {}
+  if (typeof data.ident == 'undefined') {
+    throw new Error(ERROR_UPDATE_ISSET_IDENT)
+  }
   uniques_where['ident'] = data.ident
   if (Object.keys(uniques_where).length) {
     return Parameter.findOne({

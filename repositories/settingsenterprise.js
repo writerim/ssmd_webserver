@@ -14,8 +14,11 @@ const TABLENAME = 'settingsenterprise'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_DESCRIPTION = 'error validate data: description'
+const ERROR_UPDATE_ISSET_DESCRIPTION = 'error: undefined data: description'
 const ERROR_VALIDATE_INDEX = 'error validate data: index'
+const ERROR_UPDATE_ISSET_INDEX = 'error: undefined data: index'
 const ERROR_VALIDATE_VALUE = 'error validate data: value'
+const ERROR_UPDATE_ISSET_VALUE = 'error: undefined data: value'
 
 // Демон
 const initional = () => {
@@ -78,6 +81,9 @@ const SettingsEnterprise = GetConnect({
 const Add = async (data) => {
 
   let uniques_where = {}
+  if (typeof data.index == 'undefined') {
+    throw new Error(ERROR_UPDATE_ISSET_INDEX)
+  }
   uniques_where['index'] = data.index
   if (Object.keys(uniques_where).length) {
     return SettingsEnterprise.findOne({

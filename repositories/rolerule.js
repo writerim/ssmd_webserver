@@ -14,7 +14,9 @@ const TABLENAME = 'rolerule'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_ROLEID = 'error validate data: role_id'
+const ERROR_UPDATE_ISSET_ROLEID = 'error: undefined data: role_id'
 const ERROR_VALIDATE_RULEID = 'error validate data: rule_id'
+const ERROR_UPDATE_ISSET_RULEID = 'error: undefined data: rule_id'
 
 // Демон
 const initional = () => {

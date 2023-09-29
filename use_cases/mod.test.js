@@ -32,12 +32,8 @@ describe("use_cases: Mod", function () {
     o['series'] = 'test'
     o['sowt_version'] = 'test'
     o['types_device'] = ['a', 'b']
-    o['lib'] = 'test'
     o['parameters'] = ['a', 'b']
     o['commands'] = ['a', 'b']
-    o['lib_description'] = {
-      'foo': 'bar'
-    }
     o['commands'] = ['a', 'b']
     return AddMod(o, new User())
     .then(res => {
@@ -57,15 +53,9 @@ describe("use_cases: Mod", function () {
 
       assert.deepStrictEqual(res.types_device, ['a', 'b'])
 
-      assert.equal(res.lib, 'test')
-
       assert.deepStrictEqual(res.parameters, ['a', 'b'])
 
       assert.deepStrictEqual(res.commands, ['a', 'b'])
-
-      assert.deepStrictEqual(res.lib_description, {
-        'foo': 'bar'
-      })
 
       assert.deepStrictEqual(res.commands, ['a', 'b'])
     })
@@ -93,15 +83,9 @@ describe("use_cases: Mod", function () {
 
         assert.deepStrictEqual(res.types_device, ['a', 'b'])
 
-        assert.equal(res.lib, 'test')
-
         assert.deepStrictEqual(res.parameters, ['a', 'b'])
 
         assert.deepStrictEqual(res.commands, ['a', 'b'])
-
-        assert.deepStrictEqual(res.lib_description, {
-          'foo': 'bar'
-        })
 
         assert.deepStrictEqual(res.commands, ['a', 'b'])
       }
@@ -129,15 +113,9 @@ describe("use_cases: Mod", function () {
 
       assert.deepStrictEqual(res.types_device, ['a', 'b'])
 
-      assert.equal(res.lib, 'test')
-
       assert.deepStrictEqual(res.parameters, ['a', 'b'])
 
       assert.deepStrictEqual(res.commands, ['a', 'b'])
-
-      assert.deepStrictEqual(res.lib_description, {
-        'foo': 'bar'
-      })
 
       assert.deepStrictEqual(res.commands, ['a', 'b'])
     })
@@ -163,15 +141,9 @@ describe("use_cases: Mod", function () {
 
     o['types_device'] = [1, 2]
 
-    o['lib'] = 'test 2'
-
     o['parameters'] = [1, 2]
 
     o['commands'] = [1, 2]
-
-    o['lib_description'] = {
-      'dd': 'sss'
-    }
 
     o['commands'] = [1, 2]
 
@@ -192,15 +164,9 @@ describe("use_cases: Mod", function () {
 
       assert.deepStrictEqual(res.types_device, [1, 2])
 
-      assert.equal(res.lib, 'test 2')
-
       assert.deepStrictEqual(res.parameters, [1, 2])
 
       assert.deepStrictEqual(res.commands, [1, 2])
-
-      assert.deepStrictEqual(res.lib_description, {
-        'dd': 'sss'
-      })
 
       assert.deepStrictEqual(res.commands, [1, 2])
     })

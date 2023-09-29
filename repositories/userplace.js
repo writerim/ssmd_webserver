@@ -14,7 +14,9 @@ const TABLENAME = 'userplace'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_PLACEID = 'error validate data: plce_id'
+const ERROR_UPDATE_ISSET_PLACEID = 'error: undefined data: plce_id'
 const ERROR_VALIDATE_USERID = 'error validate data: user_id'
+const ERROR_UPDATE_ISSET_USERID = 'error: undefined data: user_id'
 
 // Демон
 const initional = () => {

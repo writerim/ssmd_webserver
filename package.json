@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "pkg index.js",
+    "build": "pkg  --options expose-gc  index.js",
     "watch": "npm-watch",
     "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",
     "start": "node index.js",

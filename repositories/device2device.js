@@ -14,9 +14,13 @@ const TABLENAME = 'device2device'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_DEVICEID = 'error validate data: device_id'
+const ERROR_UPDATE_ISSET_DEVICEID = 'error: undefined data: device_id'
 const ERROR_VALIDATE_PARAMETERID = 'error validate data: parameter_id'
+const ERROR_UPDATE_ISSET_PARAMETERID = 'error: undefined data: parameter_id'
 const ERROR_VALIDATE_DEVICEDONORID = 'error validate data: device_donor_id'
+const ERROR_UPDATE_ISSET_DEVICEDONORID = 'error: undefined data: device_donor_id'
 const ERROR_VALIDATE_PARAMETERDONORID = 'error validate data: parameter_donor_id'
+const ERROR_UPDATE_ISSET_PARAMETERDONORID = 'error: undefined data: parameter_donor_id'
 
 // Демон
 const initional = () => {

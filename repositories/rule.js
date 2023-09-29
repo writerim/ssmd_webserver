@@ -14,7 +14,9 @@ const TABLENAME = 'rule'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_NAME = 'error validate data: name'
+const ERROR_UPDATE_ISSET_NAME = 'error: undefined data: name'
 const ERROR_VALIDATE_DESCRIPTION = 'error validate data: description'
+const ERROR_UPDATE_ISSET_DESCRIPTION = 'error: undefined data: description'
 
 // Демон
 const initional = () => {

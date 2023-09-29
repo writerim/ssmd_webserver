@@ -14,9 +14,13 @@ const TABLENAME = 'user'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_NAME = 'error validate data: name'
+const ERROR_UPDATE_ISSET_NAME = 'error: undefined data: name'
 const ERROR_VALIDATE_LOGIN = 'error validate data: login'
+const ERROR_UPDATE_ISSET_LOGIN = 'error: undefined data: login'
 const ERROR_VALIDATE_PASSWORD = 'error validate data: password'
+const ERROR_UPDATE_ISSET_PASSWORD = 'error: undefined data: password'
 const ERROR_VALIDATE_ISGROUP = 'error validate data: is_group'
+const ERROR_UPDATE_ISSET_ISGROUP = 'error: undefined data: is_group'
 
 // Демон
 const initional = () => {

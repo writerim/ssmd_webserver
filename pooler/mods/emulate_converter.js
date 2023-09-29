@@ -10,7 +10,7 @@ const Protocol = require("../protocols/emulate_converter");
 
 module.exports = class ModDescription extends Protocol {
 
-    name = 'empty'
+    name = 'emulate_converter'
     manufactures = 'empty'
     mark = 'empty'
     model = 'empty'

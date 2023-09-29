@@ -14,9 +14,10 @@ const {
 var cookieParser = require('cookie-parser');
 
 var env = process.env.NODE_ENV || 'production';
-var config = require('./config.js')[env];
+var config = require(dirname(require.main.filename) + '/config')[env];
 
 var pjson = require('./package.json');
+const { Start, Sync } = require('./pooler');
 
 // Start the server
 const start = async () => {
@@ -33,7 +34,6 @@ const start = async () => {
 
     app.set('views', dirname(require.main.filename) + '/views');
 
-    console.log(dirname(require.main.filename) + "/views/layouts");
     app.engine("hbs", expressHbs.engine({
       layoutsDir: "interfaces/web/layouts",
       defaultLayout: "main",
@@ -79,6 +79,9 @@ const start = async () => {
     const server = app.listen(config.server.port, () => {
       console.log('listening on port %s...', config.server.port);
     });
+
+    Sync()
+    Start(app)
 
   } catch (err) {
     console.log(err);

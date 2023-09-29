@@ -14,15 +14,21 @@ const TABLENAME = 'mod'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_NAME = 'error validate data: name'
+const ERROR_UPDATE_ISSET_NAME = 'error: undefined data: name'
 const ERROR_VALIDATE_MANUFACTURES = 'error validate data: manufactures'
+const ERROR_UPDATE_ISSET_MANUFACTURES = 'error: undefined data: manufactures'
 const ERROR_VALIDATE_MARK = 'error validate data: mark'
+const ERROR_UPDATE_ISSET_MARK = 'error: undefined data: mark'
 const ERROR_VALIDATE_MODEL = 'error validate data: model'
+const ERROR_UPDATE_ISSET_MODEL = 'error: undefined data: model'
 const ERROR_VALIDATE_TYPESDEVICE = 'error validate data: types_device'
-const ERROR_VALIDATE_LIB = 'error validate data: lib'
+const ERROR_UPDATE_ISSET_TYPESDEVICE = 'error: undefined data: types_device'
 const ERROR_VALIDATE_PARAMETERS = 'error validate data: parameters'
+const ERROR_UPDATE_ISSET_PARAMETERS = 'error: undefined data: parameters'
 const ERROR_VALIDATE_COMMANDS = 'error validate data: commands'
-const ERROR_VALIDATE_LIBDESCRIPTION = 'error validate data: lib_description'
+const ERROR_UPDATE_ISSET_COMMANDS = 'error: undefined data: commands'
 const ERROR_VALIDATE_СOMMANDS = 'error validate data: commands'
+const ERROR_UPDATE_ISSET_СOMMANDS = 'error: undefined data: commands'
 
 // Демон
 const initional = () => {
@@ -67,22 +73,12 @@ const initional = () => {
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'lib', {
-    type: DataTypes.STRING,
-  }, {
-    mustExist: false
-  }).catch(() => {});
   GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parameters', {
     type: DataTypes.JSON(DataTypes.STRING),
   }, {
     mustExist: false
   }).catch(() => {});
   GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'commands', {
-    type: DataTypes.JSON(DataTypes.STRING),
-  }, {
-    mustExist: false
-  }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'lib_description', {
     type: DataTypes.JSON(DataTypes.STRING),
   }, {
     mustExist: false
@@ -129,16 +125,10 @@ const Mod = GetConnect({
   types_device: {
     type: DataTypes.JSON(DataTypes.STRING),
   },
-  lib: {
-    type: DataTypes.STRING,
-  },
   parameters: {
     type: DataTypes.JSON(DataTypes.STRING),
   },
   commands: {
-    type: DataTypes.JSON(DataTypes.STRING),
-  },
-  lib_description: {
     type: DataTypes.JSON(DataTypes.STRING),
   },
   commands: {
@@ -150,6 +140,9 @@ const Mod = GetConnect({
 const Add = async (data) => {
 
   let uniques_where = {}
+  if (typeof data.name == 'undefined') {
+    throw new Error(ERROR_UPDATE_ISSET_NAME)
+  }
   uniques_where['name'] = data.name
   if (Object.keys(uniques_where).length) {
     return Mod.findOne({
@@ -281,17 +274,11 @@ const ValidateUpdate = (data) => {
   if (!data.types_device) {
     return ERROR_VALIDATE_TYPESDEVICE
   }
-  if (!data.lib) {
-    return ERROR_VALIDATE_LIB
-  }
   if (!data.parameters) {
     return ERROR_VALIDATE_PARAMETERS
   }
   if (!data.commands) {
     return ERROR_VALIDATE_COMMANDS
-  }
-  if (!data.lib_description) {
-    return ERROR_VALIDATE_LIBDESCRIPTION
   }
   if (!data.commands) {
     return ERROR_VALIDATE_СOMMANDS
@@ -322,17 +309,11 @@ const ValidateInsert = (data) => {
   if (!data.types_device) {
     return ERROR_VALIDATE_TYPESDEVICE
   }
-  if (!data.lib) {
-    return ERROR_VALIDATE_LIB
-  }
   if (!data.parameters) {
     return ERROR_VALIDATE_PARAMETERS
   }
   if (!data.commands) {
     return ERROR_VALIDATE_COMMANDS
-  }
-  if (!data.lib_description) {
-    return ERROR_VALIDATE_LIBDESCRIPTION
   }
   if (!data.commands) {
     return ERROR_VALIDATE_СOMMANDS
@@ -350,10 +331,8 @@ module.exports = {
   MOD_ERROR_VALIDATE_MARK: ERROR_VALIDATE_MARK,
   MOD_ERROR_VALIDATE_MODEL: ERROR_VALIDATE_MODEL,
   MOD_ERROR_VALIDATE_TYPESDEVICE: ERROR_VALIDATE_TYPESDEVICE,
-  MOD_ERROR_VALIDATE_LIB: ERROR_VALIDATE_LIB,
   MOD_ERROR_VALIDATE_PARAMETERS: ERROR_VALIDATE_PARAMETERS,
   MOD_ERROR_VALIDATE_COMMANDS: ERROR_VALIDATE_COMMANDS,
-  MOD_ERROR_VALIDATE_LIBDESCRIPTION: ERROR_VALIDATE_LIBDESCRIPTION,
   MOD_ERROR_VALIDATE_СOMMANDS: ERROR_VALIDATE_СOMMANDS,
 
   ModGetAll: GetAll,

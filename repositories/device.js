@@ -14,8 +14,11 @@ const TABLENAME = 'device'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_NAME = 'error validate data: name'
+const ERROR_UPDATE_ISSET_NAME = 'error: undefined data: name'
 const ERROR_VALIDATE_SETTINGSCONNECTIONS = 'error validate data: settings_connections'
+const ERROR_UPDATE_ISSET_SETTINGSCONNECTIONS = 'error: undefined data: settings_connections'
 const ERROR_VALIDATE_MODID = 'error validate data: mod_id'
+const ERROR_UPDATE_ISSET_MODID = 'error: undefined data: mod_id'
 
 // Демон
 const initional = () => {

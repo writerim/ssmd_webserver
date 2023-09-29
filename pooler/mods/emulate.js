@@ -13,7 +13,7 @@ const Protocol = require("../protocols/emulate");
 
 module.exports = class ModDescription extends Protocol {
 
-    name = 'empty'
+    name = 'emulate'
     manufactures = 'empty'
     mark = 'empty'
     model = 'empty'
@@ -29,12 +29,22 @@ module.exports = class ModDescription extends Protocol {
         args: []
     }]
 
+    parameters = [
+        {
+            ident : PARAMETER_ENEMGY_TARIF_1,
+            delay : 50505,
+            cmd : "GetActualData"
+        }
+    ]
+
     system_commands = [
         {
             ident : "GetActualData",
         }
     ]
     export = false
+
+    max_count_conn = 1
 
     type_connect = TCP
 }

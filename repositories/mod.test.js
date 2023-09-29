@@ -26,12 +26,8 @@ describe("repo: DB: Mod", function () {
     o['series'] = 'test'
     o['sowt_version'] = 'test'
     o['types_device'] = ['a', 'b']
-    o['lib'] = 'test'
     o['parameters'] = ['a', 'b']
     o['commands'] = ['a', 'b']
-    o['lib_description'] = {
-      'foo': 'bar'
-    }
     o['commands'] = ['a', 'b']
     return ModAdd(o)
     .then(res => {
@@ -51,15 +47,9 @@ describe("repo: DB: Mod", function () {
 
       assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
 
-      assert.equal(res.get('lib'), 'test')
-
       assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
 
       assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
-
-      assert.deepStrictEqual(res.get('lib_description'), {
-        'foo': 'bar'
-      })
 
       assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
     })
@@ -84,15 +74,9 @@ describe("repo: DB: Mod", function () {
 
         assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
 
-        assert.equal(res.get('lib'), 'test')
-
         assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
 
         assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
-
-        assert.deepStrictEqual(res.get('lib_description'), {
-          'foo': 'bar'
-        })
 
         assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
       }
@@ -120,15 +104,9 @@ describe("repo: DB: Mod", function () {
 
       assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
 
-      assert.equal(res.get('lib'), 'test')
-
       assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
 
       assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
-
-      assert.deepStrictEqual(res.get('lib_description'), {
-        'foo': 'bar'
-      })
 
       assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
     })
@@ -146,12 +124,8 @@ describe("repo: DB: Mod", function () {
     o['series'] = 'test 2'
     o['sowt_version'] = 'test 2'
     o['types_device'] = [1, 2]
-    o['lib'] = 'test 2'
     o['parameters'] = [1, 2]
     o['commands'] = [1, 2]
-    o['lib_description'] = {
-      'dd': 'sss'
-    }
     o['commands'] = [1, 2]
 
     return ModUpdate(o).then(res => {
@@ -171,15 +145,9 @@ describe("repo: DB: Mod", function () {
 
       assert.deepStrictEqual(res.get('types_device'), [1, 2])
 
-      assert.equal(res.get('lib'), 'test 2')
-
       assert.deepStrictEqual(res.get('parameters'), [1, 2])
 
       assert.deepStrictEqual(res.get('commands'), [1, 2])
-
-      assert.deepStrictEqual(res.get('lib_description'), {
-        'dd': 'sss'
-      })
 
       assert.deepStrictEqual(res.get('commands'), [1, 2])
     })

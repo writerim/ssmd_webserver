@@ -14,7 +14,9 @@ const TABLENAME = 'placetype'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_IDENT = 'error validate data: ident'
+const ERROR_UPDATE_ISSET_IDENT = 'error: undefined data: ident'
 const ERROR_VALIDATE_ICON = 'error validate data: icon'
+const ERROR_UPDATE_ISSET_ICON = 'error: undefined data: icon'
 
 // Демон
 const initional = () => {
@@ -146,6 +148,9 @@ const PlaceType = GetConnect({
 const Add = async (data) => {
 
   let uniques_where = {}
+  if (typeof data.icon == 'undefined') {
+    throw new Error(ERROR_UPDATE_ISSET_ICON)
+  }
   uniques_where['icon'] = data.icon
   if (Object.keys(uniques_where).length) {
     return PlaceType.findOne({

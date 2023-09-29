@@ -35,10 +35,8 @@ module.exports = {
   * @apiBody {String} series Уникальная серия
   * @apiBody {String} sowt_version Уникальная версия софта
   * @apiBody {Array} types_device Какие типы данных может собирать
-  * @apiBody {String} lib Какая бибблиотека с ним может работать
   * @apiBody {Array} parameters С какими параметрами может работать
   * @apiBody {Array} commands Какие поддерживает команжы
-  * @apiBody {Object} lib_description Параметры бибилиотеки
   * @apiBody {Array} commands Какие команды поддерживает
   *
   * @apiSuccess {Number} id 
@@ -49,10 +47,8 @@ module.exports = {
   * @apiSuccess {String} series Уникальная серия
   * @apiSuccess {String} sowt_version Уникальная версия софта
   * @apiSuccess {Array} types_device Какие типы данных может собирать
-  * @apiSuccess {String} lib Какая бибблиотека с ним может работать
   * @apiSuccess {Array} parameters С какими параметрами может работать
   * @apiSuccess {Array} commands Какие поддерживает команжы
-  * @apiSuccess {Object} lib_description Параметры бибилиотеки
   * @apiSuccess {Array} commands Какие команды поддерживает
   * @apiErrorExample Response (example):
   *     HTTP/1.1 200
@@ -62,7 +58,7 @@ module.exports = {
   *       "error": "permission denied"
   *       "error": "not fount context"
   *       "error": "not fount row"
-                                                                                                                   
+                                                                                                   
   *     }
   */
   ApiAddMod(req, res, next) {
@@ -145,10 +141,8 @@ module.exports = {
   * @apiBody {String} series Уникальная серия
   * @apiBody {String} sowt_version Уникальная версия софта
   * @apiBody {Array} types_device Какие типы данных может собирать
-  * @apiBody {String} lib Какая бибблиотека с ним может работать
   * @apiBody {Array} parameters С какими параметрами может работать
   * @apiBody {Array} commands Какие поддерживает команжы
-  * @apiBody {Object} lib_description Параметры бибилиотеки
   * @apiBody {Array} commands Какие команды поддерживает
   *
   *
@@ -160,10 +154,8 @@ module.exports = {
   * @apiSuccess {String} series Уникальная серия
   * @apiSuccess {String} sowt_version Уникальная версия софта
   * @apiSuccess {Array} types_device Какие типы данных может собирать
-  * @apiSuccess {String} lib Какая бибблиотека с ним может работать
   * @apiSuccess {Array} parameters С какими параметрами может работать
   * @apiSuccess {Array} commands Какие поддерживает команжы
-  * @apiSuccess {Object} lib_description Параметры бибилиотеки
   * @apiSuccess {Array} commands Какие команды поддерживает
   * @apiErrorExample Response (example):
   *     HTTP/1.1 200
@@ -173,7 +165,7 @@ module.exports = {
   *       "error": "permission denied"
   *       "error": "not fount context"
   *       "error": "not fount row"
-                                                                                                                   
+                                                                                                   
   *     }
   */
   ApiEditMod(req, res, next) {
@@ -263,10 +255,8 @@ module.exports = {
    * @apiSuccess {String} data.series Уникальная серия
    * @apiSuccess {String} data.sowt_version Уникальная версия софта
    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-   * @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
    * @apiSuccess {Array} data.parameters С какими параметрами может работать
    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-   * @apiSuccess {Object} data.lib_description Параметры бибилиотеки
    * @apiSuccess {Array} data.commands Какие команды поддерживает
    * @apiSuccess {Object} meta Метаданные для списка
    * @apiSuccess {Number} meta.total Общее кол-во
@@ -354,7 +344,7 @@ module.exports = {
   },
 
   /**
-   * @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_lib=:filter_lib&?filters_by_parameters=:filter_parameters&?filters_by_commands=:filter_commands&?filters_by_lib_description=:filter_lib_description&?filters_by_commands=:filter_commands&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
+   * @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_parameters=:filter_parameters&?filters_by_commands=:filter_commands&?filters_by_commands=:filter_commands&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
    * @apiName GetAllFilterMod
    * @apiGroup Mod
    *
@@ -370,10 +360,8 @@ module.exports = {
    * @apiParam { string } filter_series Фильтр по полю series
    * @apiParam { string } filter_sowt_version Фильтр по полю sowt_version
    * @apiParam { array } filter_types_device Фильтр по полю types_device
-   * @apiParam { string } filter_lib Фильтр по полю lib
    * @apiParam { array } filter_parameters Фильтр по полю parameters
    * @apiParam { array } filter_commands Фильтр по полю commands
-   * @apiParam { json } filter_lib_description Фильтр по полю lib_description
    * @apiParam { array } filter_commands Фильтр по полю commands
    * @apiParam {int} limit_row=10   Сколько записей показывать
    * @apiParam {int} offset_row=0   Сколько записей отступить от начала
@@ -388,10 +376,8 @@ module.exports = {
    * @apiSuccess {String} data.series Уникальная серия
    * @apiSuccess {String} data.sowt_version Уникальная версия софта
    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-   * @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
    * @apiSuccess {Array} data.parameters С какими параметрами может работать
    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-   * @apiSuccess {Object} data.lib_description Параметры бибилиотеки
    * @apiSuccess {Array} data.commands Какие команды поддерживает
    * @apiSuccess {Object} meta Метаданные для списка
    * @apiSuccess {Number} meta.total Общее кол-во
@@ -504,13 +490,6 @@ module.exports = {
       if (typeof req.params.filters_by_types_device != 'undefined') {
         filter['types_device'] = req.params.filters_by_types_device
       }
-      if (typeof req.query.filters_by_lib != 'undefined') {
-        filter['lib'] = req.query.filters_by_lib
-      }
-
-      if (typeof req.params.filters_by_lib != 'undefined') {
-        filter['lib'] = req.params.filters_by_lib
-      }
       if (typeof req.query.filters_by_parameters != 'undefined') {
         filter['parameters'] = req.query.filters_by_parameters
       }
@@ -524,13 +503,6 @@ module.exports = {
 
       if (typeof req.params.filters_by_commands != 'undefined') {
         filter['commands'] = req.params.filters_by_commands
-      }
-      if (typeof req.query.filters_by_lib_description != 'undefined') {
-        filter['lib_description'] = req.query.filters_by_lib_description
-      }
-
-      if (typeof req.params.filters_by_lib_description != 'undefined') {
-        filter['lib_description'] = req.params.filters_by_lib_description
       }
       if (typeof req.query.filters_by_commands != 'undefined') {
         filter['commands'] = req.query.filters_by_commands
@@ -601,10 +573,8 @@ module.exports = {
    * @apiSuccess {String} data.series Уникальная серия
    * @apiSuccess {String} data.sowt_version Уникальная версия софта
    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-   * @apiSuccess {String} data.lib Какая бибблиотека с ним может работать
    * @apiSuccess {Array} data.parameters С какими параметрами может работать
    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-   * @apiSuccess {Object} data.lib_description Параметры бибилиотеки
    * @apiSuccess {Array} data.commands Какие команды поддерживает
    * @apiSuccess {Object} meta Метаданные для списка
    * @apiSuccess {Number} meta.total Общее кол-во

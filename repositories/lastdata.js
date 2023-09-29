@@ -14,9 +14,13 @@ const TABLENAME = 'lastdata'
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_DEVICEID = 'error validate data: device_id'
+const ERROR_UPDATE_ISSET_DEVICEID = 'error: undefined data: device_id'
 const ERROR_VALIDATE_PARAMETERID = 'error validate data: parameter_id'
+const ERROR_UPDATE_ISSET_PARAMETERID = 'error: undefined data: parameter_id'
 const ERROR_VALIDATE_DATA = 'error validate data: data'
+const ERROR_UPDATE_ISSET_DATA = 'error: undefined data: data'
 const ERROR_VALIDATE_DATE = 'error validate data: date'
+const ERROR_UPDATE_ISSET_DATE = 'error: undefined data: date'
 
 // Демон
 const initional = () => {
