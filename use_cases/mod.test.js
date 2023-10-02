@@ -25,7 +25,7 @@ describe("use_cases: Mod", function () {
 
     let o = {}
 
-    o['name'] = 'test'
+    o['ident'] = 'test'
     o['manufactures'] = 'test'
     o['mark'] = 'test'
     o['model'] = 'test'
@@ -39,7 +39,7 @@ describe("use_cases: Mod", function () {
     .then(res => {
       add_id = res.id
 
-      assert.equal(res.name, 'test')
+      assert.equal(res.ident, 'test')
 
       assert.equal(res.manufactures, 'test')
 
@@ -69,7 +69,7 @@ describe("use_cases: Mod", function () {
       if (res.length) {
         res = res[0]
 
-        assert.equal(res.name, 'test')
+        assert.equal(res.ident, 'test')
 
         assert.equal(res.manufactures, 'test')
 
@@ -99,7 +99,7 @@ describe("use_cases: Mod", function () {
   it('func Mod FindById. Получение одной конкретной записи', async function () {
     return FindByIdMod(add_id, new User()).then(res => {
 
-      assert.equal(res.name, 'test')
+      assert.equal(res.ident, 'test')
 
       assert.equal(res.manufactures, 'test')
 
@@ -127,7 +127,7 @@ describe("use_cases: Mod", function () {
 
     o['id'] = add_id
 
-    o['name'] = 'test 2'
+    o['ident'] = 'test 2'
 
     o['manufactures'] = 'test 2'
 
@@ -150,7 +150,7 @@ describe("use_cases: Mod", function () {
     return EditMod(o, new User()).then(res => {
       assert.equal(res.id, add_id)
 
-      assert.equal(res.name, 'test 2')
+      assert.equal(res.ident, 'test 2')
 
       assert.equal(res.manufactures, 'test 2')
 

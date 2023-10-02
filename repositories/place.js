@@ -1,6 +1,10 @@
 // generated
 
 const {
+  APP_EVENTS
+} = require('../app_events');
+
+const {
   DataTypes,
   Op
 } = require('sequelize');
@@ -122,6 +126,7 @@ const Add = async (data) => {
         if (error) {
           throw new Error(error)
         }
+        APP_EVENTS.emit(`ADD:place`, data)
         return Place.create(data);
       }
     })
@@ -160,6 +165,7 @@ const Drop = async (id) => {
           resolve({
             result: true
           })
+          APP_EVENTS.emit(`DELETE:place:${id}`)
         }
         throw new Error(ERROR_DROP_MODEL)
       })
@@ -178,6 +184,7 @@ const Update = async (data) => {
       id: data.id
     }
   })
+  APP_EVENTS.emit(`UPDATE:place:${data.id}`)
   return FindById(data.id)
 }
 
@@ -373,6 +380,7 @@ const RecalcTree = async () => {
         Update(el.obj.dataValues)
       }
     })
+    event_emitter.removeAllListeners()
     return {
       res: 'success'
     }

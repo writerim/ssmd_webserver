@@ -1,6 +1,10 @@
 // generated
 
 const {
+  APP_EVENTS
+} = require('../app_events');
+
+const {
   DataTypes,
   Op
 } = require('sequelize');
@@ -96,6 +100,7 @@ const Add = async (data) => {
         if (error) {
           throw new Error(error)
         }
+        APP_EVENTS.emit(`ADD:settingsenterprise`, data)
         return SettingsEnterprise.create(data);
       }
     })
@@ -134,6 +139,7 @@ const Drop = async (id) => {
           resolve({
             result: true
           })
+          APP_EVENTS.emit(`DELETE:settingsenterprise:${id}`)
         }
         throw new Error(ERROR_DROP_MODEL)
       })
@@ -152,6 +158,7 @@ const Update = async (data) => {
       id: data.id
     }
   })
+  APP_EVENTS.emit(`UPDATE:settingsenterprise:${data.id}`)
   return FindById(data.id)
 }
 

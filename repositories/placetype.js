@@ -1,6 +1,10 @@
 // generated
 
 const {
+  APP_EVENTS
+} = require('../app_events');
+
+const {
   DataTypes,
   Op
 } = require('sequelize');
@@ -163,6 +167,7 @@ const Add = async (data) => {
         if (error) {
           throw new Error(error)
         }
+        APP_EVENTS.emit(`ADD:placetype`, data)
         return PlaceType.create(data);
       }
     })
@@ -201,6 +206,7 @@ const Drop = async (id) => {
           resolve({
             result: true
           })
+          APP_EVENTS.emit(`DELETE:placetype:${id}`)
         }
         throw new Error(ERROR_DROP_MODEL)
       })
@@ -219,6 +225,7 @@ const Update = async (data) => {
       id: data.id
     }
   })
+  APP_EVENTS.emit(`UPDATE:placetype:${data.id}`)
   return FindById(data.id)
 }
 

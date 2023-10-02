@@ -10,31 +10,32 @@ module.exports = {
     // Маппинг для опросника
     MappingToPooler: (mod) => {
         return {
-            max_count_conn: mod.max_count_conn,
-            parameters: mod.parameters.reduce((res, item) => {
+            max_count_conn: mod.max_count_conn ? mod.max_count_conn : 0 /* Считаем на валидным */,
+            parameters: mod.parameters ? mod.parameters.reduce((res, item) => {
                 res[item.ident] = {
                     delay: item.delay,
                     cmd: item.cmd,
                 }
                 return res
-            }, {}),
+            }, {}) : {},
         }
     },
+    
     // Маппинг для БД
     MappingToDB: (mod) => {
         return {
-            name: mod.name,
-            manufactures: mod.manufactures,
-            mark: mod.mark,
-            model: mod.model,
-            series: mod.series,
-            sowt_version: mod.sowt_version,
-            types_device: mod.types_device,
-            parameters: mod.parameters ? mod.parameters.reduce((res, item) => {
+            ident: typeof mod.ident != "undefined" ? mod.ident : '',
+            manufactures: typeof mod.manufactures != "undefined" ? mod.manufactures : '',
+            mark: typeof mod.mark != "undefined" ? mod.mark : '',
+            model: typeof mod.model != "undefined" ? mod.model : '',
+            series: typeof mod.series != "undefined" ? mod.series : '',
+            sowt_version: typeof mod.sowt_version != "undefined" ? mod.sowt_version : '',
+            types_device: typeof mod.types_device != "undefined" ? mod.types_device : '',
+            parameters: typeof mod.parameters != "undefined" ? mod.parameters.reduce((res, item) => {
                 res.push(item.ident)
                 return res
             }, []) : [],
-            commands: mod.commands ? mod.commands : [],
+            commands: typeof mod.commands != "undefined" ? mod.commands : [],
         }
     }
 }

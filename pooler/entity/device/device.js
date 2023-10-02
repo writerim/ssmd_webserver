@@ -1,5 +1,3 @@
-const Issue = require("../issue")
-
 module.exports = class Device {
     constructor(
         id = 0,
@@ -51,44 +49,14 @@ module.exports = class Device {
             }
         }
 
-
         // От родителя мы получим коллбек для того чтобы ему кидать данные
         e.on(`SEND ISSUE`, listener_send_issue).on(`CONFIRM ISSUE`, listener_confirm_issue)
 
-        const last_data_interval = setInterval(() => {
-            if (!self.mod) {
-                return;
-            }
-            self.last_data.forEach(last_data => {
-                let last_date = last_data.date
-                if (!last_date.nex_run) {
-                    last_date.nex_run = last_date.date
-                }
-
-                // Добавляем
-                if (last_date.nex_run.getTime() <= (new Date()).getTime()) {
-                    last_date.nex_run.setSeconds(last_date.nex_run.getSeconds() + self.mod.parameters[last_data.parameter_ident].delay);
-
-                    const cmd = self.mod.parameters[last_data.parameter_ident].cmd
-                    let isset_issue = false
-                    self.issues.forEach(issue => {
-                        if (issue.Cmd == cmd) {
-                            isset_issue = true
-                            return
-                        }
-                    })
-                    if (!isset_issue) {
-                        self.issues.push(new Issue(self.mod.parameters[last_data.parameter_ident].cmd, [], self, e))
-                    }
-                }
-            })
-        }, 100)
 
         this.destroy = () => {
-            e.emit(`CLOSE ${self.id}`, this)
+            e.emit(`CLOSE ${self.id}`, self)
             e.removeListener(`SEND ISSUE`, listener_send_issue)
             e.removeListener(`CONFIRM ISSUE`, listener_confirm_issue)
-            clearInterval(last_data_interval);
         }
 
     }
@@ -103,9 +71,16 @@ module.exports = class Device {
 
     // Маппим для того чтобы мы хранили у себя в удобном виде
     MappingLastData = (last_data, all_parameters) => {
+
+        let parameter = all_parameters.find(parameter => parameter.id == last_data.parameter_id)
+        if(!parameter){
+            return null
+        }
+
         return {
             date: last_data.get('date'),
-            parameter_ident: all_parameters.find(parameter => parameter.id == last_data.parameter_id),
+            parameter_ident: parameter.get('itent'),
+            nex_run : last_data.get('date')
         }
     }
 }

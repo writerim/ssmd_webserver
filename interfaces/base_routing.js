@@ -159,7 +159,9 @@ const Context = {
 
   tipes: (count_tipes) => {
     return 20 * count_tipes
-  }
+  },
+
+  app: null
 }
 
 const ContextApi = {

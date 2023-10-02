@@ -1,6 +1,10 @@
 // generated
 
 const {
+  APP_EVENTS
+} = require('../app_events');
+
+const {
   DataTypes,
   Op
 } = require('sequelize');
@@ -13,8 +17,6 @@ const TABLENAME = 'mod'
 
 const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
-const ERROR_VALIDATE_NAME = 'error validate data: name'
-const ERROR_UPDATE_ISSET_NAME = 'error: undefined data: name'
 const ERROR_VALIDATE_MANUFACTURES = 'error validate data: manufactures'
 const ERROR_UPDATE_ISSET_MANUFACTURES = 'error: undefined data: manufactures'
 const ERROR_VALIDATE_MARK = 'error validate data: mark'
@@ -38,7 +40,7 @@ const initional = () => {
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'name', {
+  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'ident', {
     type: DataTypes.STRING,
   }, {
     mustExist: false
@@ -104,7 +106,7 @@ const Mod = GetConnect({
     autoIncrement: true,
     primaryKey: true
   },
-  name: {
+  ident: {
     type: DataTypes.STRING,
   },
   manufactures: {
@@ -140,10 +142,10 @@ const Mod = GetConnect({
 const Add = async (data) => {
 
   let uniques_where = {}
-  if (typeof data.name == 'undefined') {
-    throw new Error(ERROR_UPDATE_ISSET_NAME)
+  if (typeof data.ident == 'undefined') {
+    throw new Error(ERROR_UPDATE_ISSET_IDENT)
   }
-  uniques_where['name'] = data.name
+  uniques_where['ident'] = data.ident
   if (Object.keys(uniques_where).length) {
     return Mod.findOne({
       where: uniques_where
@@ -155,6 +157,7 @@ const Add = async (data) => {
         if (error) {
           throw new Error(error)
         }
+        APP_EVENTS.emit(`ADD:mod`, data)
         return Mod.create(data);
       }
     })
@@ -193,6 +196,7 @@ const Drop = async (id) => {
           resolve({
             result: true
           })
+          APP_EVENTS.emit(`DELETE:mod:${id}`)
         }
         throw new Error(ERROR_DROP_MODEL)
       })
@@ -211,6 +215,7 @@ const Update = async (data) => {
       id: data.id
     }
   })
+  APP_EVENTS.emit(`UPDATE:mod:${data.id}`)
   return FindById(data.id)
 }
 
@@ -259,9 +264,6 @@ const ValidateUpdate = (data) => {
     return ERROR_VALIDATE_INVALID_DATA
   }
 
-  if (!data.name) {
-    return ERROR_VALIDATE_NAME
-  }
   if (!data.manufactures) {
     return ERROR_VALIDATE_MANUFACTURES
   }
@@ -294,9 +296,6 @@ const ValidateInsert = (data) => {
     return ERROR_VALIDATE_INVALID_DATA
   }
 
-  if (!data.name) {
-    return ERROR_VALIDATE_NAME
-  }
   if (!data.manufactures) {
     return ERROR_VALIDATE_MANUFACTURES
   }
@@ -326,7 +325,6 @@ module.exports = {
 
   MOD_ERROR_VALIDATE_INVALID_DATA: ERROR_VALIDATE_INVALID_DATA,
   MOD_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
-  MOD_ERROR_VALIDATE_NAME: ERROR_VALIDATE_NAME,
   MOD_ERROR_VALIDATE_MANUFACTURES: ERROR_VALIDATE_MANUFACTURES,
   MOD_ERROR_VALIDATE_MARK: ERROR_VALIDATE_MARK,
   MOD_ERROR_VALIDATE_MODEL: ERROR_VALIDATE_MODEL,

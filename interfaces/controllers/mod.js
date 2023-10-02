@@ -28,7 +28,7 @@ module.exports = {
   *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
   *
   * @apiBody {Number} id 
-  * @apiBody {String} name Полное имя
+  * @apiBody {String} ident Идентификатор
   * @apiBody {String} manufactures Производитель
   * @apiBody {String} mark марка
   * @apiBody {String} model модель с которой работают
@@ -40,7 +40,7 @@ module.exports = {
   * @apiBody {Array} commands Какие команды поддерживает
   *
   * @apiSuccess {Number} id 
-  * @apiSuccess {String} name Полное имя
+  * @apiSuccess {String} ident Идентификатор
   * @apiSuccess {String} manufactures Производитель
   * @apiSuccess {String} mark марка
   * @apiSuccess {String} model модель с которой работают
@@ -134,7 +134,7 @@ module.exports = {
   *
   * @apiParam {Number} id Идентификатор записи устройства
   * @apiBody {Number} id 
-  * @apiBody {String} name Полное имя
+  * @apiBody {String} ident Идентификатор
   * @apiBody {String} manufactures Производитель
   * @apiBody {String} mark марка
   * @apiBody {String} model модель с которой работают
@@ -147,7 +147,7 @@ module.exports = {
   *
   *
   * @apiSuccess {Number} id=true 
-  * @apiSuccess {String} name Полное имя
+  * @apiSuccess {String} ident Идентификатор
   * @apiSuccess {String} manufactures Производитель
   * @apiSuccess {String} mark марка
   * @apiSuccess {String} model модель с которой работают
@@ -248,7 +248,7 @@ module.exports = {
    *
    * @apiSuccess {Object[]} data Данные 
    * @apiSuccess {Number} data.id 
-   * @apiSuccess {String} data.name Полное имя
+   * @apiSuccess {String} data.ident Идентификатор
    * @apiSuccess {String} data.manufactures Производитель
    * @apiSuccess {String} data.mark марка
    * @apiSuccess {String} data.model модель с которой работают
@@ -344,7 +344,7 @@ module.exports = {
   },
 
   /**
-   * @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_parameters=:filter_parameters&?filters_by_commands=:filter_commands&?filters_by_commands=:filter_commands&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
+   * @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_ident=:filter_ident&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_parameters=:filter_parameters&?filters_by_commands=:filter_commands&?filters_by_commands=:filter_commands&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
    * @apiName GetAllFilterMod
    * @apiGroup Mod
    *
@@ -353,7 +353,7 @@ module.exports = {
    *     "Token: ad302aca-13fe-45cc-a126-d27821f143fa"
    *
    * @apiParam { int } filter_id Фильтр по полю id
-   * @apiParam { string } filter_name Фильтр по полю name
+   * @apiParam { string } filter_ident Фильтр по полю ident
    * @apiParam { string } filter_manufactures Фильтр по полю manufactures
    * @apiParam { string } filter_mark Фильтр по полю mark
    * @apiParam { string } filter_model Фильтр по полю model
@@ -369,7 +369,7 @@ module.exports = {
    *
    * @apiSuccess {Object[]} data Данные 
    * @apiSuccess {Number} data.id 
-   * @apiSuccess {String} data.name Полное имя
+   * @apiSuccess {String} data.ident Идентификатор
    * @apiSuccess {String} data.manufactures Производитель
    * @apiSuccess {String} data.mark марка
    * @apiSuccess {String} data.model модель с которой работают
@@ -441,12 +441,12 @@ module.exports = {
       if (typeof req.params.filters_by_id != 'undefined') {
         filter['id'] = req.params.filters_by_id
       }
-      if (typeof req.query.filters_by_name != 'undefined') {
-        filter['name'] = req.query.filters_by_name
+      if (typeof req.query.filters_by_ident != 'undefined') {
+        filter['ident'] = req.query.filters_by_ident
       }
 
-      if (typeof req.params.filters_by_name != 'undefined') {
-        filter['name'] = req.params.filters_by_name
+      if (typeof req.params.filters_by_ident != 'undefined') {
+        filter['ident'] = req.params.filters_by_ident
       }
       if (typeof req.query.filters_by_manufactures != 'undefined') {
         filter['manufactures'] = req.query.filters_by_manufactures
@@ -566,7 +566,7 @@ module.exports = {
    *
    * @apiSuccess {Object[]} data Данные 
    * @apiSuccess {Number} data.id 
-   * @apiSuccess {String} data.name Полное имя
+   * @apiSuccess {String} data.ident Идентификатор
    * @apiSuccess {String} data.manufactures Производитель
    * @apiSuccess {String} data.mark марка
    * @apiSuccess {String} data.model модель с которой работают

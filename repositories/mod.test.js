@@ -19,7 +19,7 @@ describe("repo: DB: Mod", function () {
 
     let o = {}
 
-    o['name'] = 'test'
+    o['ident'] = 'test'
     o['manufactures'] = 'test'
     o['mark'] = 'test'
     o['model'] = 'test'
@@ -33,7 +33,7 @@ describe("repo: DB: Mod", function () {
     .then(res => {
       add_id = res.get('id')
 
-      assert.equal(res.get('name'), 'test')
+      assert.equal(res.get('ident'), 'test')
 
       assert.equal(res.get('manufactures'), 'test')
 
@@ -60,7 +60,7 @@ describe("repo: DB: Mod", function () {
       if (res.length) {
         res = res[0]
 
-        assert.equal(res.get('name'), 'test')
+        assert.equal(res.get('ident'), 'test')
 
         assert.equal(res.get('manufactures'), 'test')
 
@@ -90,7 +90,7 @@ describe("repo: DB: Mod", function () {
   it('func Mod FindById. Получение одной конкретной записи', async function () {
     return ModFindById(add_id).then(res => {
 
-      assert.equal(res.get('name'), 'test')
+      assert.equal(res.get('ident'), 'test')
 
       assert.equal(res.get('manufactures'), 'test')
 
@@ -117,7 +117,7 @@ describe("repo: DB: Mod", function () {
     let o = {}
 
     o['id'] = add_id
-    o['name'] = 'test 2'
+    o['ident'] = 'test 2'
     o['manufactures'] = 'test 2'
     o['mark'] = 'test 2'
     o['model'] = 'test 2'
@@ -131,7 +131,7 @@ describe("repo: DB: Mod", function () {
     return ModUpdate(o).then(res => {
       assert.equal(res.get('id'), add_id)
 
-      assert.equal(res.get('name'), 'test 2')
+      assert.equal(res.get('ident'), 'test 2')
 
       assert.equal(res.get('manufactures'), 'test 2')
 

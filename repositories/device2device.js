@@ -1,6 +1,10 @@
 // generated
 
 const {
+  APP_EVENTS
+} = require('../app_events');
+
+const {
   DataTypes,
   Op
 } = require('sequelize');
@@ -95,6 +99,7 @@ const Add = async (data) => {
         if (error) {
           throw new Error(error)
         }
+        APP_EVENTS.emit(`ADD:device2device`, data)
         return Device2Device.create(data);
       }
     })
@@ -133,6 +138,7 @@ const Drop = async (id) => {
           resolve({
             result: true
           })
+          APP_EVENTS.emit(`DELETE:device2device:${id}`)
         }
         throw new Error(ERROR_DROP_MODEL)
       })
@@ -151,6 +157,7 @@ const Update = async (data) => {
       id: data.id
     }
   })
+  APP_EVENTS.emit(`UPDATE:device2device:${data.id}`)
   return FindById(data.id)
 }
 
