@@ -50,6 +50,9 @@ module.exports = class Issue {
         this.Blocked = true
         e.emit(`SEND ISSUE`, Device, this)
 
+        // listener run issue
+        // send pask
+
         this.destroy = () => {
             e.removeListener(`CONFIRM ISSUE`, listener_confirm_issue)
             e.removeListener(`REMOVE DEVICE`, listener_remove_device)

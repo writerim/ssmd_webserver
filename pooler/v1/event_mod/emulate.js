@@ -1,5 +1,5 @@
 const Pack = require("../entity/pack");
-const ModDescription = require("../mods/emulate");
+const ModDescription = require("../../mods/emulate");
 
 module.exports = class EvetMod extends ModDescription {
     constructor(

@@ -46,6 +46,10 @@ module.exports = class Device {
                     })
                 }
                 e.emit(`CONFIRM ISSUE`, self, issue, result)
+            }else{
+                // run issue
+                // send pack
+                // parse pack
             }
         }
 
