@@ -9,7 +9,8 @@
     "watch": "npm-watch",
     "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",
     "start": "node index.js",
-    "test": "SET NODE_ENV=test && mocha --timeout 10000 --colors ./repositories/**/*.test.js ./use_cases/**/*.test.js ./interfaces/controllers/**/*.test.js"
+    "test": "SET NODE_ENV=test && mocha --timeout 10000 --colors ./repositories/**/*.test.js ./use_cases/**/*.test.js ./interfaces/controllers/**/*.test.js",
+    "test_pooler_last_data": "mocha --timeout 10000 --colors ./pooler/v2/entity/last_data/index.test.js"
   },
   "apidoc": {
     "header": {

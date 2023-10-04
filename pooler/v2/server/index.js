@@ -3,7 +3,9 @@ const { LastDataGetAll } = require("../../../repositories/lastdata");
 const { ModGetAll } = require("../../../repositories/mod");
 const { ParameterGetAll } = require("../../../repositories/parameter");
 const { ADD_LAST_DATA, ADD_DEVICE, ADD_PARAMETER, ADD_MOD } = require("../constants/commands");
-const LastData = require("../entity/last_data")
+const Device = require("../entity/device");
+const LastData = require("../entity/last_data");
+const Mod = require("../entity/mod");
 
 module.exports = {
     Start : (e) => {

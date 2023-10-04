@@ -10,10 +10,10 @@ module.exports = {
     SET_ISSUE: 'SET_ISSUE_',
     GET_DEVICE: 'GET_DEVICE_',
     GET_PARAMETER: 'GET_PARAMETER_',
-    GET_MOD: 'GET_MOD_',
     ADD_LAST_DATA: 'ADD:last_data',
     ADD_DEVICE: 'ADD:device',
     ADD_PARAMETER: 'ADD:parameter',
     ADD_MOD: 'ADD:mod',
     ADD_LAST_DATA_DEVICE: 'ADD_LAST_DATA_DEVICE_',
+    GET_MOD: 'GET_MOD_',
 }

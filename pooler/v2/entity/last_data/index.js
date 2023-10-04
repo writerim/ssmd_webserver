@@ -7,11 +7,9 @@ const {
     GET_LAST_DATA,
     GET_DEVICE_TREE,
     DROP_ISSUES,
-    // READY_ISSUES,
     SET_ISSUE,
     GET_DEVICE,
     GET_PARAMETER,
-    GET_MOD,
     ADD_LAST_DATA_DEVICE
 } = require('../../constants/commands');
 
@@ -23,6 +21,9 @@ module.exports = class LastData {
         // validate_data
         if (!data.device_id) {
             throw new Error(`invalid data device_id`)
+        }
+        if (!data.id) {
+            throw new Error(`invalid data id`)
         }
         if (!data.paramter_id) {
             throw new Error(`invalid data paramter_id`)
@@ -47,7 +48,7 @@ module.exports = class LastData {
         this.uuid = crypto.randomUUID()
 
         const loopSetIssue = setInterval(() => {
-            if (!self.mod_event) {
+            if (!self.device || !self.device.created()) {
                 return
             }
             if (running()) {
@@ -99,27 +100,6 @@ module.exports = class LastData {
             }
         }, 100)
 
-        const loopCreatedMod = setInterval(() => {
-            if (self.mod_event) {
-                return
-            }
-            if (!self.device) {
-                return
-            }
-            if (!self.parameter) {
-                return
-            }
-
-            const l_get_mod = `${GET_MOD}${device.mod_id}`
-
-            e.listeners(l_get_mod).forEach(lmod => {
-                let mod = lmod()
-                if (mod) {
-                    self.mod_event = mod
-                }
-            })
-        }, 100)
-
         // проверяем что устройство есть в сети
         const loopCreatedDevice = setInterval(() => {
             if (self.device) {
@@ -147,41 +127,57 @@ module.exports = class LastData {
         }, 100)
 
         // Если изменили иприбор
-        const on_update_device = e.on(e_update_device, () => {})
-        const on_delete_device = e.on(e_delete_device, () => {
-            self.destroy()
-        })
+        const on_update_device = (data) => {
+            Object.keys(data).forEach(key => {
+                if(self.data[key] != data[key]){
+                    if(key == 'device_id'){
+                        self.device = undefined
+                    }
+                    if(key == 'parameter_id'){
+                        self.parameter = undefined
+                    }
+                }
+            })
+            self.data = data
+        }
 
-        const on_update_last_data = e.on(e_update_last_data, (data) => {
+
+        const on_delete_device = () => {
+            self.destroy()
+        }
+
+        const on_update_last_data = (data) => {
             self.data = data
             self.device = undefined
-            self.mod_event = undefined
+            self.parameter = undefined
             self.uuid = crypto.randomUUID()
-        })
+        }
 
-        const on_delete_last_data = e.on(e_delete_last_data, () => {
+        const on_delete_last_data = () => {
             self.destroy()
-        })
+        }
 
         // Нужно для того чтобы понимать есть ли такой класс в обработке
-        const on_get_last_data = e.on(e_last_data, () => {
+        const on_get_last_data = () => {
             return true
-        })
+        }
+
+        e.on(e_update_device, on_update_device)
+        e.on(e_delete_device, on_delete_device)
+        e.on(e_update_last_data, on_update_last_data)
+        e.on(e_delete_last_data, on_delete_last_data)
+        e.on(e_last_data, on_get_last_data)
 
         // Полное удаление объекта
         this.destroy = () => {
 
             self.device = undefined
-            self.mod_event = undefined
             self.parameter = undefined
             self.uuid = undefined
             self.data = undefined
 
             if (loopCreatedDevice) {
                 clearInterval(loopCreatedDevice)
-            }
-            if (loopCreatedMod) {
-                clearInterval(loopCreatedMod)
             }
             if (loopSetIssue) {
                 clearInterval(loopSetIssue)
@@ -196,6 +192,9 @@ module.exports = class LastData {
             e.removeListener(e_delete_last_data, on_delete_last_data)
             e.removeListener(e_last_data, on_get_last_data)
 
+            self.destroy = undefined
+            self.created = undefined
+
         }
 
     }
@@ -204,5 +203,8 @@ module.exports = class LastData {
     data = {}
     device = null
     parameter = null
-    mod_event = null
+
+    created = () => {
+        return this.device && this.parameter
+    }
 }
