@@ -6,6 +6,7 @@ module.exports = {
     GET_LAST_DATA: 'GET_LAST_DATA_',
     GET_DEVICE_TREE: 'GET_DEVICE_TREE_',
     DROP_ISSUES: 'DELETE:issue:',
+    DROP_DEVICE: 'DELETE:device:',
     READY_ISSUES: 'READY_ISSUES_',
     SET_ISSUE: 'SET_ISSUE_',
     GET_DEVICE: 'GET_DEVICE_',
@@ -16,4 +17,9 @@ module.exports = {
     ADD_MOD: 'ADD:mod',
     ADD_LAST_DATA_DEVICE: 'ADD_LAST_DATA_DEVICE_',
     GET_MOD: 'GET_MOD_',
+    SEND_ISSUE: 'SEND:issue:',
+    CLOSE: 'CLOSE:issue:',
+    UPDATE: 'UPDATE:issue:',
+    UPDATE_MOD: 'UPDATE:mod:',
+    DELETE_MOD: 'DELETE:mod:',
 }

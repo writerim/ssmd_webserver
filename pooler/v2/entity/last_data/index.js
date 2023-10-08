@@ -12,6 +12,7 @@ const {
     GET_PARAMETER,
     ADD_LAST_DATA_DEVICE
 } = require('../../constants/commands');
+const Issue = require('../issue');
 
 module.exports = class LastData {
     constructor(data, e) {
@@ -19,14 +20,17 @@ module.exports = class LastData {
         var self = this
 
         // validate_data
-        if (!data.device_id) {
-            throw new Error(`invalid data device_id`)
-        }
         if (!data.id) {
             throw new Error(`invalid data id`)
         }
+        if (!data.device_id) {
+            throw new Error(`invalid data device_id`)
+        }
         if (!data.paramter_id) {
             throw new Error(`invalid data paramter_id`)
+        }
+        if (!data.mod_id) {
+            throw new Error(`invalid data mod_id`)
         }
 
         this.data = data
@@ -47,57 +51,60 @@ module.exports = class LastData {
         // Каждый раз будет новое
         this.uuid = crypto.randomUUID()
 
+        // Можно ли запускать опрос
+        const ready_next_run = () => {
+            const last_data = data.date
+            const mod = self.device.mod
+            const p = mod.CronParameters.find(p => p.Ident == self.parameter.ident)
+            if (p) {
+                last_data.setSecounds(last_data.getSecounds() + p.delay)
+                if (last_data.getTime() < (new Date).getTime()) {
+                    return true
+                }
+            }
+            return false
+        }
+
         const loopSetIssue = setInterval(() => {
-            if (!self.device || !self.device.created()) {
+            if (!self.created()) {
                 return
             }
-            if (running()) {
-                e.listeners(l_get_device_tree).forEach(l_tree_devices => {
-                    const devices = l_tree_devices()
-                    let issue_confirm = true
+            if (!ready_next_run()) {
+                return
+            }
+            e.listeners(l_get_device_tree).forEach(l_tree_devices => {
+                const devices = l_tree_devices()
+                let issue_confirm = true
+                devices.forEach(device => {
+                    const l_set_issue_e = `${SET_ISSUE}${device.id}`
+                    e.listeners(l_set_issue_e).forEach(l_device_set_issue => {
+                        if (!issue_confirm) {
+                            return false;
+                        }
+                        if (!l_device_set_issue(self.uuid)) {
+                            issue_confirm = false
+                        }
+                    })
+                })
+                if (!issue_confirm) {
                     devices.forEach(device => {
-                        e.listeners(l_set_issue).forEach(l_device_set_issue => {
-                            if (!issue_confirm) {
-                                return false;
-                            }
-                            if (!l_device_set_issue(self.uuid)) {
-                                issue_confirm = false
+                        const l_drop_issues = `${DROP_ISSUES}${device.id}`
+                        e.listeners(l_drop_issues).forEach(l_device_drop_issue => {
+                            let res = l_device_drop_issue(self.uuid)
+                            if (!res) {
+                                console.log('not droped issue', self.uuid)
                             }
                         })
                     })
-                    if (!issue_confirm) {
-                        devices.forEach(device => {
-                            const l_drop_issues = `${DROP_ISSUES}${device.id}`
-                            e.listeners(l_drop_issues).forEach(l_device_drop_issue => {
-                                let res = l_device_drop_issue(self.uuid)
-                                if (!res) {
-                                    console.log('not droped issue', self.uuid)
-                                }
-                            })
-                        })
-                    } else {
-                        // ?????? Хз пока как сделать
-                        // const issue = new issue()
-                        // let ready = true
-                        // devices.forEach(device => {
-                            // const l_ready_issues = `${READY_ISSUES}${data.device_id}`
-                        //     e.listeners(l_ready_issues).forEach(l_device_ready_issue => {
-                        //         if (!ready) {
-                        //             return
-                        //         }
-                        //         // Тут создаем уже оболочку для прослушивания из mod_events
-                        //         ready = l_device_ready_issue(issue)
-                        //         if (!ready) {
-                        //             console.log('not droped issue', self.uuid)
-                        //         }
-                        //     })
-                        // })
-                        // if (ready) {
-                        //     issue.start()
-                        // }
-                    }
-                })
-            }
+                } else {
+                    new Issue({
+                        uuid,
+                        parameter: self.parameter,
+                        device_id: self.device,
+                        context_deadline_sec: 60 * 60
+                    }, e)
+                }
+            })
         }, 100)
 
         // проверяем что устройство есть в сети
@@ -129,11 +136,11 @@ module.exports = class LastData {
         // Если изменили иприбор
         const on_update_device = (data) => {
             Object.keys(data).forEach(key => {
-                if(self.data[key] != data[key]){
-                    if(key == 'device_id'){
+                if (self.data[key] != data[key]) {
+                    if (key == 'device_id') {
                         self.device = undefined
                     }
-                    if(key == 'parameter_id'){
+                    if (key == 'parameter_id') {
                         self.parameter = undefined
                     }
                 }
@@ -192,8 +199,12 @@ module.exports = class LastData {
             e.removeListener(e_delete_last_data, on_delete_last_data)
             e.removeListener(e_last_data, on_get_last_data)
 
-            self.destroy = undefined
-            self.created = undefined
+            if (self.destroy) {
+                self.destroy = undefined
+            }
+            if (self.created) {
+                self.created = undefined
+            }
 
         }
 
@@ -205,6 +216,8 @@ module.exports = class LastData {
     parameter = null
 
     created = () => {
-        return this.device && this.parameter
+        return this.device &&
+            this.device.created() &&
+            this.parameter
     }
 }

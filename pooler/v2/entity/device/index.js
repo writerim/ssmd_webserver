@@ -6,7 +6,19 @@ const {
     DELETE_DEVICE,
     SET_ISSUE,
     GET_MOD
-} = require("../../constants/commands")
+} = require("../../constants/commands");
+
+const Emulate = {
+    Mod
+} = require("../../mod/emulator");
+
+const fabticMod = (mod_db) => {
+    switch (mod_db.ident) {
+        case 'emulate':
+            return Emulate
+    }
+    return new Error(`undefined library in require`)
+}
 
 module.exports = class Device {
     constructor(data, e) {
@@ -22,6 +34,7 @@ module.exports = class Device {
         const e_add_last_data = `${ADD_LAST_DATA_DEVICE}${data.id}`
         const e_get_tree_device = `${GET_DEVICE_TREE}${data.id}`
         const e_get_device = `${GET_DEVICE}${data.id}`
+        const e_get_parent_device = `${GET_DEVICE}${data.parent_id}`
         const e_update_device = `${UPDATE_DEVICE}${data.device_id}`
         const e_delete_device = `${DELETE_DEVICE}${data.device_id}`
         const e_set_issue = `${SET_ISSUE}${data.device_id}`
@@ -35,10 +48,10 @@ module.exports = class Device {
 
         // Получение дерева приборов учета
         const on_get_tree_device = (res = []) => {
+            res.push(self.data.id)
             e.listeners(`${GET_DEVICE_TREE}${self.data.parent_id}`).forEach(l_tree_devices => {
                 l_tree_devices(res)
             })
-            res.push(self.data.id)
             return
         }
 
@@ -48,16 +61,16 @@ module.exports = class Device {
 
         const on_update_device = (new_data) => {
             Object.keys(data).forEach(key => {
-                if(self.data[key] != data[key]){
-                    if(key == 'mod_id'){
-                        // self.device = undefined
+                if (self.data[key] != new_data[key]) {
+                    if (key == 'mod_id') {
+                        self.mod = undefined
                     }
-                    if(key == 'parent_id'){
-                        // self.device = undefined
+                    if (key == 'parent_id') {
+                        self.parent_device = undefined
                     }
                 }
             })
-            self.data = data
+            self.data = new_data
         }
         const on_delete_device = () => {
             self.destroy()
@@ -65,7 +78,7 @@ module.exports = class Device {
 
         // Проверка можно ли добавлять сюда задачу
         const on_set_issue = (uuid) => {
-            if(self.max_count_issues <= self.issues.length){
+            if (self.mod.max_count_issues <= self.issues.length) {
                 return false
             }
             self.issues.push(uuid)
@@ -81,13 +94,36 @@ module.exports = class Device {
 
 
         const loopCreatedMod = setInterval(() => {
+            if (self.mod) {
+                return
+            }
             e.listeners(l_get_mod).forEach(lmod => {
                 let mod = lmod()
                 if (mod) {
-                    self.mod_obj = mod
+                    let res = fabticMod(mod)
+                    if(!res){
+                        self.mod = undefined
+                        return
+                    }
+                    self.mod = res
                 }
             })
         }, 100)
+
+        var loopParentDevice = null;
+        if (data.parent_id) {
+            loopParentDevice = setInterval(() => {
+                if (self.parent_device) {
+                    return
+                }
+                e.listeners(e_get_parent_device).forEach(l_parent_device => {
+                    let parent_device = l_parent_device()
+                    if (parent_device) {
+                        self.parent_device = parent_device
+                    }
+                })
+            }, 100)
+        }
 
         this.destroy = () => {
             e.removeListener(e_add_last_data, e_add_last_data)
@@ -98,20 +134,23 @@ module.exports = class Device {
             e.removeListener(e_get_tree_device, on_get_tree_device)
             e.removeListener(e_set_issue, on_set_issue)
 
-            if(loopCreatedMod){
+            if (loopCreatedMod) {
                 clearInterval(loopCreatedMod)
+            }
+            if (loopParentDevice) {
+                clearInterval(loopParentDevice)
             }
 
             self.last_data = undefined
             self.data = undefined
             self.issues = undefined
-            self.max_count_issues = undefined
-            self.mod_obj = undefined
-            
-            if(self.destroy){
+            self.mod = undefined
+            self.parent_device = undefined
+
+            if (self.destroy) {
                 self.destroy = undefined
             }
-            if(self.created){
+            if (self.created) {
                 self.created = undefined
             }
         }
@@ -120,11 +159,11 @@ module.exports = class Device {
     data = null
     last_data = []
     issues = []
-    max_count_issues = 0
-    mod_obj = null
+    mod = null
+    parent_device = null
 
     created = () => {
-        return this.mod_obj && max_count_issues
+        return this.mod && this.mod.max_count_issues
     }
 
 }

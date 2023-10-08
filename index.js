@@ -18,7 +18,8 @@ var env = process.env.NODE_ENV || 'production';
 var config = require(dirname(require.main.filename) + '/config')[env];
 
 var pjson = require('./package.json');
-const { Start, Sync } = require('./pooler');
+const { Start } = require('./pooler/v2/server');
+const { APP_EVENTS } = require('./app_events');
 
 // Start the server
 const start = async () => {
@@ -81,8 +82,7 @@ const start = async () => {
       console.log('listening on port %s...', config.server.port);
     });
 
-    Sync()
-    Start(app)
+    Start(APP_EVENTS)
 
   } catch (err) {
     console.log(err);
