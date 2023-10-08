@@ -21,16 +21,16 @@ module.exports = class LastData {
 
         // validate_data
         if (!data.id) {
-            throw new Error(`invalid data id`)
+            return
         }
         if (!data.device_id) {
-            throw new Error(`invalid data device_id`)
+            return
         }
         if (!data.paramter_id) {
-            throw new Error(`invalid data paramter_id`)
+            return
         }
         if (!data.mod_id) {
-            throw new Error(`invalid data mod_id`)
+            return
         }
 
         this.data = data

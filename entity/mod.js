@@ -12,9 +12,11 @@ module.exports = class Mod {
       this.series = ''
       this.sowt_version = ''
       this.types_device = []
+      this.cron_parameters = []
+      this.commands = []
       this.parameters = []
-      this.commands = []
-      this.commands = []
+      this.time_settings = []
+      this.device_parameters = []
     } else {
 
       this.id = typeof data.id != 'undefined' ? data.id : 0
@@ -25,9 +27,11 @@ module.exports = class Mod {
       this.series = typeof data.series != 'undefined' ? data.series : ''
       this.sowt_version = typeof data.sowt_version != 'undefined' ? data.sowt_version : ''
       this.types_device = typeof data.types_device != 'undefined' ? data.types_device : []
+      this.cron_parameters = typeof data.cron_parameters != 'undefined' ? data.cron_parameters : []
+      this.commands = typeof data.commands != 'undefined' ? data.commands : []
       this.parameters = typeof data.parameters != 'undefined' ? data.parameters : []
-      this.commands = typeof data.commands != 'undefined' ? data.commands : []
-      this.commands = typeof data.commands != 'undefined' ? data.commands : []
+      this.time_settings = typeof data.time_settings != 'undefined' ? data.time_settings : []
+      this.device_parameters = typeof data.device_parameters != 'undefined' ? data.device_parameters : []
     }
   }
   id = 0
@@ -38,7 +42,9 @@ module.exports = class Mod {
   series = ''
   sowt_version = ''
   types_device = []
+  cron_parameters = []
+  commands = []
   parameters = []
-  commands = []
-  commands = []
+  time_settings = []
+  device_parameters = []
 }

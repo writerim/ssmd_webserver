@@ -32,9 +32,11 @@ describe("use_cases: Mod", function () {
     o['series'] = 'test'
     o['sowt_version'] = 'test'
     o['types_device'] = ['a', 'b']
+    o['cron_parameters'] = ['a', 'b']
+    o['commands'] = ['a', 'b']
     o['parameters'] = ['a', 'b']
-    o['commands'] = ['a', 'b']
-    o['commands'] = ['a', 'b']
+    o['time_settings'] = ['a', 'b']
+    o['device_parameters'] = ['a', 'b']
     return AddMod(o, new User())
     .then(res => {
       add_id = res.id
@@ -53,11 +55,15 @@ describe("use_cases: Mod", function () {
 
       assert.deepStrictEqual(res.types_device, ['a', 'b'])
 
+      assert.deepStrictEqual(res.cron_parameters, ['a', 'b'])
+
+      assert.deepStrictEqual(res.commands, ['a', 'b'])
+
       assert.deepStrictEqual(res.parameters, ['a', 'b'])
 
-      assert.deepStrictEqual(res.commands, ['a', 'b'])
+      assert.deepStrictEqual(res.time_settings, ['a', 'b'])
 
-      assert.deepStrictEqual(res.commands, ['a', 'b'])
+      assert.deepStrictEqual(res.device_parameters, ['a', 'b'])
     })
   })
 
@@ -83,11 +89,15 @@ describe("use_cases: Mod", function () {
 
         assert.deepStrictEqual(res.types_device, ['a', 'b'])
 
+        assert.deepStrictEqual(res.cron_parameters, ['a', 'b'])
+
+        assert.deepStrictEqual(res.commands, ['a', 'b'])
+
         assert.deepStrictEqual(res.parameters, ['a', 'b'])
 
-        assert.deepStrictEqual(res.commands, ['a', 'b'])
+        assert.deepStrictEqual(res.time_settings, ['a', 'b'])
 
-        assert.deepStrictEqual(res.commands, ['a', 'b'])
+        assert.deepStrictEqual(res.device_parameters, ['a', 'b'])
       }
     })
   })
@@ -113,11 +123,15 @@ describe("use_cases: Mod", function () {
 
       assert.deepStrictEqual(res.types_device, ['a', 'b'])
 
+      assert.deepStrictEqual(res.cron_parameters, ['a', 'b'])
+
+      assert.deepStrictEqual(res.commands, ['a', 'b'])
+
       assert.deepStrictEqual(res.parameters, ['a', 'b'])
 
-      assert.deepStrictEqual(res.commands, ['a', 'b'])
+      assert.deepStrictEqual(res.time_settings, ['a', 'b'])
 
-      assert.deepStrictEqual(res.commands, ['a', 'b'])
+      assert.deepStrictEqual(res.device_parameters, ['a', 'b'])
     })
   })
 
@@ -141,11 +155,15 @@ describe("use_cases: Mod", function () {
 
     o['types_device'] = [1, 2]
 
+    o['cron_parameters'] = [1, 2]
+
+    o['commands'] = [1, 2]
+
     o['parameters'] = [1, 2]
 
-    o['commands'] = [1, 2]
+    o['time_settings'] = [1, 2]
 
-    o['commands'] = [1, 2]
+    o['device_parameters'] = [1, 2]
 
     return EditMod(o, new User()).then(res => {
       assert.equal(res.id, add_id)
@@ -164,11 +182,15 @@ describe("use_cases: Mod", function () {
 
       assert.deepStrictEqual(res.types_device, [1, 2])
 
+      assert.deepStrictEqual(res.cron_parameters, [1, 2])
+
+      assert.deepStrictEqual(res.commands, [1, 2])
+
       assert.deepStrictEqual(res.parameters, [1, 2])
 
-      assert.deepStrictEqual(res.commands, [1, 2])
+      assert.deepStrictEqual(res.time_settings, [1, 2])
 
-      assert.deepStrictEqual(res.commands, [1, 2])
+      assert.deepStrictEqual(res.device_parameters, [1, 2])
     })
   })
 

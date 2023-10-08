@@ -4,9 +4,18 @@ const {
 
 module.exports = class Mod {
     constructor(data, e) {
+        if(!data){
+            return
+        }
+
+        if(!data.id){
+            return
+        }
+
         this.data = data
 
         var self = this
+
 
         const e_get_mod = `${GET_MOD}${data.id}`
         const e_update_mod = `${UPDATE_MOD}${data.id}`
@@ -23,7 +32,7 @@ module.exports = class Mod {
             self.destroy()
         }
 
-        e.on(e_get_mod, l_get_mod)
+        e.on(e_get_mod, on_get_mod)
         e.on(e_update_mod, on_update_mod)
         e.on(e_delete_mod, on_delete_mod)
 

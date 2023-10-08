@@ -6,7 +6,8 @@ const {
 
 const {
   DataTypes,
-  Op
+  Op,
+  Sequelize
 } = require('sequelize');
 const {
   GetConnect
@@ -25,17 +26,20 @@ const ERROR_UPDATE_ISSET_DESCRIPTION = 'error: undefined data: description'
 // Демон
 const initional = () => {
 
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', {
+  const connect = GetConnect(Sequelize)
+  const interfaceConnect = connect.getQueryInterface()
+
+  interfaceConnect.addColumn(TABLENAME + 's', 'id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'name', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'name', {
     type: DataTypes.STRING,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'description', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'description', {
     type: DataTypes.STRING,
   }, {
     mustExist: false

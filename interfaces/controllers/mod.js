@@ -35,9 +35,11 @@ module.exports = {
   * @apiBody {String} series Уникальная серия
   * @apiBody {String} sowt_version Уникальная версия софта
   * @apiBody {Array} types_device Какие типы данных может собирать
-  * @apiBody {Array} parameters С какими параметрами может работать
+  * @apiBody {Array} cron_parameters Параметры автоматом собираемые системой
   * @apiBody {Array} commands Какие поддерживает команжы
-  * @apiBody {Array} commands Какие команды поддерживает
+  * @apiBody {Array} parameters Какие параметры можно прочитать
+  * @apiBody {Array} time_settings Настройки времени опроса
+  * @apiBody {Array} device_parameters Какие параметры нужны для работы опросника
   *
   * @apiSuccess {Number} id 
   * @apiSuccess {String} ident Идентификатор
@@ -47,9 +49,11 @@ module.exports = {
   * @apiSuccess {String} series Уникальная серия
   * @apiSuccess {String} sowt_version Уникальная версия софта
   * @apiSuccess {Array} types_device Какие типы данных может собирать
-  * @apiSuccess {Array} parameters С какими параметрами может работать
+  * @apiSuccess {Array} cron_parameters Параметры автоматом собираемые системой
   * @apiSuccess {Array} commands Какие поддерживает команжы
-  * @apiSuccess {Array} commands Какие команды поддерживает
+  * @apiSuccess {Array} parameters Какие параметры можно прочитать
+  * @apiSuccess {Array} time_settings Настройки времени опроса
+  * @apiSuccess {Array} device_parameters Какие параметры нужны для работы опросника
   * @apiErrorExample Response (example):
   *     HTTP/1.1 200
   *     {
@@ -58,7 +62,7 @@ module.exports = {
   *       "error": "permission denied"
   *       "error": "not fount context"
   *       "error": "not fount row"
-                                                                                                   
+                                                                                                                   
   *     }
   */
   ApiAddMod(req, res, next) {
@@ -141,9 +145,11 @@ module.exports = {
   * @apiBody {String} series Уникальная серия
   * @apiBody {String} sowt_version Уникальная версия софта
   * @apiBody {Array} types_device Какие типы данных может собирать
-  * @apiBody {Array} parameters С какими параметрами может работать
+  * @apiBody {Array} cron_parameters Параметры автоматом собираемые системой
   * @apiBody {Array} commands Какие поддерживает команжы
-  * @apiBody {Array} commands Какие команды поддерживает
+  * @apiBody {Array} parameters Какие параметры можно прочитать
+  * @apiBody {Array} time_settings Настройки времени опроса
+  * @apiBody {Array} device_parameters Какие параметры нужны для работы опросника
   *
   *
   * @apiSuccess {Number} id=true 
@@ -154,9 +160,11 @@ module.exports = {
   * @apiSuccess {String} series Уникальная серия
   * @apiSuccess {String} sowt_version Уникальная версия софта
   * @apiSuccess {Array} types_device Какие типы данных может собирать
-  * @apiSuccess {Array} parameters С какими параметрами может работать
+  * @apiSuccess {Array} cron_parameters Параметры автоматом собираемые системой
   * @apiSuccess {Array} commands Какие поддерживает команжы
-  * @apiSuccess {Array} commands Какие команды поддерживает
+  * @apiSuccess {Array} parameters Какие параметры можно прочитать
+  * @apiSuccess {Array} time_settings Настройки времени опроса
+  * @apiSuccess {Array} device_parameters Какие параметры нужны для работы опросника
   * @apiErrorExample Response (example):
   *     HTTP/1.1 200
   *     {
@@ -165,7 +173,7 @@ module.exports = {
   *       "error": "permission denied"
   *       "error": "not fount context"
   *       "error": "not fount row"
-                                                                                                   
+                                                                                                                   
   *     }
   */
   ApiEditMod(req, res, next) {
@@ -255,9 +263,11 @@ module.exports = {
    * @apiSuccess {String} data.series Уникальная серия
    * @apiSuccess {String} data.sowt_version Уникальная версия софта
    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-   * @apiSuccess {Array} data.parameters С какими параметрами может работать
+   * @apiSuccess {Array} data.cron_parameters Параметры автоматом собираемые системой
    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-   * @apiSuccess {Array} data.commands Какие команды поддерживает
+   * @apiSuccess {Array} data.parameters Какие параметры можно прочитать
+   * @apiSuccess {Array} data.time_settings Настройки времени опроса
+   * @apiSuccess {Array} data.device_parameters Какие параметры нужны для работы опросника
    * @apiSuccess {Object} meta Метаданные для списка
    * @apiSuccess {Number} meta.total Общее кол-во
    * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -344,7 +354,7 @@ module.exports = {
   },
 
   /**
-   * @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_ident=:filter_ident&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_parameters=:filter_parameters&?filters_by_commands=:filter_commands&?filters_by_commands=:filter_commands&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
+   * @api {get} /api/mod/filter?filters_by_id=:filter_id&?filters_by_ident=:filter_ident&?filters_by_manufactures=:filter_manufactures&?filters_by_mark=:filter_mark&?filters_by_model=:filter_model&?filters_by_series=:filter_series&?filters_by_sowt_version=:filter_sowt_version&?filters_by_types_device=:filter_types_device&?filters_by_cron_parameters=:filter_cron_parameters&?filters_by_commands=:filter_commands&?filters_by_parameters=:filter_parameters&?filters_by_time_settings=:filter_time_settings&?filters_by_device_parameters=:filter_device_parameters&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Модели
    * @apiName GetAllFilterMod
    * @apiGroup Mod
    *
@@ -360,9 +370,11 @@ module.exports = {
    * @apiParam { string } filter_series Фильтр по полю series
    * @apiParam { string } filter_sowt_version Фильтр по полю sowt_version
    * @apiParam { array } filter_types_device Фильтр по полю types_device
+   * @apiParam { array } filter_cron_parameters Фильтр по полю cron_parameters
+   * @apiParam { array } filter_commands Фильтр по полю commands
    * @apiParam { array } filter_parameters Фильтр по полю parameters
-   * @apiParam { array } filter_commands Фильтр по полю commands
-   * @apiParam { array } filter_commands Фильтр по полю commands
+   * @apiParam { array } filter_time_settings Фильтр по полю time_settings
+   * @apiParam { array } filter_device_parameters Фильтр по полю device_parameters
    * @apiParam {int} limit_row=10   Сколько записей показывать
    * @apiParam {int} offset_row=0   Сколько записей отступить от начала
    * @apiParam {int} page_num=1  Какую страницу показывать
@@ -376,9 +388,11 @@ module.exports = {
    * @apiSuccess {String} data.series Уникальная серия
    * @apiSuccess {String} data.sowt_version Уникальная версия софта
    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-   * @apiSuccess {Array} data.parameters С какими параметрами может работать
+   * @apiSuccess {Array} data.cron_parameters Параметры автоматом собираемые системой
    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-   * @apiSuccess {Array} data.commands Какие команды поддерживает
+   * @apiSuccess {Array} data.parameters Какие параметры можно прочитать
+   * @apiSuccess {Array} data.time_settings Настройки времени опроса
+   * @apiSuccess {Array} data.device_parameters Какие параметры нужны для работы опросника
    * @apiSuccess {Object} meta Метаданные для списка
    * @apiSuccess {Number} meta.total Общее кол-во
    * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -490,6 +504,20 @@ module.exports = {
       if (typeof req.params.filters_by_types_device != 'undefined') {
         filter['types_device'] = req.params.filters_by_types_device
       }
+      if (typeof req.query.filters_by_cron_parameters != 'undefined') {
+        filter['cron_parameters'] = req.query.filters_by_cron_parameters
+      }
+
+      if (typeof req.params.filters_by_cron_parameters != 'undefined') {
+        filter['cron_parameters'] = req.params.filters_by_cron_parameters
+      }
+      if (typeof req.query.filters_by_commands != 'undefined') {
+        filter['commands'] = req.query.filters_by_commands
+      }
+
+      if (typeof req.params.filters_by_commands != 'undefined') {
+        filter['commands'] = req.params.filters_by_commands
+      }
       if (typeof req.query.filters_by_parameters != 'undefined') {
         filter['parameters'] = req.query.filters_by_parameters
       }
@@ -497,19 +525,19 @@ module.exports = {
       if (typeof req.params.filters_by_parameters != 'undefined') {
         filter['parameters'] = req.params.filters_by_parameters
       }
-      if (typeof req.query.filters_by_commands != 'undefined') {
-        filter['commands'] = req.query.filters_by_commands
+      if (typeof req.query.filters_by_time_settings != 'undefined') {
+        filter['time_settings'] = req.query.filters_by_time_settings
       }
 
-      if (typeof req.params.filters_by_commands != 'undefined') {
-        filter['commands'] = req.params.filters_by_commands
+      if (typeof req.params.filters_by_time_settings != 'undefined') {
+        filter['time_settings'] = req.params.filters_by_time_settings
       }
-      if (typeof req.query.filters_by_commands != 'undefined') {
-        filter['commands'] = req.query.filters_by_commands
+      if (typeof req.query.filters_by_device_parameters != 'undefined') {
+        filter['device_parameters'] = req.query.filters_by_device_parameters
       }
 
-      if (typeof req.params.filters_by_commands != 'undefined') {
-        filter['commands'] = req.params.filters_by_commands
+      if (typeof req.params.filters_by_device_parameters != 'undefined') {
+        filter['device_parameters'] = req.params.filters_by_device_parameters
       }
 
       return GetAllByFilterCountMod(filter, user_ctx).then(r_count => {
@@ -573,9 +601,11 @@ module.exports = {
    * @apiSuccess {String} data.series Уникальная серия
    * @apiSuccess {String} data.sowt_version Уникальная версия софта
    * @apiSuccess {Array} data.types_device Какие типы данных может собирать
-   * @apiSuccess {Array} data.parameters С какими параметрами может работать
+   * @apiSuccess {Array} data.cron_parameters Параметры автоматом собираемые системой
    * @apiSuccess {Array} data.commands Какие поддерживает команжы
-   * @apiSuccess {Array} data.commands Какие команды поддерживает
+   * @apiSuccess {Array} data.parameters Какие параметры можно прочитать
+   * @apiSuccess {Array} data.time_settings Настройки времени опроса
+   * @apiSuccess {Array} data.device_parameters Какие параметры нужны для работы опросника
    * @apiSuccess {Object} meta Метаданные для списка
    * @apiSuccess {Number} meta.total Общее кол-во
    * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка

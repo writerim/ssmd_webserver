@@ -6,7 +6,8 @@ const {
 
 const {
   DataTypes,
-  Op
+  Op,
+  Sequelize
 } = require('sequelize');
 const {
   GetConnect
@@ -29,27 +30,30 @@ const ERROR_UPDATE_ISSET_PARAMETERDONORID = 'error: undefined data: parameter_do
 // Демон
 const initional = () => {
 
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', {
+  const connect = GetConnect(Sequelize)
+  const interfaceConnect = connect.getQueryInterface()
+
+  interfaceConnect.addColumn(TABLENAME + 's', 'id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'device_id', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'device_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parameter_id', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'parameter_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'device_donor_id', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'device_donor_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parameter_donor_id', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'parameter_donor_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false

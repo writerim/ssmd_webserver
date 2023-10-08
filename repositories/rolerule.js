@@ -6,7 +6,8 @@ const {
 
 const {
   DataTypes,
-  Op
+  Op,
+  Sequelize
 } = require('sequelize');
 const {
   GetConnect
@@ -25,17 +26,20 @@ const ERROR_UPDATE_ISSET_RULEID = 'error: undefined data: rule_id'
 // Демон
 const initional = () => {
 
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', {
+  const connect = GetConnect(Sequelize)
+  const interfaceConnect = connect.getQueryInterface()
+
+  interfaceConnect.addColumn(TABLENAME + 's', 'id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'role_id', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'role_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'rule_id', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'rule_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false

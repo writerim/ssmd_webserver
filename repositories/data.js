@@ -6,7 +6,8 @@ const {
 
 const {
   DataTypes,
-  Op
+  Op,
+  Sequelize
 } = require('sequelize');
 const {
   GetConnect
@@ -29,27 +30,30 @@ const ERROR_UPDATE_ISSET_DATE = 'error: undefined data: date'
 // Демон
 const initional = () => {
 
-  GetConnect().getQueryInterface().addColumn(TABLENAME + '', 'id', {
+  const connect = GetConnect(Sequelize)
+  const interfaceConnect = connect.getQueryInterface()
+
+  interfaceConnect.addColumn(TABLENAME + '', 'id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + '', 'device_id', {
+  interfaceConnect.addColumn(TABLENAME + '', 'device_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + '', 'parameter_id', {
+  interfaceConnect.addColumn(TABLENAME + '', 'parameter_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + '', 'data', {
+  interfaceConnect.addColumn(TABLENAME + '', 'data', {
     type: DataTypes.JSON(DataTypes.STRING),
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + '', 'date', {
+  interfaceConnect.addColumn(TABLENAME + '', 'date', {
     type: DataTypes.DATE,
   }, {
     mustExist: false

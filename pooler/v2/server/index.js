@@ -6,9 +6,13 @@ const { ADD_LAST_DATA, ADD_DEVICE, ADD_PARAMETER, ADD_MOD } = require("../consta
 const Device = require("../entity/device");
 const LastData = require("../entity/last_data");
 const Mod = require("../entity/mod");
+const Parameter = require("../entity/parameter");
+const { InitMods } = require("./add_mod");
 
 module.exports = {
     Start : (e) => {
+
+        InitMods()
 
         // Получаем все последние данные
         LastDataGetAll({}).then(res => {

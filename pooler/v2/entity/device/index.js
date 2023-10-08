@@ -37,7 +37,6 @@ module.exports = class Device {
         const e_add_last_data = `${ADD_LAST_DATA_DEVICE}${data.id}`
         const e_get_tree_device = `${GET_DEVICE_TREE}${data.id}`
         const e_get_device = `${GET_DEVICE}${data.id}`
-        const e_get_parent_device = `${GET_DEVICE}${data.parent_id}`
         const e_update_device = `${UPDATE_DEVICE}${data.id}`
         const e_delete_parent_device = `${DELETE_DEVICE}${data.parent_id}`
         const e_delete_device = `${DELETE_DEVICE}${data.id}`

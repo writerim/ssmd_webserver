@@ -26,9 +26,11 @@ describe("repo: DB: Mod", function () {
     o['series'] = 'test'
     o['sowt_version'] = 'test'
     o['types_device'] = ['a', 'b']
+    o['cron_parameters'] = ['a', 'b']
+    o['commands'] = ['a', 'b']
     o['parameters'] = ['a', 'b']
-    o['commands'] = ['a', 'b']
-    o['commands'] = ['a', 'b']
+    o['time_settings'] = ['a', 'b']
+    o['device_parameters'] = ['a', 'b']
     return ModAdd(o)
     .then(res => {
       add_id = res.get('id')
@@ -47,11 +49,15 @@ describe("repo: DB: Mod", function () {
 
       assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
 
+      assert.deepStrictEqual(res.get('cron_parameters'), ['a', 'b'])
+
+      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+
       assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
 
-      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('time_settings'), ['a', 'b'])
 
-      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('device_parameters'), ['a', 'b'])
     })
   })
 
@@ -74,11 +80,15 @@ describe("repo: DB: Mod", function () {
 
         assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
 
+        assert.deepStrictEqual(res.get('cron_parameters'), ['a', 'b'])
+
+        assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+
         assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
 
-        assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+        assert.deepStrictEqual(res.get('time_settings'), ['a', 'b'])
 
-        assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+        assert.deepStrictEqual(res.get('device_parameters'), ['a', 'b'])
       }
     })
   })
@@ -104,11 +114,15 @@ describe("repo: DB: Mod", function () {
 
       assert.deepStrictEqual(res.get('types_device'), ['a', 'b'])
 
+      assert.deepStrictEqual(res.get('cron_parameters'), ['a', 'b'])
+
+      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+
       assert.deepStrictEqual(res.get('parameters'), ['a', 'b'])
 
-      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('time_settings'), ['a', 'b'])
 
-      assert.deepStrictEqual(res.get('commands'), ['a', 'b'])
+      assert.deepStrictEqual(res.get('device_parameters'), ['a', 'b'])
     })
   })
 
@@ -124,9 +138,11 @@ describe("repo: DB: Mod", function () {
     o['series'] = 'test 2'
     o['sowt_version'] = 'test 2'
     o['types_device'] = [1, 2]
+    o['cron_parameters'] = [1, 2]
+    o['commands'] = [1, 2]
     o['parameters'] = [1, 2]
-    o['commands'] = [1, 2]
-    o['commands'] = [1, 2]
+    o['time_settings'] = [1, 2]
+    o['device_parameters'] = [1, 2]
 
     return ModUpdate(o).then(res => {
       assert.equal(res.get('id'), add_id)
@@ -145,11 +161,15 @@ describe("repo: DB: Mod", function () {
 
       assert.deepStrictEqual(res.get('types_device'), [1, 2])
 
+      assert.deepStrictEqual(res.get('cron_parameters'), [1, 2])
+
+      assert.deepStrictEqual(res.get('commands'), [1, 2])
+
       assert.deepStrictEqual(res.get('parameters'), [1, 2])
 
-      assert.deepStrictEqual(res.get('commands'), [1, 2])
+      assert.deepStrictEqual(res.get('time_settings'), [1, 2])
 
-      assert.deepStrictEqual(res.get('commands'), [1, 2])
+      assert.deepStrictEqual(res.get('device_parameters'), [1, 2])
     })
   })
 

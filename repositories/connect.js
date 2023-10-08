@@ -29,6 +29,13 @@ module.exports = {
     GetConnect: (caller = { name: "", deamon: () => { } }) => {
         const config = conf.database[env];
 
+        if (caller.name && typeof init_callers_deamons[caller.name] == 'undefined') {
+            init_callers_deamons[caller.name] = caller.deamon
+            if(init_callers_deamons[caller.name]){
+                init_callers_deamons[caller.name]()
+            }
+        }
+
         if (connect) {
             return connect
         }
@@ -50,10 +57,6 @@ module.exports = {
                 dialect: config.type,
                 host: config.host
             })
-        }
-        if (init_callers_deamons[caller.name] != "") {
-            init_callers_deamons[caller.name] = caller.deamon
-            init_callers_deamons[caller.name]()
         }
         if (!initial_entity) {
             connect.sync()

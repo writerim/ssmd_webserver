@@ -6,7 +6,8 @@ const {
 
 const {
   DataTypes,
-  Op
+  Op,
+  Sequelize
 } = require('sequelize');
 const {
   GetConnect
@@ -29,57 +30,60 @@ const ERROR_UPDATE_ISSET_ISGROUP = 'error: undefined data: is_group'
 // Демон
 const initional = () => {
 
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'id', {
+  const connect = GetConnect(Sequelize)
+  const interfaceConnect = connect.getQueryInterface()
+
+  interfaceConnect.addColumn(TABLENAME + 's', 'id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'name', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'name', {
     type: DataTypes.STRING,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'last_name', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'last_name', {
     type: DataTypes.STRING,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'login', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'login', {
     type: DataTypes.STRING,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'password', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'password', {
     type: DataTypes.STRING,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'parent_id', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'parent_id', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'is_group', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'is_group', {
     type: DataTypes.BOOLEAN,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'lft', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'lft', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'rgt', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'rgt', {
     type: DataTypes.INTEGER,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'token', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'token', {
     type: DataTypes.STRING,
   }, {
     mustExist: false
   }).catch(() => {});
-  GetConnect().getQueryInterface().addColumn(TABLENAME + 's', 'is_system', {
+  interfaceConnect.addColumn(TABLENAME + 's', 'is_system', {
     type: DataTypes.BOOLEAN,
   }, {
     mustExist: false

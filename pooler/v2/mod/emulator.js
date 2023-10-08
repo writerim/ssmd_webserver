@@ -9,6 +9,7 @@ module.exports = {
     Manufactures: "",
     Model: "",
     Mark: "",
+    Series: "",
     SoftVersion: "",
 
     // Версия нужна для внутреннего пользования. Не обязательная, но заложена на будущее
@@ -40,6 +41,9 @@ module.exports = {
         ident: "num485",
         // ...
     }],
+
+    // Какие это типы устройств
+    TypeDevices : [],
 
     Mod: class extends Mod{
 
