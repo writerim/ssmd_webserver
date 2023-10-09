@@ -9,7 +9,8 @@ module.exports = {
     InitMods: () => {
         // Сначала записываем данные по модам
         ModAdd({
-            ident: Emulator.Model,
+            ident: Emulator.Ident,
+            version: Emulator.Version,
             manufactures: Emulator.Manufactures,
             mark: Emulator.Mark,
             model: Emulator.Model,

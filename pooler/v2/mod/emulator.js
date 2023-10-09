@@ -29,7 +29,7 @@ module.exports = {
     // Какие команды поддерживает устройство
     Commands: [{
         ident: "GET_DATA",
-        description: "Получение данных",
+        description: "Получение данных2",
         args: []
     }],
 

@@ -37,6 +37,11 @@ const initional = () => {
   }, {
     mustExist: false
   }).catch(() => {});
+  interfaceConnect.addColumn(TABLENAME + 's', 'version', {
+    type: DataTypes.STRING,
+  }, {
+    mustExist: false
+  }).catch(() => {});
   interfaceConnect.addColumn(TABLENAME + 's', 'manufactures', {
     type: DataTypes.STRING,
   }, {
@@ -111,6 +116,9 @@ const Mod = GetConnect({
   ident: {
     type: DataTypes.STRING,
   },
+  version: {
+    type: DataTypes.STRING,
+  },
   manufactures: {
     type: DataTypes.STRING,
   },
@@ -159,7 +167,8 @@ const Add = async (data) => {
       where: uniques_where
     }).then(res => {
       if (res) {
-        return FindById(res.get('id'))
+        data.id = res.get('id')
+        return Update(data)
       } else {
         let error = ValidateInsert(data)
         if (error) {

@@ -98,7 +98,8 @@ const Add = async (data) => {
       where: uniques_where
     }).then(res => {
       if (res) {
-        return FindById(res.get('id'))
+        data.id = res.get('id')
+        return Update(data)
       } else {
         let error = ValidateInsert(data)
         if (error) {

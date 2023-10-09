@@ -20,6 +20,7 @@ describe("repo: DB: Mod", function () {
     let o = {}
 
     o['ident'] = 'test'
+    o['version'] = 'test'
     o['manufactures'] = 'test'
     o['mark'] = 'test'
     o['model'] = 'test'
@@ -36,6 +37,8 @@ describe("repo: DB: Mod", function () {
       add_id = res.get('id')
 
       assert.equal(res.get('ident'), 'test')
+
+      assert.equal(res.get('version'), 'test')
 
       assert.equal(res.get('manufactures'), 'test')
 
@@ -67,6 +70,8 @@ describe("repo: DB: Mod", function () {
         res = res[0]
 
         assert.equal(res.get('ident'), 'test')
+
+        assert.equal(res.get('version'), 'test')
 
         assert.equal(res.get('manufactures'), 'test')
 
@@ -102,6 +107,8 @@ describe("repo: DB: Mod", function () {
 
       assert.equal(res.get('ident'), 'test')
 
+      assert.equal(res.get('version'), 'test')
+
       assert.equal(res.get('manufactures'), 'test')
 
       assert.equal(res.get('mark'), 'test')
@@ -132,6 +139,7 @@ describe("repo: DB: Mod", function () {
 
     o['id'] = add_id
     o['ident'] = 'test 2'
+    o['version'] = 'test 2'
     o['manufactures'] = 'test 2'
     o['mark'] = 'test 2'
     o['model'] = 'test 2'
@@ -148,6 +156,8 @@ describe("repo: DB: Mod", function () {
       assert.equal(res.get('id'), add_id)
 
       assert.equal(res.get('ident'), 'test 2')
+
+      assert.equal(res.get('version'), 'test 2')
 
       assert.equal(res.get('manufactures'), 'test 2')
 

@@ -6,6 +6,7 @@ module.exports = class Mod {
     if (!data) {
       this.id = 0
       this.ident = ''
+      this.version = ''
       this.manufactures = ''
       this.mark = ''
       this.model = ''
@@ -21,6 +22,7 @@ module.exports = class Mod {
 
       this.id = typeof data.id != 'undefined' ? data.id : 0
       this.ident = typeof data.ident != 'undefined' ? data.ident : ''
+      this.version = typeof data.version != 'undefined' ? data.version : ''
       this.manufactures = typeof data.manufactures != 'undefined' ? data.manufactures : ''
       this.mark = typeof data.mark != 'undefined' ? data.mark : ''
       this.model = typeof data.model != 'undefined' ? data.model : ''
@@ -36,6 +38,7 @@ module.exports = class Mod {
   }
   id = 0
   ident = ''
+  version = ''
   manufactures = ''
   mark = ''
   model = ''

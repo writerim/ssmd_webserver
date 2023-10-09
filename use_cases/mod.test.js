@@ -26,6 +26,7 @@ describe("use_cases: Mod", function () {
     let o = {}
 
     o['ident'] = 'test'
+    o['version'] = 'test'
     o['manufactures'] = 'test'
     o['mark'] = 'test'
     o['model'] = 'test'
@@ -42,6 +43,8 @@ describe("use_cases: Mod", function () {
       add_id = res.id
 
       assert.equal(res.ident, 'test')
+
+      assert.equal(res.version, 'test')
 
       assert.equal(res.manufactures, 'test')
 
@@ -77,6 +80,8 @@ describe("use_cases: Mod", function () {
 
         assert.equal(res.ident, 'test')
 
+        assert.equal(res.version, 'test')
+
         assert.equal(res.manufactures, 'test')
 
         assert.equal(res.mark, 'test')
@@ -111,6 +116,8 @@ describe("use_cases: Mod", function () {
 
       assert.equal(res.ident, 'test')
 
+      assert.equal(res.version, 'test')
+
       assert.equal(res.manufactures, 'test')
 
       assert.equal(res.mark, 'test')
@@ -143,6 +150,8 @@ describe("use_cases: Mod", function () {
 
     o['ident'] = 'test 2'
 
+    o['version'] = 'test 2'
+
     o['manufactures'] = 'test 2'
 
     o['mark'] = 'test 2'
@@ -169,6 +178,8 @@ describe("use_cases: Mod", function () {
       assert.equal(res.id, add_id)
 
       assert.equal(res.ident, 'test 2')
+
+      assert.equal(res.version, 'test 2')
 
       assert.equal(res.manufactures, 'test 2')
 
