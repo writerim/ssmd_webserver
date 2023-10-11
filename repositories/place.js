@@ -199,9 +199,20 @@ const GetAll = async (params) => {
 }
 
 // Получение всех записей по вхождению строки куда либо
-const GetAllSerach = async (text, params) => {
+const GetAllSearch = async (text, params) => {
   let filter_by_text = []
   return Place.findAll({
+    where: {
+            [Op.or]: filter_by_text,
+      ...params
+    }
+  })
+}
+
+// Получение всех записей по вхождению строки куда либо
+const GetAllSearchCount = async (text, params) => {
+  let filter_by_text = []
+  return Place.count({
     where: {
             [Op.or]: filter_by_text,
       ...params
@@ -413,5 +424,7 @@ module.exports = {
   PlaceModel: Place,
   PlaceGetAllFilter: GetAllFilter,
   PlaceGetAllFilterCount: GetAllFilterCount,
+  PlaceGetAllSearch: GetAllSearch,
+  PlaceGetAllSearchCount: GetAllSearchCount,
   PlaceRecalcTree: RecalcTree,
 }

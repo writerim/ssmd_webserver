@@ -11,8 +11,8 @@ const {
   UserPlaceUpdate,
   UserPlaceDrop,
   UserPlaceGetAllCount,
-  UserPlaceGetAllSerach,
-  UserPlaceGetAllSerachCount,
+  UserPlaceGetAllSearch,
+  UserPlaceGetAllSearchCount,
   UserPlaceGetAllFilter,
   UserPlaceGetAllFilterCount,
   UserPlaceGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachUserPlace(text, params, user_ctx) {
+  async GetAllSearchUserPlace(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return UserPlaceGetAllSerach(text, params).then(res => {
+    return UserPlaceGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new UserPlace(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountUserPlace(text, filter, user_ctx) {
+  async GetAllSearchCountUserPlace(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

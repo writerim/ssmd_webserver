@@ -272,7 +272,7 @@ module.exports = {
           offset: Number(offset)
         }, user_ctx).then(r => {
 
-          pages = []
+          let pages = []
           let total_page = r_count / limit
           if (r_count % limit) {
             total_page++
@@ -406,7 +406,7 @@ module.exports = {
           offset: Number(offset)
         }, user_ctx).then(r => {
 
-          pages = []
+          let pages = []
           let total_page = r_count / limit
           if (r_count % limit) {
             total_page++
@@ -510,13 +510,13 @@ module.exports = {
       if (!offset) {
         offset = (page - 1) * limit
       }
-      return GetAllSerachCountUserPlace(req.params.text, user_ctx).then(r_count => {
-        return GetAllSerachUserPlace(req.params.text, {
+      return GetAllSearchCountUserPlace(req.params.text, user_ctx).then(r_count => {
+        return GetAllSearchUserPlace(req.params.text, {
           limit: Number(limit),
           offset: Number(offset)
         }, user_ctx).then(r => {
 
-          pages = []
+          let pages = []
           let total_page = r_count / limit
           if (r_count % limit) {
             total_page++

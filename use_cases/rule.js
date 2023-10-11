@@ -11,8 +11,8 @@ const {
   RuleUpdate,
   RuleDrop,
   RuleGetAllCount,
-  RuleGetAllSerach,
-  RuleGetAllSerachCount,
+  RuleGetAllSearch,
+  RuleGetAllSearchCount,
   RuleGetAllFilter,
   RuleGetAllFilterCount,
   RuleGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachRule(text, params, user_ctx) {
+  async GetAllSearchRule(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return RuleGetAllSerach(text, params).then(res => {
+    return RuleGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new Rule(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountRule(text, filter, user_ctx) {
+  async GetAllSearchCountRule(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

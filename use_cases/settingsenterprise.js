@@ -11,8 +11,8 @@ const {
   SettingsEnterpriseUpdate,
   SettingsEnterpriseDrop,
   SettingsEnterpriseGetAllCount,
-  SettingsEnterpriseGetAllSerach,
-  SettingsEnterpriseGetAllSerachCount,
+  SettingsEnterpriseGetAllSearch,
+  SettingsEnterpriseGetAllSearchCount,
   SettingsEnterpriseGetAllFilter,
   SettingsEnterpriseGetAllFilterCount,
   SettingsEnterpriseGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachSettingsEnterprise(text, params, user_ctx) {
+  async GetAllSearchSettingsEnterprise(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return SettingsEnterpriseGetAllSerach(text, params).then(res => {
+    return SettingsEnterpriseGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new SettingsEnterprise(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountSettingsEnterprise(text, filter, user_ctx) {
+  async GetAllSearchCountSettingsEnterprise(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

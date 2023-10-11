@@ -11,8 +11,8 @@ const {
   ParameterUpdate,
   ParameterDrop,
   ParameterGetAllCount,
-  ParameterGetAllSerach,
-  ParameterGetAllSerachCount,
+  ParameterGetAllSearch,
+  ParameterGetAllSearchCount,
   ParameterGetAllFilter,
   ParameterGetAllFilterCount,
   ParameterGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachParameter(text, params, user_ctx) {
+  async GetAllSearchParameter(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return ParameterGetAllSerach(text, params).then(res => {
+    return ParameterGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new Parameter(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountParameter(text, filter, user_ctx) {
+  async GetAllSearchCountParameter(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

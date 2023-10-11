@@ -172,9 +172,20 @@ const GetAll = async (params) => {
 }
 
 // Получение всех записей по вхождению строки куда либо
-const GetAllSerach = async (text, params) => {
+const GetAllSearch = async (text, params) => {
   let filter_by_text = []
   return Device2Device.findAll({
+    where: {
+            [Op.or]: filter_by_text,
+      ...params
+    }
+  })
+}
+
+// Получение всех записей по вхождению строки куда либо
+const GetAllSearchCount = async (text, params) => {
+  let filter_by_text = []
+  return Device2Device.count({
     where: {
             [Op.or]: filter_by_text,
       ...params
@@ -270,4 +281,6 @@ module.exports = {
   Device2DeviceModel: Device2Device,
   Device2DeviceGetAllFilter: GetAllFilter,
   Device2DeviceGetAllFilterCount: GetAllFilterCount,
+  Device2DeviceGetAllSearch: GetAllSearch,
+  Device2DeviceGetAllSearchCount: GetAllSearchCount,
 }

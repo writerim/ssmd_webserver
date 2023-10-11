@@ -11,8 +11,8 @@ const {
   UserUpdate,
   UserDrop,
   UserGetAllCount,
-  UserGetAllSerach,
-  UserGetAllSerachCount,
+  UserGetAllSearch,
+  UserGetAllSearchCount,
   UserGetAllFilter,
   UserGetAllFilterCount,
   UserGetAll
@@ -154,11 +154,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachUser(text, params, user_ctx) {
+  async GetAllSearchUser(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return UserGetAllSerach(text, params).then(res => {
+    return UserGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new User(r.dataValues))
@@ -167,7 +167,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountUser(text, filter, user_ctx) {
+  async GetAllSearchCountUser(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

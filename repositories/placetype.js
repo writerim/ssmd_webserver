@@ -240,9 +240,20 @@ const GetAll = async (params) => {
 }
 
 // Получение всех записей по вхождению строки куда либо
-const GetAllSerach = async (text, params) => {
+const GetAllSearch = async (text, params) => {
   let filter_by_text = []
   return PlaceType.findAll({
+    where: {
+            [Op.or]: filter_by_text,
+      ...params
+    }
+  })
+}
+
+// Получение всех записей по вхождению строки куда либо
+const GetAllSearchCount = async (text, params) => {
+  let filter_by_text = []
+  return PlaceType.count({
     where: {
             [Op.or]: filter_by_text,
       ...params
@@ -324,4 +335,6 @@ module.exports = {
   PlaceTypeModel: PlaceType,
   PlaceTypeGetAllFilter: GetAllFilter,
   PlaceTypeGetAllFilterCount: GetAllFilterCount,
+  PlaceTypeGetAllSearch: GetAllSearch,
+  PlaceTypeGetAllSearchCount: GetAllSearchCount,
 }

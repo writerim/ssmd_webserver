@@ -11,8 +11,8 @@ const {
   RoleRuleUpdate,
   RoleRuleDrop,
   RoleRuleGetAllCount,
-  RoleRuleGetAllSerach,
-  RoleRuleGetAllSerachCount,
+  RoleRuleGetAllSearch,
+  RoleRuleGetAllSearchCount,
   RoleRuleGetAllFilter,
   RoleRuleGetAllFilterCount,
   RoleRuleGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachRoleRule(text, params, user_ctx) {
+  async GetAllSearchRoleRule(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return RoleRuleGetAllSerach(text, params).then(res => {
+    return RoleRuleGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new RoleRule(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountRoleRule(text, filter, user_ctx) {
+  async GetAllSearchCountRoleRule(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

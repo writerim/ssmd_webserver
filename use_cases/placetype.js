@@ -11,8 +11,8 @@ const {
   PlaceTypeUpdate,
   PlaceTypeDrop,
   PlaceTypeGetAllCount,
-  PlaceTypeGetAllSerach,
-  PlaceTypeGetAllSerachCount,
+  PlaceTypeGetAllSearch,
+  PlaceTypeGetAllSearchCount,
   PlaceTypeGetAllFilter,
   PlaceTypeGetAllFilterCount,
   PlaceTypeGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachPlaceType(text, params, user_ctx) {
+  async GetAllSearchPlaceType(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return PlaceTypeGetAllSerach(text, params).then(res => {
+    return PlaceTypeGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new PlaceType(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountPlaceType(text, filter, user_ctx) {
+  async GetAllSearchCountPlaceType(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

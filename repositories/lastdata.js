@@ -172,9 +172,20 @@ const GetAll = async (params) => {
 }
 
 // Получение всех записей по вхождению строки куда либо
-const GetAllSerach = async (text, params) => {
+const GetAllSearch = async (text, params) => {
   let filter_by_text = []
   return LastData.findAll({
+    where: {
+            [Op.or]: filter_by_text,
+      ...params
+    }
+  })
+}
+
+// Получение всех записей по вхождению строки куда либо
+const GetAllSearchCount = async (text, params) => {
+  let filter_by_text = []
+  return LastData.count({
     where: {
             [Op.or]: filter_by_text,
       ...params
@@ -270,4 +281,6 @@ module.exports = {
   LastDataModel: LastData,
   LastDataGetAllFilter: GetAllFilter,
   LastDataGetAllFilterCount: GetAllFilterCount,
+  LastDataGetAllSearch: GetAllSearch,
+  LastDataGetAllSearchCount: GetAllSearchCount,
 }

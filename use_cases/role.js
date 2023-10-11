@@ -11,8 +11,8 @@ const {
   RoleUpdate,
   RoleDrop,
   RoleGetAllCount,
-  RoleGetAllSerach,
-  RoleGetAllSerachCount,
+  RoleGetAllSearch,
+  RoleGetAllSearchCount,
   RoleGetAllFilter,
   RoleGetAllFilterCount,
   RoleGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachRole(text, params, user_ctx) {
+  async GetAllSearchRole(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return RoleGetAllSerach(text, params).then(res => {
+    return RoleGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new Role(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountRole(text, filter, user_ctx) {
+  async GetAllSearchCountRole(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

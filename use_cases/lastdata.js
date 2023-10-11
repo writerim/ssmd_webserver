@@ -11,8 +11,8 @@ const {
   LastDataUpdate,
   LastDataDrop,
   LastDataGetAllCount,
-  LastDataGetAllSerach,
-  LastDataGetAllSerachCount,
+  LastDataGetAllSearch,
+  LastDataGetAllSearchCount,
   LastDataGetAllFilter,
   LastDataGetAllFilterCount,
   LastDataGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachLastData(text, params, user_ctx) {
+  async GetAllSearchLastData(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return LastDataGetAllSerach(text, params).then(res => {
+    return LastDataGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new LastData(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountLastData(text, filter, user_ctx) {
+  async GetAllSearchCountLastData(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

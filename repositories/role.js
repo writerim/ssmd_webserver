@@ -152,9 +152,20 @@ const GetAll = async (params) => {
 }
 
 // Получение всех записей по вхождению строки куда либо
-const GetAllSerach = async (text, params) => {
+const GetAllSearch = async (text, params) => {
   let filter_by_text = []
   return Role.findAll({
+    where: {
+            [Op.or]: filter_by_text,
+      ...params
+    }
+  })
+}
+
+// Получение всех записей по вхождению строки куда либо
+const GetAllSearchCount = async (text, params) => {
+  let filter_by_text = []
+  return Role.count({
     where: {
             [Op.or]: filter_by_text,
       ...params
@@ -236,4 +247,6 @@ module.exports = {
   RoleModel: Role,
   RoleGetAllFilter: GetAllFilter,
   RoleGetAllFilterCount: GetAllFilterCount,
+  RoleGetAllSearch: GetAllSearch,
+  RoleGetAllSearchCount: GetAllSearchCount,
 }

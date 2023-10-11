@@ -11,8 +11,8 @@ const {
   DataUpdate,
   DataDrop,
   DataGetAllCount,
-  DataGetAllSerach,
-  DataGetAllSerachCount,
+  DataGetAllSearch,
+  DataGetAllSearchCount,
   DataGetAllFilter,
   DataGetAllFilterCount,
   DataGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachData(text, params, user_ctx) {
+  async GetAllSearchData(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return DataGetAllSerach(text, params).then(res => {
+    return DataGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new Data(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountData(text, filter, user_ctx) {
+  async GetAllSearchCountData(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

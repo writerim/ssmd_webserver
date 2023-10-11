@@ -11,8 +11,8 @@ const {
   Device2DeviceUpdate,
   Device2DeviceDrop,
   Device2DeviceGetAllCount,
-  Device2DeviceGetAllSerach,
-  Device2DeviceGetAllSerachCount,
+  Device2DeviceGetAllSearch,
+  Device2DeviceGetAllSearchCount,
   Device2DeviceGetAllFilter,
   Device2DeviceGetAllFilterCount,
   Device2DeviceGetAll
@@ -140,11 +140,11 @@ module.exports = {
     })
   },
 
-  async GetAllSerachDevice2Device(text, params, user_ctx) {
+  async GetAllSearchDevice2Device(text, params, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return Device2DeviceGetAllSerach(text, params).then(res => {
+    return Device2DeviceGetAllSearch(text, params).then(res => {
       let output = []
       res.forEach(r => {
         output.push(new Device2Device(r.dataValues))
@@ -153,7 +153,7 @@ module.exports = {
     })
   },
 
-  async GetAllSerachCountDevice2Device(text, filter, user_ctx) {
+  async GetAllSearchCountDevice2Device(text, filter, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }

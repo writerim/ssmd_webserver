@@ -60,6 +60,12 @@ module.exports = class Device {
 
         const on_add_last_data = (last_data) => {
             if (!self.last_data.some(last_data.data.id)) {
+                // Если не будет хватать данных, то мы будем тут удалять все 
+                // лишние последние данные
+                // if(self.last_data.length){
+                //     last_data.destroy()
+                //     return
+                // }
                 self.last_data.append(last_data)
             }
         }
