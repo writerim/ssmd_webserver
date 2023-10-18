@@ -1,6 +1,8 @@
 const { Login } = require("../../use_cases/user.custom");
 const UserCtx = require("../../entity/user");
 
+const CONTEXT_NOT_FOUND = 'context not found'
+
 module.exports = {
 
     // Авторизация пользователя

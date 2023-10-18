@@ -7,16 +7,16 @@ const {
     SET_ISSUE,
     GET_MOD
 } = require("../../constants/commands");
+const emulator_ce301 = require("../../mod/emulator_ce301");
+const emulator_snr = require("../../mod/emulator_snr");
 
-const Emulate = {
-    Mod
-} = require("../../mod/emulator");
 
 const fabticMod = (mod_db) => {
-    switch (mod_db.ident) {
-        case 'emulate':
-            return Emulate
-    }
+    [emulator_ce301, emulator_snr].forEach(i => {
+        if (i.Ident == mod_db.ident) {
+            return i
+        }
+    })
     return new Error(`undefined library in require`)
 }
 
@@ -148,7 +148,7 @@ module.exports = class Device {
                         self.mod = undefined
                         return
                     }
-                    self.mod = res
+                    self.mod = new res.Mod(self)
                 }
             })
         }, 100)

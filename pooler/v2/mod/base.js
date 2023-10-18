@@ -2,6 +2,7 @@ const Pack = require("../entity/pack")
 
 module.exports = {
 
+    // Сюда сохраняются все данные по опросу. Этот та часть которая будет гонять везде
     Mod: class {
 
         constructor(device) {

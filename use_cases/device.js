@@ -58,7 +58,7 @@ module.exports = {
 
     // Если какие то поля не были переданы, то нам надо их взять
     // из текущей модели и вставить чтобы не перетереть
-    return DeviceFindById(id).then(row => {
+    return DeviceFindById(data.id).then(row => {
       if (row) {
 
         if (typeof data.lft !== 'undefined') {
@@ -68,9 +68,9 @@ module.exports = {
           delete data.rgt
         }
 
-        row.dataValues.forEach((key, value) => {
+        Object.keys(row.dataValues).forEach((key, value) => {
           if (typeof data[key] == 'undefined') {
-            data[key] = value
+            data[key] = row.dataValues[key]
           }
         })
 

@@ -14,8 +14,8 @@ const {
 } = require('path');
 var cookieParser = require('cookie-parser');
 
-var env = process.env.NODE_ENV || 'production';
-var config = require(dirname(require.main.filename) + '/config')[env];
+const env = process.env.NODE_ENV.trim() || 'production';
+var config = require('./config.json');
 
 var pjson = require('./package.json');
 const { Start } = require('./pooler/v2/server');
@@ -76,10 +76,10 @@ const start = async () => {
         error: err.message
       }));
 
-    });
+    }); 
 
-    const server = app.listen(config.server.port, () => {
-      console.log('listening on port %s...', config.server.port);
+    const server = app.listen(config.server[env].port, () => {
+      console.log('listening on port %s...', config.server[env].port);
     });
 
     Start(APP_EVENTS)

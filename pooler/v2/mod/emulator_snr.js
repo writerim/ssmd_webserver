@@ -1,9 +1,10 @@
+const { IP } = require("../constants/device_parameters")
 const { Mod } = require("./base")
 
 module.exports = {
 
     // по идентификатору мы будем понимать какой мод нам нужен для работы
-    Ident: "emulator",
+    Ident: "emulator_snr",
 
     Name: "",
     Manufactures: "",
@@ -14,6 +15,9 @@ module.exports = {
 
     // Версия нужна для внутреннего пользования. Не обязательная, но заложена на будущее
     Version: "0.0.1",
+
+    // Кому доступны
+    Env: "dev", // dev production test
 
     // Какие параметры считываем по крону
     // Сюда пишем как часто надо опрашивать какие параметры
@@ -27,20 +31,13 @@ module.exports = {
     Parameters: [],
 
     // Какие команды поддерживает устройство
-    Commands: [{
-        ident: "GET_DATA",
-        description: "Получение данных2",
-        args: []
-    }],
+    Commands: [],
 
     // Разные настройки таймингов
     TimeSettings: [],
 
     // Данные устройства, которые должен настроить клиент
-    DeviceParameters: [{
-        ident: "num485",
-        // ...
-    }],
+    DeviceParameters: [IP],
 
     // Какие это типы устройств
     TypeDevices : [],

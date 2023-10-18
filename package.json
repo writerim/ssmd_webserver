@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "SET NODE_ENV=dev && nodemon",
     "build": "pkg  --options expose-gc  index.js",
     "watch": "npm-watch",
     "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",

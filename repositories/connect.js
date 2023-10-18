@@ -4,7 +4,7 @@ const path = require("path");
 
 
 const env = process.env.NODE_ENV && process.env.NODE_ENV.trim() || 'production';
-const conf = require('../config.js');
+const config = require('./../config.json');
 
 // Соединение
 var connect = null
@@ -27,7 +27,6 @@ module.exports = {
     // Принимает объект для вызова какой нибудь функции разово при например инициализации объекта
     // Полезно для создания демонов очисщения данных в модулях
     GetConnect: (caller = { name: "", deamon: () => { } }) => {
-        const config = conf.database[env];
 
         if (caller.name && typeof init_callers_deamons[caller.name] == 'undefined') {
             init_callers_deamons[caller.name] = caller.deamon
@@ -40,22 +39,22 @@ module.exports = {
             return connect
         }
 
-        if (!config) {
+        if (!config.database[env]) {
             throw new Error('config.js file not valid')
         }
 
         initial_connect = true
-        if (config.type && config.type == "sqlite") {
+        if (config.database[env].type && config.database[env].type == "sqlite") {
             connect = new Sequelize({
-                ...config,
+                ...config.database[env],
                 dialect: 'sqlite',
             });
         } else {
             console.log("new connect")
-            connect = new Sequelize(config.db, config.login, config.password, {
-                logging: config.logging,
-                dialect: config.type,
-                host: config.host
+            connect = new Sequelize(config.database[env].db, config.database[env].login, config.database[env].password, {
+                logging: config.database[env].logging,
+                dialect: config.database[env].type,
+                host: config.database[env].host
             })
         }
         if (!initial_entity) {
