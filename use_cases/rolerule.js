@@ -36,7 +36,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return RoleRuleAdd(data).then(res => new RoleRule(res.dataValues))
+    return RoleRuleAdd(data).then(res => {
+      return RoleRuleRecalcTree().then(t => {
+        return new RoleRule(res.dataValues)
+      })
+    })
   },
 
   async EditRoleRule(data, user_ctx) {
@@ -64,7 +68,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new RoleRule(res.dataValues)
+          return RoleRuleRecalcTree().then(t => {
+            return new RoleRule(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -153,11 +159,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountRoleRule(text, filter, user_ctx) {
+  async GetAllSearchCountRoleRule(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return RoleRuleGetAllFilterCount(text, filter)
+    return RoleRuleGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountRoleRule(filter, user_ctx) {

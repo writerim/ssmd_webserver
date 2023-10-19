@@ -36,7 +36,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return ModAdd(data).then(res => new Mod(res.dataValues))
+    return ModAdd(data).then(res => {
+      return ModRecalcTree().then(t => {
+        return new Mod(res.dataValues)
+      })
+    })
   },
 
   async EditMod(data, user_ctx) {
@@ -64,7 +68,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new Mod(res.dataValues)
+          return ModRecalcTree().then(t => {
+            return new Mod(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -153,11 +159,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountMod(text, filter, user_ctx) {
+  async GetAllSearchCountMod(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return ModGetAllFilterCount(text, filter)
+    return ModGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountMod(filter, user_ctx) {

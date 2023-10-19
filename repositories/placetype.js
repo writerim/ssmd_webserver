@@ -244,19 +244,18 @@ const GetAllSearch = async (text, params) => {
   let filter_by_text = []
   return PlaceType.findAll({
     where: {
-            [Op.or]: filter_by_text,
-      ...params
-    }
+            [Op.or]: filter_by_text
+    },
+    ...params
   })
 }
 
 // Получение всех записей по вхождению строки куда либо
-const GetAllSearchCount = async (text, params) => {
+const GetAllSearchCount = async (text) => {
   let filter_by_text = []
   return PlaceType.count({
     where: {
-            [Op.or]: filter_by_text,
-      ...params
+            [Op.or]: filter_by_text
     }
   })
 }

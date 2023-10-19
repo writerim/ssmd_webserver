@@ -14,6 +14,7 @@ const {
   UserGetAllSearch,
   UserGetAllSearchCount,
   UserGetAllFilter,
+  UserRecalcTree,
   UserGetAllFilterCount,
   UserGetAll
 } = require("../repositories/user");
@@ -43,7 +44,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return UserAdd(data).then(res => new User(res.dataValues))
+    return UserAdd(data).then(res => {
+      return UserRecalcTree().then(t => {
+        return new User(res.dataValues)
+      })
+    })
   },
 
   async EditUser(data, user_ctx) {
@@ -60,7 +65,6 @@ module.exports = {
     // из текущей модели и вставить чтобы не перетереть
     return UserFindById(data.id).then(row => {
       if (row) {
-
         if (typeof data.lft !== 'undefined') {
           delete data.lft
         }
@@ -78,7 +82,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new User(res.dataValues)
+          return UserRecalcTree().then(t => {
+            return new User(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -167,11 +173,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountUser(text, filter, user_ctx) {
+  async GetAllSearchCountUser(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return UserGetAllFilterCount(text, filter)
+    return UserGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountUser(filter, user_ctx) {

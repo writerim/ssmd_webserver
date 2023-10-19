@@ -20,8 +20,6 @@ const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
 const ERROR_VALIDATE_NAME = 'error validate data: name'
 const ERROR_UPDATE_ISSET_NAME = 'error: undefined data: name'
-const ERROR_VALIDATE_PARENTID = 'error validate data: parent_id'
-const ERROR_UPDATE_ISSET_PARENTID = 'error: undefined data: parent_id'
 
 // Демон
 const initional = () => {
@@ -203,19 +201,18 @@ const GetAllSearch = async (text, params) => {
   let filter_by_text = []
   return Place.findAll({
     where: {
-            [Op.or]: filter_by_text,
-      ...params
-    }
+            [Op.or]: filter_by_text
+    },
+    ...params
   })
 }
 
 // Получение всех записей по вхождению строки куда либо
-const GetAllSearchCount = async (text, params) => {
+const GetAllSearchCount = async (text) => {
   let filter_by_text = []
   return Place.count({
     where: {
-            [Op.or]: filter_by_text,
-      ...params
+            [Op.or]: filter_by_text
     }
   })
 }
@@ -252,9 +249,6 @@ const ValidateUpdate = (data) => {
   if (!data.name) {
     return ERROR_VALIDATE_NAME
   }
-  if (!data.parent_id) {
-    return ERROR_VALIDATE_PARENTID
-  }
 
   return ``
 }
@@ -268,9 +262,6 @@ const ValidateInsert = (data) => {
 
   if (!data.name) {
     return ERROR_VALIDATE_NAME
-  }
-  if (!data.parent_id) {
-    return ERROR_VALIDATE_PARENTID
   }
 
   return ``
@@ -411,7 +402,6 @@ module.exports = {
   PLACE_ERROR_VALIDATE_INVALID_DATA: ERROR_VALIDATE_INVALID_DATA,
   PLACE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
   PLACE_ERROR_VALIDATE_NAME: ERROR_VALIDATE_NAME,
-  PLACE_ERROR_VALIDATE_PARENTID: ERROR_VALIDATE_PARENTID,
 
   PlaceGetAll: GetAll,
   PlaceGetAllCount: GetAllCount,

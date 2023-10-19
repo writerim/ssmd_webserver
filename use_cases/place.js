@@ -14,6 +14,7 @@ const {
   PlaceGetAllSearch,
   PlaceGetAllSearchCount,
   PlaceGetAllFilter,
+  PlaceRecalcTree,
   PlaceGetAllFilterCount,
   PlaceGetAll
 } = require("../repositories/place");
@@ -43,7 +44,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return PlaceAdd(data).then(res => new Place(res.dataValues))
+    return PlaceAdd(data).then(res => {
+      return PlaceRecalcTree().then(t => {
+        return new Place(res.dataValues)
+      })
+    })
   },
 
   async EditPlace(data, user_ctx) {
@@ -60,7 +65,6 @@ module.exports = {
     // из текущей модели и вставить чтобы не перетереть
     return PlaceFindById(data.id).then(row => {
       if (row) {
-
         if (typeof data.lft !== 'undefined') {
           delete data.lft
         }
@@ -78,7 +82,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new Place(res.dataValues)
+          return PlaceRecalcTree().then(t => {
+            return new Place(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -167,11 +173,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountPlace(text, filter, user_ctx) {
+  async GetAllSearchCountPlace(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return PlaceGetAllFilterCount(text, filter)
+    return PlaceGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountPlace(filter, user_ctx) {

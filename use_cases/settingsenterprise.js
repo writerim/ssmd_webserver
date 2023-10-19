@@ -36,7 +36,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return SettingsEnterpriseAdd(data).then(res => new SettingsEnterprise(res.dataValues))
+    return SettingsEnterpriseAdd(data).then(res => {
+      return SettingsEnterpriseRecalcTree().then(t => {
+        return new SettingsEnterprise(res.dataValues)
+      })
+    })
   },
 
   async EditSettingsEnterprise(data, user_ctx) {
@@ -64,7 +68,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new SettingsEnterprise(res.dataValues)
+          return SettingsEnterpriseRecalcTree().then(t => {
+            return new SettingsEnterprise(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -153,11 +159,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountSettingsEnterprise(text, filter, user_ctx) {
+  async GetAllSearchCountSettingsEnterprise(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return SettingsEnterpriseGetAllFilterCount(text, filter)
+    return SettingsEnterpriseGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountSettingsEnterprise(filter, user_ctx) {

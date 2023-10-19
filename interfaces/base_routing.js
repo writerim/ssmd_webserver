@@ -11,6 +11,7 @@ const {
 const {
   ApiGetAllDevice,
   ApiGetFilterDevice,
+  ApiGetSearchDevice,
   ApiGetByIdDevice,
   ApiAddDevice,
   ApiEditDevice,
@@ -218,7 +219,7 @@ const BaseRouter = (app) => {
 
   // Получение записей по фильтру
   app.get('/api/device/filter', ApiGetFilterDevice.bind(ContextApi));
-
+  app.get('/api/device/search', ApiGetSearchDevice.bind(ContextApi));
   // Получение записи
   app.get('/api/device/:id', ApiGetByIdDevice.bind(ContextApi));
 

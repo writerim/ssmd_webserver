@@ -36,7 +36,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return Device2DeviceAdd(data).then(res => new Device2Device(res.dataValues))
+    return Device2DeviceAdd(data).then(res => {
+      return Device2DeviceRecalcTree().then(t => {
+        return new Device2Device(res.dataValues)
+      })
+    })
   },
 
   async EditDevice2Device(data, user_ctx) {
@@ -64,7 +68,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new Device2Device(res.dataValues)
+          return Device2DeviceRecalcTree().then(t => {
+            return new Device2Device(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -153,11 +159,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountDevice2Device(text, filter, user_ctx) {
+  async GetAllSearchCountDevice2Device(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return Device2DeviceGetAllFilterCount(text, filter)
+    return Device2DeviceGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountDevice2Device(filter, user_ctx) {

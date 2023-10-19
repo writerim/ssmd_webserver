@@ -525,11 +525,14 @@ module.exports = {
       if (!offset) {
         offset = (page - 1) * limit
       }
+
+      let f = {
+        limit: Number(limit),
+        offset: Number(offset)
+      }
+
       return GetAllSearchCountSettingsEnterprise(req.params.text, user_ctx).then(r_count => {
-        return GetAllSearchSettingsEnterprise(req.params.text, {
-          limit: Number(limit),
-          offset: Number(offset)
-        }, user_ctx).then(r => {
+        return GetAllSearchSettingsEnterprise(req.params.text, f, user_ctx).then(r => {
 
           let pages = []
           let total_page = r_count / limit

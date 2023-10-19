@@ -36,7 +36,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return DataAdd(data).then(res => new Data(res.dataValues))
+    return DataAdd(data).then(res => {
+      return DataRecalcTree().then(t => {
+        return new Data(res.dataValues)
+      })
+    })
   },
 
   async EditData(data, user_ctx) {
@@ -64,7 +68,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new Data(res.dataValues)
+          return DataRecalcTree().then(t => {
+            return new Data(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -153,11 +159,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountData(text, filter, user_ctx) {
+  async GetAllSearchCountData(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return DataGetAllFilterCount(text, filter)
+    return DataGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountData(filter, user_ctx) {

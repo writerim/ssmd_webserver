@@ -36,7 +36,11 @@ module.exports = {
       throw new Error(error_validate)
     }
 
-    return UserPlaceAdd(data).then(res => new UserPlace(res.dataValues))
+    return UserPlaceAdd(data).then(res => {
+      return UserPlaceRecalcTree().then(t => {
+        return new UserPlace(res.dataValues)
+      })
+    })
   },
 
   async EditUserPlace(data, user_ctx) {
@@ -64,7 +68,9 @@ module.exports = {
           if (!res) {
             throw new Error(NOT_FOUND_ROW)
           }
-          return new UserPlace(res.dataValues)
+          return UserPlaceRecalcTree().then(t => {
+            return new UserPlace(res.dataValues)
+          })
         })
       }
       return new Promise((resolve) => resolve({
@@ -153,11 +159,11 @@ module.exports = {
     })
   },
 
-  async GetAllSearchCountUserPlace(text, filter, user_ctx) {
+  async GetAllSearchCountUserPlace(text, user_ctx) {
     if (!user_ctx || typeof user_ctx != 'object' || !(user_ctx instanceof UserCtx)) {
       throw new Error(NOT_FOUND_CONTEXT)
     }
-    return UserPlaceGetAllFilterCount(text, filter)
+    return UserPlaceGetAllSearchCount(text)
   },
 
   async GetAllByFilterCountUserPlace(filter, user_ctx) {
