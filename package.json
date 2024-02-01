@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "SET NODE_ENV=dev && nodemon",
+    "dev": "NODE_ENV=dev && nodemon",
     "build": "pkg  --options expose-gc  index.js",
     "watch": "npm-watch",
     "docs": "apidoc -i lib/interfaces/web/api -o views/admin/docs",
-    "start": "node index.js",
+    "start": "node --env-file=.env index.js",
     "test": "SET NODE_ENV=test && mocha --timeout 10000 --colors ./repositories/**/*.test.js ./use_cases/**/*.test.js ./interfaces/controllers/**/*.test.js",
     "test_pooler_last_data": "mocha --timeout 10000 --colors ./pooler/v2/entity/last_data/index.test.js",
     "test_pooler_issue": "mocha --timeout 10000 --colors ./pooler/v2/entity/issue/index.test.js",
@@ -26,8 +26,14 @@
   },
   "pkg": {
     "scripts": "build/**/*.js",
-    "assets": ["interfaces/web/static/**/*","interfaces/apidoc/**/*"],
-    "targets": [ "node18-linux-arm64", "node18-win-x64" ],
+    "assets": [
+      "interfaces/web/static/**/*",
+      "interfaces/apidoc/**/*"
+    ],
+    "targets": [
+      "node18-linux-arm64",
+      "node18-win-x64"
+    ],
     "outputPath": "."
   },
   "author": "Sergey Ivanov",
@@ -67,10 +73,10 @@
     "mongoose": "^5.13.14",
     "mysql2": "^2.3.3",
     "n": "^9.0.1",
-    "node-api-doc-generator": "^1.1.1",
     "node-telegram-bot-api": "^0.59.0",
     "npm-watch": "^0.11.0",
     "openapi": "^1.0.1",
+    "pkg": "^5.8.1",
     "pm2": "^5.2.2",
     "randomstring": "^1.2.2",
     "redoc-cli": "^0.13.21",
@@ -78,7 +84,6 @@
     "require-directory": "^2.1.1",
     "sequelize": "^5.22.5",
     "sha1": "^1.1.1",
-    "sqlite3": "^5.0.11",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
     "table": "^6.8.0",

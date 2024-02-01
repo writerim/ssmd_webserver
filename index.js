@@ -14,8 +14,6 @@ const {
 } = require('path');
 var cookieParser = require('cookie-parser');
 
-const env = process.env.NODE_ENV.trim() || 'production';
-var config = require('./config.json');
 
 var pjson = require('./package.json');
 const { Start } = require('./pooler/v2/server');
@@ -65,7 +63,7 @@ const start = async () => {
     app.use("/admin/doc", express.static('interfaces/apidoc/index.html'));
     app.use("/assets/assets", express.static('interfaces/apidoc/assets'));
     app.use("/assets", express.static('interfaces/web/static/assets'));
-
+    
     require('./interfaces/base_routing.js')(app);
     require('./interfaces/custom_base_routing.js')(app);
     require('./interfaces/admin_routing.js')(app);
@@ -78,8 +76,8 @@ const start = async () => {
 
     }); 
 
-    const server = app.listen(config.server[env].port, () => {
-      console.log('listening on port %s...', config.server[env].port);
+    const server = app.listen(process.env.APP_PORT, () => {
+      console.log('listening on port %s...', process.env.APP_PORT);
     });
 
     Start(APP_EVENTS)

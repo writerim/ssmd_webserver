@@ -39,24 +39,13 @@ module.exports = {
             return connect
         }
 
-        if (!config.database[env]) {
-            throw new Error('config.js file not valid')
-        }
-
         initial_connect = true
-        if (config.database[env].type && config.database[env].type == "sqlite") {
-            connect = new Sequelize({
-                ...config.database[env],
-                dialect: 'sqlite',
-            });
-        } else {
-            console.log("new connect")
-            connect = new Sequelize(config.database[env].db, config.database[env].login, config.database[env].password, {
-                logging: config.database[env].logging,
-                dialect: config.database[env].type,
-                host: config.database[env].host
-            })
-        }
+        connect = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+            // logging: process.env.DB_LOG,
+            dialect: process.env.DB_DIALECT,
+            host: process.env.DB_HOST,
+            // sync: true,
+        })
         if (!initial_entity) {
             connect.sync()
             return connect

@@ -31,7 +31,7 @@ module.exports = {
     InitMods: () => {
         // Сначала записываем данные по модам
         [emulator_ce301, emulator_snr].forEach(m => {
-            ModAdd(mapper(m))
+            // ModAdd(mapper(m))
         })
     }
 }
