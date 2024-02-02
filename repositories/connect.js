@@ -2,10 +2,6 @@ const { patch } = require('request');
 const { Sequelize } = require('sequelize');
 const path = require("path");
 
-
-const env = process.env.NODE_ENV && process.env.NODE_ENV.trim() || 'production';
-const config = require('./../config.json');
-
 // Соединение
 var connect = null
 

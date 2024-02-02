@@ -14,6 +14,90 @@ const {
 const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
+const INAVID_ARGS = 'invalid args'
+
+// маппер в ответ для Гет ответа
+const mapToGetResponse = (obj) =>{
+    let res_obj = {}
+                                                            if( typeof obj.id === 'undefined' ){
+                                                    res_obj.id = 0
+                                            }else{
+                        res_obj.id = obj.id
+                    }
+                                                                                                                                                                                                                                                                                                                    if( typeof obj.name === 'undefined' ){
+                                                    res_obj.name = ''
+                                            }else{
+                        res_obj.name = obj.name
+                    }
+                                                                                                                                                                                                                                                                                                                    if( typeof obj.parent_id === 'undefined' ){
+                                                    res_obj.parent_id = 0
+                                            }else{
+                        res_obj.parent_id = obj.parent_id
+                    }
+                                                                                                                                                                                                                                                                                                                                                                            if( typeof obj.icon === 'undefined' ){
+                                                    res_obj.icon = ''
+                                            }else{
+                        res_obj.icon = obj.icon
+                    }
+                                                                                                                                                                                                                                                                                                                    if( typeof obj.status === 'undefined' ){
+                                                    res_obj.status = 0
+                                            }else{
+                        res_obj.status = obj.status
+                    }
+                                                                                                                                                                                                                                                                                                                    if( typeof obj.is_exclude === 'undefined' ){
+                                                    res_obj.is_exclude = false
+                                            }else{
+                        res_obj.is_exclude = obj.is_exclude
+                    }
+                                            return res_obj
+}
+
+
+// маппер в ответ для Add запроса
+const mapToAddRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Add ответа
+const mapToAddResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Edit запроса
+const mapToEditRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Edit ответа
+const mapToEditResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+
+// маппер в ответ для Delete запроса
+const mapToDeleteRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Delete ответа
+const mapToDeleteResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
 
 module.exports = {
 
@@ -56,6 +140,9 @@ module.exports = {
 *     }
 */
     ApiAddPlace (req, res, next) {
+
+        console.log('ApiAddPlace');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -63,7 +150,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddPlace(req.body, user_ctx).then(r => {
+            return AddPlace(mapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -93,6 +180,9 @@ module.exports = {
 *     }
 */
     ApiGetByIdPlace (req, res, next) {
+
+    console.log('ApiGetByIdPlace');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -101,7 +191,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdPlace(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+                res.end(JSON.stringify(mapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -149,6 +239,9 @@ module.exports = {
 *     }
 */
     ApiEditPlace (req, res, next) {
+
+    console.log('ApiEditPlace');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -156,11 +249,11 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            if(!req.body.id){
-                return module.exports.ApiAddPlace(req, res, next)
+            if(!req.body.id && !req.params.id){
+                res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditPlace(req.body, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+            return EditPlace(mapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(mapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -191,6 +284,9 @@ module.exports = {
 *     }
 */
     ApiDeletePlace (req, res, next) {
+
+    console.log('ApiDeletePlace');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -254,6 +350,9 @@ module.exports = {
 *
 */
     ApiGetAllPlace (req, res, next) {
+
+    console.log('ApiGetAllPlace');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -304,8 +403,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 
@@ -400,6 +505,9 @@ module.exports = {
 *
 */
     ApiGetFilterPlace (req, res, next) {
+
+    console.log('ApiGetFilterPlace');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -503,8 +611,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out , 
                         meta : {
                             page, 
                             limit, 
@@ -581,6 +695,9 @@ module.exports = {
 *
 */
     ApiGetSearchPlace (req, res, next) {
+
+    console.log('ApiGetSearchPlace');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -630,8 +747,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 

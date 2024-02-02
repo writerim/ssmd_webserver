@@ -14,6 +14,61 @@ const {
 const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
+const INAVID_ARGS = 'invalid args'
+
+// маппер в ответ для Гет ответа
+const mapToGetResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Add запроса
+const mapToAddRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Add ответа
+const mapToAddResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Edit запроса
+const mapToEditRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Edit ответа
+const mapToEditResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+
+// маппер в ответ для Delete запроса
+const mapToDeleteRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Delete ответа
+const mapToDeleteResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
 
 module.exports = {
 
@@ -50,6 +105,9 @@ module.exports = {
 *     }
 */
     ApiAddData (req, res, next) {
+
+        console.log('ApiAddData');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -57,7 +115,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddData(req.body, user_ctx).then(r => {
+            return AddData(mapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -87,6 +145,9 @@ module.exports = {
 *     }
 */
     ApiGetByIdData (req, res, next) {
+
+    console.log('ApiGetByIdData');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -95,7 +156,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdData(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+                res.end(JSON.stringify(mapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -137,6 +198,9 @@ module.exports = {
 *     }
 */
     ApiEditData (req, res, next) {
+
+    console.log('ApiEditData');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -144,11 +208,11 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            if(!req.body.id){
-                return module.exports.ApiAddData(req, res, next)
+            if(!req.body.id && !req.params.id){
+                res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditData(req.body, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+            return EditData(mapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(mapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -179,6 +243,9 @@ module.exports = {
 *     }
 */
     ApiDeleteData (req, res, next) {
+
+    console.log('ApiDeleteData');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -239,6 +306,9 @@ module.exports = {
 *
 */
     ApiGetAllData (req, res, next) {
+
+    console.log('ApiGetAllData');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -289,8 +359,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 
@@ -379,6 +455,9 @@ module.exports = {
 *
 */
     ApiGetFilterData (req, res, next) {
+
+    console.log('ApiGetFilterData');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -461,8 +540,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out , 
                         meta : {
                             page, 
                             limit, 
@@ -536,6 +621,9 @@ module.exports = {
 *
 */
     ApiGetSearchData (req, res, next) {
+
+    console.log('ApiGetSearchData');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -585,8 +673,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 

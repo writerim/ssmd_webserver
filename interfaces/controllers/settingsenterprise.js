@@ -14,6 +14,61 @@ const {
 const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
+const INAVID_ARGS = 'invalid args'
+
+// маппер в ответ для Гет ответа
+const mapToGetResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Add запроса
+const mapToAddRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Add ответа
+const mapToAddResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Edit запроса
+const mapToEditRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Edit ответа
+const mapToEditResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+
+// маппер в ответ для Delete запроса
+const mapToDeleteRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Delete ответа
+const mapToDeleteResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
 
 module.exports = {
 
@@ -48,6 +103,9 @@ module.exports = {
 *     }
 */
     ApiAddSettingsEnterprise (req, res, next) {
+
+        console.log('ApiAddSettingsEnterprise');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -55,7 +113,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddSettingsEnterprise(req.body, user_ctx).then(r => {
+            return AddSettingsEnterprise(mapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -85,6 +143,9 @@ module.exports = {
 *     }
 */
     ApiGetByIdSettingsEnterprise (req, res, next) {
+
+    console.log('ApiGetByIdSettingsEnterprise');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -93,7 +154,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdSettingsEnterprise(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+                res.end(JSON.stringify(mapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -133,6 +194,9 @@ module.exports = {
 *     }
 */
     ApiEditSettingsEnterprise (req, res, next) {
+
+    console.log('ApiEditSettingsEnterprise');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -140,11 +204,11 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            if(!req.body.id){
-                return module.exports.ApiAddSettingsEnterprise(req, res, next)
+            if(!req.body.id && !req.params.id){
+                res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditSettingsEnterprise(req.body, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+            return EditSettingsEnterprise(mapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(mapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -175,6 +239,9 @@ module.exports = {
 *     }
 */
     ApiDeleteSettingsEnterprise (req, res, next) {
+
+    console.log('ApiDeleteSettingsEnterprise');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -234,6 +301,9 @@ module.exports = {
 *
 */
     ApiGetAllSettingsEnterprise (req, res, next) {
+
+    console.log('ApiGetAllSettingsEnterprise');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -284,8 +354,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 
@@ -372,6 +448,9 @@ module.exports = {
 *
 */
     ApiGetFilterSettingsEnterprise (req, res, next) {
+
+    console.log('ApiGetFilterSettingsEnterprise');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -447,8 +526,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out , 
                         meta : {
                             page, 
                             limit, 
@@ -521,6 +606,9 @@ module.exports = {
 *
 */
     ApiGetSearchSettingsEnterprise (req, res, next) {
+
+    console.log('ApiGetSearchSettingsEnterprise');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -570,8 +658,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 

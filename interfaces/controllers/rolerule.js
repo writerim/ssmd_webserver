@@ -14,6 +14,61 @@ const {
 const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
+const INAVID_ARGS = 'invalid args'
+
+// маппер в ответ для Гет ответа
+const mapToGetResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Add запроса
+const mapToAddRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Add ответа
+const mapToAddResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Edit запроса
+const mapToEditRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Edit ответа
+const mapToEditResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+
+// маппер в ответ для Delete запроса
+const mapToDeleteRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Delete ответа
+const mapToDeleteResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
 
 module.exports = {
 
@@ -46,6 +101,9 @@ module.exports = {
 *     }
 */
     ApiAddRoleRule (req, res, next) {
+
+        console.log('ApiAddRoleRule');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -53,7 +111,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddRoleRule(req.body, user_ctx).then(r => {
+            return AddRoleRule(mapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -83,6 +141,9 @@ module.exports = {
 *     }
 */
     ApiGetByIdRoleRule (req, res, next) {
+
+    console.log('ApiGetByIdRoleRule');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -91,7 +152,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdRoleRule(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+                res.end(JSON.stringify(mapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -129,6 +190,9 @@ module.exports = {
 *     }
 */
     ApiEditRoleRule (req, res, next) {
+
+    console.log('ApiEditRoleRule');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -136,11 +200,11 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            if(!req.body.id){
-                return module.exports.ApiAddRoleRule(req, res, next)
+            if(!req.body.id && !req.params.id){
+                res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditRoleRule(req.body, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+            return EditRoleRule(mapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(mapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -171,6 +235,9 @@ module.exports = {
 *     }
 */
     ApiDeleteRoleRule (req, res, next) {
+
+    console.log('ApiDeleteRoleRule');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -229,6 +296,9 @@ module.exports = {
 *
 */
     ApiGetAllRoleRule (req, res, next) {
+
+    console.log('ApiGetAllRoleRule');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -279,8 +349,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 
@@ -365,6 +441,9 @@ module.exports = {
 *
 */
     ApiGetFilterRoleRule (req, res, next) {
+
+    console.log('ApiGetFilterRoleRule');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -433,8 +512,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out , 
                         meta : {
                             page, 
                             limit, 
@@ -506,6 +591,9 @@ module.exports = {
 *
 */
     ApiGetSearchRoleRule (req, res, next) {
+
+    console.log('ApiGetSearchRoleRule');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -555,8 +643,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 

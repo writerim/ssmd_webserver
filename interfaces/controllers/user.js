@@ -14,6 +14,90 @@ const {
 const UserCtx = require("../../entity/user");
 
 const CONTEXT_NOT_FOUND = 'not fount context'
+const INAVID_ARGS = 'invalid args'
+
+// маппер в ответ для Гет ответа
+const mapToGetResponse = (obj) =>{
+    let res_obj = {}
+                                                            if( typeof obj.id === 'undefined' ){
+                                                    res_obj.id = 0
+                                            }else{
+                        res_obj.id = obj.id
+                    }
+                                                                                                                                                                                                                                                                                                                                                                                                        if( typeof obj.name === 'undefined' ){
+                                                    res_obj.name = ''
+                                            }else{
+                        res_obj.name = obj.name
+                    }
+                                                                                                                                                                                                                                                                                                                                                                                                        if( typeof obj.last_name === 'undefined' ){
+                                                    res_obj.last_name = ''
+                                            }else{
+                        res_obj.last_name = obj.last_name
+                    }
+                                                                                                                                                                                                                                                                                                                                                                                                        if( typeof obj.login === 'undefined' ){
+                                                    res_obj.login = ''
+                                            }else{
+                        res_obj.login = obj.login
+                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                    if( typeof obj.parent_id === 'undefined' ){
+                                                    res_obj.parent_id = 0
+                                            }else{
+                        res_obj.parent_id = obj.parent_id
+                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        if( typeof obj.is_system === 'undefined' ){
+                                                    res_obj.is_system = false
+                                            }else{
+                        res_obj.is_system = obj.is_system
+                    }
+                                            return res_obj
+}
+
+
+// маппер в ответ для Add запроса
+const mapToAddRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Add ответа
+const mapToAddResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+// маппер в ответ для Edit запроса
+const mapToEditRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Edit ответа
+const mapToEditResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+
+
+// маппер в ответ для Delete запроса
+const mapToDeleteRequest = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
+// маппер в ответ для Delete ответа
+const mapToDeleteResponse = (obj) =>{
+    let res_obj = {}
+            res_obj = obj;
+        return res_obj
+}
+
 
 module.exports = {
 
@@ -62,6 +146,9 @@ module.exports = {
 *     }
 */
     ApiAddUser (req, res, next) {
+
+        console.log('ApiAddUser');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -69,7 +156,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddUser(req.body, user_ctx).then(r => {
+            return AddUser(mapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -99,6 +186,9 @@ module.exports = {
 *     }
 */
     ApiGetByIdUser (req, res, next) {
+
+    console.log('ApiGetByIdUser');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -107,7 +197,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdUser(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+                res.end(JSON.stringify(mapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -161,6 +251,9 @@ module.exports = {
 *     }
 */
     ApiEditUser (req, res, next) {
+
+    console.log('ApiEditUser');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -168,11 +261,11 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            if(!req.body.id){
-                return module.exports.ApiAddUser(req, res, next)
+            if(!req.body.id && !req.params.id){
+                res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditUser(req.body, user_ctx).then(r => {
-                res.end(JSON.stringify(r));
+            return EditUser(mapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(mapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -203,6 +296,9 @@ module.exports = {
 *     }
 */
     ApiDeleteUser (req, res, next) {
+
+    console.log('ApiDeleteUser');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -269,6 +365,9 @@ module.exports = {
 *
 */
     ApiGetAllUser (req, res, next) {
+
+    console.log('ApiGetAllUser');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -319,8 +418,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 
@@ -421,6 +526,9 @@ module.exports = {
 *
 */
     ApiGetFilterUser (req, res, next) {
+
+    console.log('ApiGetFilterUser');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -545,8 +653,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out , 
                         meta : {
                             page, 
                             limit, 
@@ -626,6 +740,9 @@ module.exports = {
 *
 */
     ApiGetSearchUser (req, res, next) {
+
+    console.log('ApiGetSearchUser');
+
         res.setHeader('Content-Type', 'application/json');
         this.isAuth(req, res).then(user => {
             if(!user){
@@ -675,8 +792,14 @@ module.exports = {
                         pages.push({number: i, is_active: page==i})
                     }
 
+                    let res_out = []
+
+                    r.forEach(rr => {
+                        res_out.push(mapToGetResponse(rr))
+                    })
+
                     res.end(JSON.stringify({
-                        data : r , 
+                        data : res_out, 
                         meta : {
                             page, 
                             limit, 
