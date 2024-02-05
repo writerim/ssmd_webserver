@@ -191,36 +191,14 @@ const Update = async (data) => {
 
 // Получение всех записей
 const GetAll = async (params, flags = {include: -1}) => {
-    if(flags.include != -1){
-        params['include'] = []
-                                                                                                                                        let iUser5 = {
-                    model: User,
-                    as : 'users'
-                }
-                if(flags.include){
-                    iUser5.limit = Number(flags.include)
-                }
-                params['include'].push(iUser5)
-                                                                                                                            }
-    return User.findAll(params)
+        return User.findAll(params)
 }
 
 // Получение всех записей по вхождению строки куда либо
 const GetAllSearch = async (text, params, flags = {include: -1}) => {
     let filter_by_text = []
                                                                                                                                         
-    if(flags.include != -1){
-        params['include'] = []
-                                                                                                                                        let iUser5 = {
-                    model: User,
-                    as : 'users'
-                }
-                if(flags.include){
-                    iUser5.limit = Number(flags.include)
-                }
-                params['include'].push(iUser5)
-                                                                                                                            }
-
+    
     return User.findAll({
         where : {
             [Op.or]: filter_by_text
@@ -254,18 +232,7 @@ const GetAllFilter = async (filter, params, flags = {include: -1}) => {
         return [];
     }
 
-    if(flags.include != -1){
-        params['include'] = []
-                                                                                                                                        let iUser5 = {
-                    model: User,
-                    as : 'users'
-                }
-                if(flags.include){
-                    iUser5.limit = Number(flags.include)
-                }
-                params['include'].push(iUser5)
-                                                                                                                            }
-
+    
     return User.findAll({
         where : filter,
         ...params

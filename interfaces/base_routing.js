@@ -24,6 +24,14 @@
             ApiEditLastData,
             ApiDeleteLastData
         } = require("./controllers/lastdata");
+                                                    const { 
+            ApiGetAllPoolerPlace,
+            ApiGetFilterPoolerPlace,
+                        ApiGetByIdPoolerPlace,
+            ApiAddPoolerPlace,
+            ApiEditPoolerPlace,
+            ApiDeletePoolerPlace
+        } = require("./controllers/poolerplace");
                                                                                                                                                                                         const { 
             ApiGetAllMod,
             ApiGetFilterMod,
@@ -48,7 +56,7 @@
             ApiEditDevice,
             ApiDeleteDevice
         } = require("./controllers/device");
-                                                                                                                const { 
+                                                                                                                            const { 
             ApiGetAllPlace,
             ApiGetFilterPlace,
                         ApiGetByIdPlace,
@@ -112,6 +120,14 @@
             ApiEditData,
             ApiDeleteData
         } = require("./controllers/data");
+                                                                const { 
+            ApiGetAllPooler,
+            ApiGetFilterPooler,
+                        ApiGetByIdPooler,
+            ApiAddPooler,
+            ApiEditPooler,
+            ApiDeletePooler
+        } = require("./controllers/pooler");
                                                     const { 
             ApiGetAllRule,
             ApiGetFilterRule,
@@ -247,6 +263,24 @@ const BaseRouter = (app) => {
 
     // Удаление записи
     app.delete('/api/lastdata/:id', ApiDeleteLastData.bind(ContextApi));
+                                                // Получение всех записей
+    app.get('/api/poolerplace/all', ApiGetAllPoolerPlace.bind(ContextApi));
+
+    // Получение записей по фильтру
+    app.get('/api/poolerplace/filter', ApiGetFilterPoolerPlace.bind(ContextApi));
+
+    // Получение записи
+    app.get('/api/poolerplace/:id', ApiGetByIdPoolerPlace.bind(ContextApi));
+
+    // Добавление записи
+    app.post('/api/poolerplace/0', ApiAddPoolerPlace.bind(ContextApi));
+
+    // Редактирование записи
+    app.put('/api/poolerplace/:id', ApiEditPoolerPlace.bind(ContextApi));
+    app.post('/api/poolerplace/:id', ApiEditPoolerPlace.bind(ContextApi));
+
+    // Удаление записи
+    app.delete('/api/poolerplace/:id', ApiDeletePoolerPlace.bind(ContextApi));
                                                                                                                                                                                     // Получение всех записей
     app.get('/api/mod/all', ApiGetAllMod.bind(ContextApi));
 
@@ -301,7 +335,7 @@ app.get('/api/device/search', ApiGetSearchDevice.bind(ContextApi));
 
     // Удаление записи
     app.delete('/api/device/:id', ApiDeleteDevice.bind(ContextApi));
-                                                                                                            // Получение всех записей
+                                                                                                                        // Получение всех записей
     app.get('/api/place/all', ApiGetAllPlace.bind(ContextApi));
 
     // Получение записей по фильтру
@@ -445,6 +479,24 @@ app.get('/api/device/search', ApiGetSearchDevice.bind(ContextApi));
 
     // Удаление записи
     app.delete('/api/data/:id', ApiDeleteData.bind(ContextApi));
+                                                            // Получение всех записей
+    app.get('/api/pooler/all', ApiGetAllPooler.bind(ContextApi));
+
+    // Получение записей по фильтру
+    app.get('/api/pooler/filter', ApiGetFilterPooler.bind(ContextApi));
+
+    // Получение записи
+    app.get('/api/pooler/:id', ApiGetByIdPooler.bind(ContextApi));
+
+    // Добавление записи
+    app.post('/api/pooler/0', ApiAddPooler.bind(ContextApi));
+
+    // Редактирование записи
+    app.put('/api/pooler/:id', ApiEditPooler.bind(ContextApi));
+    app.post('/api/pooler/:id', ApiEditPooler.bind(ContextApi));
+
+    // Удаление записи
+    app.delete('/api/pooler/:id', ApiDeletePooler.bind(ContextApi));
                                                 // Получение всех записей
     app.get('/api/rule/all', ApiGetAllRule.bind(ContextApi));
 

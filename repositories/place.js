@@ -2,7 +2,7 @@
 
 const { APP_EVENTS } = require('../app_events');
 
-                                            
+                                                
 
 
 const { DataTypes, Op, Sequelize } = require('sequelize');
@@ -10,7 +10,7 @@ const { GetConnect } = require('./connect');
 var events = require('events');
 
 
-                                            
+                                                
 const TABLENAME = 'place'
 
 
@@ -19,7 +19,7 @@ const ERROR_VALIDATE_INVALID_DATA = `invalid data`;
 const ERROR_NOT_FOUND = `not found`;
         const ERROR_VALIDATE_NAME = 'error validate data: name'
 const ERROR_UPDATE_ISSET_NAME = 'error: undefined data: name'
-                         
+                             
 
 // Демон
 const initional = ()=>{
@@ -53,17 +53,13 @@ const initional = ()=>{
             interfaceConnect.addColumn(TABLENAME + 's', 'is_exclude', { 
                     type: DataTypes.BOOLEAN,
                 }, {  mustExist: false }).catch(()=>{});
+            interfaceConnect.addColumn(TABLENAME + 's', 'is_demo', { 
+                    type: DataTypes.BOOLEAN,
+                }, {  mustExist: false }).catch(()=>{});
         
     setTimeout(()=>{
         let data = {}
-                                    data = {}
-                                    data['name'] = 'Пример объекта'
-                                    data['icon_id'] = '1'
-                                    data['parent_id'] = '0'
-                                Add(data).catch(e =>{
-                    console.log(e)
-                })
-                        }, 500)
+            }, 500)
 }
 
 // Инициализация модели
@@ -94,6 +90,9 @@ const Place = GetConnect({name: 'Place' , deamon : initional}).define(TABLENAME,
             is_exclude: {
                             type: DataTypes.BOOLEAN,
                                 },
+            is_demo: {
+                            type: DataTypes.BOOLEAN,
+                                },
     })
 
 
@@ -103,7 +102,7 @@ const Place = GetConnect({name: 'Place' , deamon : initional}).define(TABLENAME,
 const Add = async (data) => {
 
     let uniques_where = {}
-                                                                                                        if(Object.keys(uniques_where).length){
+                                                                                                                    if(Object.keys(uniques_where).length){
         return Place.findOne({
             where: uniques_where
         }).then(res=>{
@@ -174,36 +173,14 @@ const Update = async (data) => {
 
 // Получение всех записей
 const GetAll = async (params, flags = {include: -1}) => {
-    if(flags.include != -1){
-        params['include'] = []
-                                                                            let iPlace2 = {
-                    model: Place,
-                    as : 'places'
-                }
-                if(flags.include){
-                    iPlace2.limit = Number(flags.include)
-                }
-                params['include'].push(iPlace2)
-                                                                                                                            }
-    return Place.findAll(params)
+        return Place.findAll(params)
 }
 
 // Получение всех записей по вхождению строки куда либо
 const GetAllSearch = async (text, params, flags = {include: -1}) => {
     let filter_by_text = []
-                                                                                                    
-    if(flags.include != -1){
-        params['include'] = []
-                                                                            let iPlace2 = {
-                    model: Place,
-                    as : 'places'
-                }
-                if(flags.include){
-                    iPlace2.limit = Number(flags.include)
-                }
-                params['include'].push(iPlace2)
-                                                                                                                            }
-
+                                                                                                                
+    
     return Place.findAll({
         where : {
             [Op.or]: filter_by_text
@@ -215,7 +192,7 @@ const GetAllSearch = async (text, params, flags = {include: -1}) => {
 // Получение всех записей по вхождению строки куда либо
 const GetAllSearchCount = async (text) => {
     let filter_by_text = []
-                                                                                                        return Place.count({
+                                                                                                                    return Place.count({
         where : {
             [Op.or]: filter_by_text
         }
@@ -237,18 +214,7 @@ const GetAllFilter = async (filter, params, flags = {include: -1}) => {
         return [];
     }
 
-    if(flags.include != -1){
-        params['include'] = []
-                                                                            let iPlace2 = {
-                    model: Place,
-                    as : 'places'
-                }
-                if(flags.include){
-                    iPlace2.limit = Number(flags.include)
-                }
-                params['include'].push(iPlace2)
-                                                                                                                            }
-
+    
     return Place.findAll({
         where : filter,
         ...params
@@ -267,7 +233,7 @@ const ValidateUpdate = (data) => {
                         if (!data.name) {
             return ERROR_VALIDATE_NAME
         }
-                                                         
+                                                                 
 
     return ``
 }
@@ -283,7 +249,7 @@ const ValidateInsert = (data) => {
                         if (!data.name) {
             return ERROR_VALIDATE_NAME
         }
-                                                         
+                                                                 
 
     return ``
 }
@@ -424,7 +390,7 @@ module.exports = {
 PLACE_ERROR_VALIDATE_INVALID_DATA: ERROR_VALIDATE_INVALID_DATA,
 PLACE_ERROR_NOT_FOUND: ERROR_NOT_FOUND,
                     PLACE_ERROR_VALIDATE_NAME: ERROR_VALIDATE_NAME,
-                                                         
+                                                                 
 
     PlaceGetAll: GetAll,
     PlaceGetAllCount: GetAllCount,

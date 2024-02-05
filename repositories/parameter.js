@@ -135,20 +135,14 @@ const Update = async (data) => {
 
 // Получение всех записей
 const GetAll = async (params, flags = {include: -1}) => {
-    if(flags.include != -1){
-        params['include'] = []
-                                                    }
-    return Parameter.findAll(params)
+        return Parameter.findAll(params)
 }
 
 // Получение всех записей по вхождению строки куда либо
 const GetAllSearch = async (text, params, flags = {include: -1}) => {
     let filter_by_text = []
                             
-    if(flags.include != -1){
-        params['include'] = []
-                                                    }
-
+    
     return Parameter.findAll({
         where : {
             [Op.or]: filter_by_text
@@ -182,10 +176,7 @@ const GetAllFilter = async (filter, params, flags = {include: -1}) => {
         return [];
     }
 
-    if(flags.include != -1){
-        params['include'] = []
-                                                    }
-
+    
     return Parameter.findAll({
         where : filter,
         ...params

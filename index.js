@@ -14,10 +14,12 @@ const {
 } = require('path');
 var cookieParser = require('cookie-parser');
 
-
 var pjson = require('./package.json');
 const { Start } = require('./pooler/v2/server');
 const { APP_EVENTS } = require('./app_events');
+const { CheckInstallBasePlace } = require('./use_cases/place.custom.js');
+const {  CreateDefaultUser } = require('./use_cases/user.custom.js');
+
 
 // Start the server
 const start = async () => {
@@ -68,17 +70,18 @@ const start = async () => {
     require('./interfaces/custom_base_routing.js')(app);
     require('./interfaces/admin_routing.js')(app);
 
-    app.use((err, req, res, next) => {
-      res.status(500)
-      res.end(JSON.stringify({
-        error: err.message
-      }));
 
-    }); 
+    // Сначала создаем пространства
+    CheckInstallBasePlace();
 
-    const server = app.listen(process.env.APP_PORT, () => {
+    // Создаем для них пользователей
+    CreateDefaultUser();
+
+
+    app.listen(process.env.APP_PORT, () => {
       console.log('listening on port %s...', process.env.APP_PORT);
     });
+
 
     Start(APP_EVENTS)
 
@@ -87,5 +90,5 @@ const start = async () => {
     process.exit(1);
   }
 };
-
+console.log("start");
 start();

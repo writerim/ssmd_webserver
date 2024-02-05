@@ -29,6 +29,7 @@ describe("repo: DB: Place", function () {
                                                             o['icon'] = 'test'
                                                             o['status'] = 10
                                                             o['is_exclude'] = true
+                                                            o['is_demo'] = true
                             return PlaceAdd(o)
         .then(res => {
                                                 add_id = res.get('id')
@@ -46,6 +47,8 @@ describe("repo: DB: Place", function () {
                                         assert.equal(res.get('status'), 10)
                                             
                                     assert.equal(res.get('is_exclude'), true)
+                                            
+                                    assert.equal(res.get('is_demo'), true)
                                     })
     })
 
@@ -67,6 +70,8 @@ describe("repo: DB: Place", function () {
                                                 assert.equal(res.get('status'), 10)
                                                         
                                             assert.equal(res.get('is_exclude'), true)
+                                                        
+                                            assert.equal(res.get('is_demo'), true)
                                                 }
         })
     })
@@ -91,6 +96,8 @@ describe("repo: DB: Place", function () {
                                         assert.equal(res.get('status'), 10)
                                             
                                     assert.equal(res.get('is_exclude'), true)
+                                            
+                                    assert.equal(res.get('is_demo'), true)
                                     })
     })
 
@@ -107,6 +114,7 @@ describe("repo: DB: Place", function () {
                                                             o['icon'] = 'test 2'
                                                             o['status'] = 54
                                                             o['is_exclude'] = false
+                                                            o['is_demo'] = false
                             
         return PlaceUpdate(o).then(res => {
                                                 assert.equal(res.get('id'), add_id)
@@ -124,6 +132,8 @@ describe("repo: DB: Place", function () {
                                     assert.equal(res.get('status'), 54)
                                             
                                     assert.equal(res.get('is_exclude'), false)
+                                            
+                                    assert.equal(res.get('is_demo'), false)
                                     })
     })
 

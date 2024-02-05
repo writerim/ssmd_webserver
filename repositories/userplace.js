@@ -141,52 +141,14 @@ const Update = async (data) => {
 
 // Получение всех записей
 const GetAll = async (params, flags = {include: -1}) => {
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iPlace1 = {
-                    model: Place,
-                    as : 'places'
-                }
-                if(flags.include){
-                    iPlace1.limit = Number(flags.include)
-                }
-                params['include'].push(iPlace1)
-                                                let iUser2 = {
-                    model: User,
-                    as : 'users'
-                }
-                if(flags.include){
-                    iUser2.limit = Number(flags.include)
-                }
-                params['include'].push(iUser2)
-                        }
-    return UserPlace.findAll(params)
+        return UserPlace.findAll(params)
 }
 
 // Получение всех записей по вхождению строки куда либо
 const GetAllSearch = async (text, params, flags = {include: -1}) => {
     let filter_by_text = []
                                         
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iPlace1 = {
-                    model: Place,
-                    as : 'places'
-                }
-                if(flags.include){
-                    iPlace1.limit = Number(flags.include)
-                }
-                params['include'].push(iPlace1)
-                                                let iUser2 = {
-                    model: User,
-                    as : 'users'
-                }
-                if(flags.include){
-                    iUser2.limit = Number(flags.include)
-                }
-                params['include'].push(iUser2)
-                        }
-
+    
     return UserPlace.findAll({
         where : {
             [Op.or]: filter_by_text
@@ -220,26 +182,7 @@ const GetAllFilter = async (filter, params, flags = {include: -1}) => {
         return [];
     }
 
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iPlace1 = {
-                    model: Place,
-                    as : 'places'
-                }
-                if(flags.include){
-                    iPlace1.limit = Number(flags.include)
-                }
-                params['include'].push(iPlace1)
-                                                let iUser2 = {
-                    model: User,
-                    as : 'users'
-                }
-                if(flags.include){
-                    iUser2.limit = Number(flags.include)
-                }
-                params['include'].push(iUser2)
-                        }
-
+    
     return UserPlace.findAll({
         where : filter,
         ...params

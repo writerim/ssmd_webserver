@@ -13,8 +13,9 @@ if(!data){
                 this.icon = ''
                 this.status = 0
                 this.is_exclude = false
+                this.is_demo = false
                     this.places = []
-                        }else{
+                            }else{
 
 
             this.id = typeof data.id != 'undefined' ? data.id : 0
@@ -25,8 +26,9 @@ if(!data){
                 this.icon = typeof data.icon != 'undefined' ? data.icon : ''
                 this.status = typeof data.status != 'undefined' ? data.status : 0
                 this.is_exclude = typeof data.is_exclude != 'undefined' ? data.is_exclude : false
+                this.is_demo = typeof data.is_demo != 'undefined' ? data.is_demo : false
                     this.places = typeof data.places != 'undefined' ? data.places : []
-                        }
+                            }
 }
             id = 0
                 name = ''
@@ -36,5 +38,6 @@ if(!data){
                 icon = ''
                 status = 0
                 is_exclude = false
+                is_demo = false
                         places = []
-                        }
+                            }

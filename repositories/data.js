@@ -157,52 +157,14 @@ const Update = async (data) => {
 
 // Получение всех записей
 const GetAll = async (params, flags = {include: -1}) => {
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iDevice1 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice1.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice1)
-                                                let iParameter2 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter2.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter2)
-                                                                }
-    return Data.findAll(params)
+        return Data.findAll(params)
 }
 
 // Получение всех записей по вхождению строки куда либо
 const GetAllSearch = async (text, params, flags = {include: -1}) => {
     let filter_by_text = []
                                                                 
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iDevice1 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice1.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice1)
-                                                let iParameter2 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter2.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter2)
-                                                                }
-
+    
     return Data.findAll({
         where : {
             [Op.or]: filter_by_text
@@ -236,26 +198,7 @@ const GetAllFilter = async (filter, params, flags = {include: -1}) => {
         return [];
     }
 
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iDevice1 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice1.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice1)
-                                                let iParameter2 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter2.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter2)
-                                                                }
-
+    
     return Data.findAll({
         where : filter,
         ...params

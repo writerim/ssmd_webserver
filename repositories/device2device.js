@@ -157,84 +157,14 @@ const Update = async (data) => {
 
 // Получение всех записей
 const GetAll = async (params, flags = {include: -1}) => {
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iDevice1 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice1.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice1)
-                                                let iParameter2 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter2.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter2)
-                                                let iDevice3 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice3.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice3)
-                                                let iParameter4 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter4.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter4)
-                        }
-    return Device2Device.findAll(params)
+        return Device2Device.findAll(params)
 }
 
 // Получение всех записей по вхождению строки куда либо
 const GetAllSearch = async (text, params, flags = {include: -1}) => {
     let filter_by_text = []
                                                                 
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iDevice1 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice1.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice1)
-                                                let iParameter2 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter2.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter2)
-                                                let iDevice3 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice3.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice3)
-                                                let iParameter4 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter4.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter4)
-                        }
-
+    
     return Device2Device.findAll({
         where : {
             [Op.or]: filter_by_text
@@ -268,42 +198,7 @@ const GetAllFilter = async (filter, params, flags = {include: -1}) => {
         return [];
     }
 
-    if(flags.include != -1){
-        params['include'] = []
-                                                        let iDevice1 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice1.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice1)
-                                                let iParameter2 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter2.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter2)
-                                                let iDevice3 = {
-                    model: Device,
-                    as : 'devices'
-                }
-                if(flags.include){
-                    iDevice3.limit = Number(flags.include)
-                }
-                params['include'].push(iDevice3)
-                                                let iParameter4 = {
-                    model: Parameter,
-                    as : 'parameters'
-                }
-                if(flags.include){
-                    iParameter4.limit = Number(flags.include)
-                }
-                params['include'].push(iParameter4)
-                        }
-
+    
     return Device2Device.findAll({
         where : filter,
         ...params

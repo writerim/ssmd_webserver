@@ -17,7 +17,7 @@ const CONTEXT_NOT_FOUND = 'not fount context'
 const INAVID_ARGS = 'invalid args'
 
 // маппер в ответ для Гет ответа
-const mapToGetResponse = (obj) =>{
+const MapToGetResponse = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
@@ -34,7 +34,7 @@ const mapToGetResponse = (obj) =>{
 
 
 // маппер в ответ для Add запроса
-const mapToAddRequest = (obj) =>{
+const MapToAddRequest = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
@@ -50,7 +50,7 @@ const mapToAddRequest = (obj) =>{
 }
 
 // маппер в ответ для Add ответа
-const mapToAddResponse = (obj) =>{
+const MapToAddResponse = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
@@ -67,7 +67,7 @@ const mapToAddResponse = (obj) =>{
 
 
 // маппер в ответ для Edit запроса
-const mapToEditRequest = (obj) =>{
+const MapToEditRequest = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
@@ -83,7 +83,7 @@ const mapToEditRequest = (obj) =>{
 }
 
 // маппер в ответ для Edit ответа
-const mapToEditResponse = (obj) =>{
+const MapToEditResponse = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
@@ -101,7 +101,7 @@ const mapToEditResponse = (obj) =>{
 
 
 // маппер в ответ для Delete запроса
-const mapToDeleteRequest = (obj) =>{
+const MapToDeleteRequest = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
@@ -117,7 +117,7 @@ const mapToDeleteRequest = (obj) =>{
 }
 
 // маппер в ответ для Delete ответа
-const mapToDeleteResponse = (obj) =>{
+const MapToDeleteResponse = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
@@ -134,6 +134,14 @@ const mapToDeleteResponse = (obj) =>{
 
 
 module.exports = {
+
+    MapToGetResponsePlaceType : MapToGetResponse,
+    MapToAddRequestPlaceType : MapToAddRequest,
+    MapToAddResponsePlaceType : MapToAddResponse,
+    MapToEditRequestPlaceType : MapToEditRequest,
+    MapToEditResponsePlaceType : MapToEditResponse,
+    MapToDeleteRequestPlaceType : MapToDeleteRequest,
+    MapToDeleteResponsePlaceType : MapToDeleteResponse,
 
 /**
 * @api {put} /api/placetype/0 Добавление Типы объектов
@@ -174,7 +182,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddPlaceType(mapToAddRequest(req.body), user_ctx).then(r => {
+            return AddPlaceType(MapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -215,7 +223,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdPlaceType(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(mapToGetResponse(r)));
+                res.end(JSON.stringify(MapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -266,8 +274,8 @@ module.exports = {
             if(!req.body.id && !req.params.id){
                 res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditPlaceType(mapToEditRequest(req.body), user_ctx).then(r => {
-                res.end(JSON.stringify(mapToEditResponse(r)));
+            return EditPlaceType(MapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(MapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -415,7 +423,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -578,7 +586,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -709,7 +717,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -732,3 +740,5 @@ module.exports = {
 
 
 }
+
+

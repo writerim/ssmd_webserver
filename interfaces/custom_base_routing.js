@@ -1,8 +1,9 @@
 const { CustomApiGetDeviceByType } = require("./controllers/device.custom");
 const { ApiGetByIdUser } = require("./controllers/user");
 const UserCtx = require("../entity/user");
-const { CustomApiLoginUser, GetChatBySessionToken, CustomApiCheckTokenUser } = require("./controllers/user.custom");
+const { CustomApiLoginUser, GetChatBySessionToken, CustomApiCheckTokenUser, CustomApiRegister } = require("./controllers/user.custom");
 const { GetUserBySessionToken } = require("../use_cases/user.custom");
+var pjson = require('./../package.json');
 
 const Context = {
 
@@ -58,6 +59,10 @@ const CustomBaseRouter = (app) => {
     app.get('/api/device/all/:type_id', CustomApiGetDeviceByType.bind(ContextApi));
     app.post('/api/login', CustomApiLoginUser.bind(ContextApi));
     app.get('/api/check_token', CustomApiCheckTokenUser.bind(ContextApi));
+    app.post('/api/register', CustomApiRegister.bind(ContextApi));
+    app.get('/api/version', (req, res, next) => {
+        res.end(JSON.stringify({version:pjson.version}));
+    });
 
 }
 

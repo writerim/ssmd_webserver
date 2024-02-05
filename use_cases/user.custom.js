@@ -1,7 +1,7 @@
 var crypto = require('crypto');
 
 const { UserFindByLoginByPassword, UserGetBySessionToken } = require("../repositories/user.custom");
-const { EditUser } = require("./user");
+const { EditUser, GetAllByFilterUser } = require("./user");
 const UserCtx = require("../entity/user");
 
 const NOT_FOUND_CONTEXT = "context not found"
@@ -45,6 +45,25 @@ module.exports = {
             }
             return new UserCtx(res_user.dataValues)
         })
+    },
+
+    async CreateDefaultUser() {
+
+        const user_ctx = new UserCtx({})
+        GetAllByFilterUser({
+            is_system : true
+        },{},false,user_ctx).then(res => {
+            console.log(res);
+        })
+
+        // Сначала ищем клиента, оторый
+
+        // return UserGetBySessionToken(token).then(res_user => {
+        //     if (!res_user) {
+        //         throw new Error(INVALID_TOKEN)
+        //     }
+        //     return new UserCtx(res_user.dataValues)
+        // })
     },
 
 }

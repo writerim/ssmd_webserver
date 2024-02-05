@@ -35,6 +35,7 @@ describe("use_cases: Place", function () {
                                                                                                                                                                                 o['icon'] = 'test'
                                                                                     o['status'] = 10
                                                                                     o['is_exclude'] = true
+                                                                                    o['is_demo'] = true
                             return AddPlace(o,new User())
         .then(res => {
                                                 add_id = res.id
@@ -48,6 +49,8 @@ describe("use_cases: Place", function () {
                                         assert.equal(res.status, 10)
                                                                             
                                     assert.equal(res.is_exclude, true)
+                                                                            
+                                    assert.equal(res.is_demo, true)
                                     })
     })
 
@@ -65,6 +68,8 @@ describe("use_cases: Place", function () {
                                                 assert.equal(res.status, 10)
                                                                                                 
                                             assert.equal(res.is_exclude, true)
+                                                                                                
+                                            assert.equal(res.is_demo, true)
                                                 }
         })
     })
@@ -87,6 +92,8 @@ describe("use_cases: Place", function () {
                                     assert.equal(res.status, 10)
                                                                             
                                     assert.equal(res.is_exclude, true)
+                                                                            
+                                    assert.equal(res.is_demo, true)
                                     })
     })
 
@@ -107,6 +114,8 @@ describe("use_cases: Place", function () {
                             o['status'] = 54
                                                         
                             o['is_exclude'] = false
+                                                        
+                            o['is_demo'] = false
                             
         return EditPlace(o,new User()).then(res => {
                                                 assert.equal(res.id, add_id)
@@ -127,6 +136,9 @@ describe("use_cases: Place", function () {
                                             
                                 
                                     assert.equal(res.is_exclude, false)
+                                            
+                                
+                                    assert.equal(res.is_demo, false)
                                     })
     })
 

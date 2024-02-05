@@ -17,51 +17,51 @@ const CONTEXT_NOT_FOUND = 'not fount context'
 const INAVID_ARGS = 'invalid args'
 
 // маппер в ответ для Гет ответа
-const mapToGetResponse = (obj) =>{
+const MapToGetResponse = (obj) =>{
     let res_obj = {}
                                                             if( typeof obj.id === 'undefined' ){
                                                     res_obj.id = 0
                                             }else{
                         res_obj.id = obj.id
                     }
-                                                                                                                                                                                                                                                                                                                    if( typeof obj.name === 'undefined' ){
+                                                                                                                                                                                                                                                                                                                                                if( typeof obj.name === 'undefined' ){
                                                     res_obj.name = ''
                                             }else{
                         res_obj.name = obj.name
                     }
-                                                                                                                                                                                                                                                                                                                    if( typeof obj.parent_id === 'undefined' ){
+                                                                                                                                                                                                                                                                                                                                                if( typeof obj.parent_id === 'undefined' ){
                                                     res_obj.parent_id = 0
                                             }else{
                         res_obj.parent_id = obj.parent_id
                     }
-                                                                                                                                                                                                                                                                                                                                                                            if( typeof obj.icon === 'undefined' ){
+                                                                                                                                                                                                                                                                                                                                                                                                        if( typeof obj.icon === 'undefined' ){
                                                     res_obj.icon = ''
                                             }else{
                         res_obj.icon = obj.icon
                     }
-                                                                                                                                                                                                                                                                                                                    if( typeof obj.status === 'undefined' ){
+                                                                                                                                                                                                                                                                                                                                                if( typeof obj.status === 'undefined' ){
                                                     res_obj.status = 0
                                             }else{
                         res_obj.status = obj.status
                     }
-                                                                                                                                                                                                                                                                                                                    if( typeof obj.is_exclude === 'undefined' ){
+                                                                                                                                                                                                                                                                                                                                                if( typeof obj.is_exclude === 'undefined' ){
                                                     res_obj.is_exclude = false
                                             }else{
                         res_obj.is_exclude = obj.is_exclude
                     }
-                                            return res_obj
+                                                                        return res_obj
 }
 
 
 // маппер в ответ для Add запроса
-const mapToAddRequest = (obj) =>{
+const MapToAddRequest = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
 }
 
 // маппер в ответ для Add ответа
-const mapToAddResponse = (obj) =>{
+const MapToAddResponse = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
@@ -69,14 +69,14 @@ const mapToAddResponse = (obj) =>{
 
 
 // маппер в ответ для Edit запроса
-const mapToEditRequest = (obj) =>{
+const MapToEditRequest = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
 }
 
 // маппер в ответ для Edit ответа
-const mapToEditResponse = (obj) =>{
+const MapToEditResponse = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
@@ -85,14 +85,14 @@ const mapToEditResponse = (obj) =>{
 
 
 // маппер в ответ для Delete запроса
-const mapToDeleteRequest = (obj) =>{
+const MapToDeleteRequest = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
 }
 
 // маппер в ответ для Delete ответа
-const mapToDeleteResponse = (obj) =>{
+const MapToDeleteResponse = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
@@ -100,6 +100,14 @@ const mapToDeleteResponse = (obj) =>{
 
 
 module.exports = {
+
+    MapToGetResponsePlace : MapToGetResponse,
+    MapToAddRequestPlace : MapToAddRequest,
+    MapToAddResponsePlace : MapToAddResponse,
+    MapToEditRequestPlace : MapToEditRequest,
+    MapToEditResponsePlace : MapToEditResponse,
+    MapToDeleteRequestPlace : MapToDeleteRequest,
+    MapToDeleteResponsePlace : MapToDeleteResponse,
 
 /**
 * @api {put} /api/place/0 Добавление Места установки
@@ -119,6 +127,7 @@ module.exports = {
 * @apiBody {String} icon Иконка
 * @apiBody {Number} status Статус объекта
 * @apiBody {Boolean} is_exclude Исключен из опроса
+* @apiBody {Boolean} is_demo Демонстрационный объект
 *
 * @apiSuccess {Number} id 
 * @apiSuccess {String} name Название точки
@@ -128,6 +137,7 @@ module.exports = {
 * @apiSuccess {String} icon Иконка
 * @apiSuccess {Number} status Статус объекта
 * @apiSuccess {Boolean} is_exclude Исключен из опроса
+* @apiSuccess {Boolean} is_demo Демонстрационный объект
 * @apiErrorExample Response (example):
 *     HTTP/1.1 200
 *     {
@@ -136,7 +146,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                                                                         
+                                                                                 
 *     }
 */
     ApiAddPlace (req, res, next) {
@@ -150,7 +160,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddPlace(mapToAddRequest(req.body), user_ctx).then(r => {
+            return AddPlace(MapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -191,7 +201,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdPlace(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(mapToGetResponse(r)));
+                res.end(JSON.stringify(MapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -217,6 +227,7 @@ module.exports = {
 * @apiBody {String} icon Иконка
 * @apiBody {Number} status Статус объекта
 * @apiBody {Boolean} is_exclude Исключен из опроса
+* @apiBody {Boolean} is_demo Демонстрационный объект
 *
 *
 * @apiSuccess {Number} id=true 
@@ -227,6 +238,7 @@ module.exports = {
 * @apiSuccess {String} icon Иконка
 * @apiSuccess {Number} status=true Статус объекта
 * @apiSuccess {Boolean} is_exclude Исключен из опроса
+* @apiSuccess {Boolean} is_demo Демонстрационный объект
 * @apiErrorExample Response (example):
 *     HTTP/1.1 200
 *     {
@@ -235,7 +247,7 @@ module.exports = {
 *       "error": "permission denied"
 *       "error": "not fount context"
 *       "error": "not fount row"
-                                                                         
+                                                                                 
 *     }
 */
     ApiEditPlace (req, res, next) {
@@ -252,8 +264,8 @@ module.exports = {
             if(!req.body.id && !req.params.id){
                 res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditPlace(mapToEditRequest(req.body), user_ctx).then(r => {
-                res.end(JSON.stringify(mapToEditResponse(r)));
+            return EditPlace(MapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(MapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -325,6 +337,7 @@ module.exports = {
 * @apiSuccess {String} data.icon Иконка
 * @apiSuccess {Number} data.status Статус объекта
 * @apiSuccess {Boolean} data.is_exclude Исключен из опроса
+* @apiSuccess {Boolean} data.is_demo Демонстрационный объект
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -406,7 +419,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -450,7 +463,7 @@ module.exports = {
 
     
 /**
-* @api {get} /api/place/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_parent_id=:filter_parent_id&?filters_by_lft=:filter_lft&?filters_by_rgt=:filter_rgt&?filters_by_icon=:filter_icon&?filters_by_status=:filter_status&?filters_by_is_exclude=:filter_is_exclude&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Места установки
+* @api {get} /api/place/filter?filters_by_id=:filter_id&?filters_by_name=:filter_name&?filters_by_parent_id=:filter_parent_id&?filters_by_lft=:filter_lft&?filters_by_rgt=:filter_rgt&?filters_by_icon=:filter_icon&?filters_by_status=:filter_status&?filters_by_is_exclude=:filter_is_exclude&?filters_by_is_demo=:filter_is_demo&&limit=:limit_row&offset=:offset_row&page=:page_num Получение всех записей по фильтру Места установки
 * @apiName GetAllFilterPlace
 * @apiGroup Place
 *
@@ -466,6 +479,7 @@ module.exports = {
 * @apiParam { string } filter_icon Фильтр по полю icon
 * @apiParam { int } filter_status Фильтр по полю status
 * @apiParam { bool } filter_is_exclude Фильтр по полю is_exclude
+* @apiParam { bool } filter_is_demo Фильтр по полю is_demo
 * @apiParam {int} limit_row=10   Сколько записей показывать
 * @apiParam {int} offset_row=0   Сколько записей отступить от начала
 * @apiParam {int} page_num=1  Какую страницу показывать
@@ -479,6 +493,7 @@ module.exports = {
 * @apiSuccess {String} data.icon Иконка
 * @apiSuccess {Number} data.status Статус объекта
 * @apiSuccess {Boolean} data.is_exclude Исключен из опроса
+* @apiSuccess {Boolean} data.is_demo Демонстрационный объект
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -598,6 +613,13 @@ module.exports = {
                 if( typeof req.params.filters_by_is_exclude != 'undefined' ){
                     filter['is_exclude'] = req.params.filters_by_is_exclude
                 }
+                            if( typeof req.query.filters_by_is_demo != 'undefined' ){
+                    filter['is_demo'] = req.query.filters_by_is_demo
+                }
+
+                if( typeof req.params.filters_by_is_demo != 'undefined' ){
+                    filter['is_demo'] = req.params.filters_by_is_demo
+                }
             
             return GetAllByFilterCountPlace(filter, user_ctx).then(r_count => {
                 return GetAllByFilterPlace(filter, {limit: Number(limit) , offset:Number(offset)}, flags, user_ctx).then(r => {
@@ -614,7 +636,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -670,6 +692,7 @@ module.exports = {
 * @apiSuccess {String} data.icon Иконка
 * @apiSuccess {Number} data.status Статус объекта
 * @apiSuccess {Boolean} data.is_exclude Исключен из опроса
+* @apiSuccess {Boolean} data.is_demo Демонстрационный объект
 * @apiSuccess {Object} meta Метаданные для списка
 * @apiSuccess {Number} meta.total Общее кол-во
 * @apiSuccess {Number} meta.limit Лимит по которому ограничена выборка
@@ -750,7 +773,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -773,3 +796,5 @@ module.exports = {
 
 
 }
+
+

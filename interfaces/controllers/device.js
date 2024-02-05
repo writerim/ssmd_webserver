@@ -17,7 +17,7 @@ const CONTEXT_NOT_FOUND = 'not fount context'
 const INAVID_ARGS = 'invalid args'
 
 // маппер в ответ для Гет ответа
-const mapToGetResponse = (obj) =>{
+const MapToGetResponse = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
@@ -25,14 +25,14 @@ const mapToGetResponse = (obj) =>{
 
 
 // маппер в ответ для Add запроса
-const mapToAddRequest = (obj) =>{
+const MapToAddRequest = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
 }
 
 // маппер в ответ для Add ответа
-const mapToAddResponse = (obj) =>{
+const MapToAddResponse = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
@@ -40,14 +40,14 @@ const mapToAddResponse = (obj) =>{
 
 
 // маппер в ответ для Edit запроса
-const mapToEditRequest = (obj) =>{
+const MapToEditRequest = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
 }
 
 // маппер в ответ для Edit ответа
-const mapToEditResponse = (obj) =>{
+const MapToEditResponse = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
@@ -56,14 +56,14 @@ const mapToEditResponse = (obj) =>{
 
 
 // маппер в ответ для Delete запроса
-const mapToDeleteRequest = (obj) =>{
+const MapToDeleteRequest = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
 }
 
 // маппер в ответ для Delete ответа
-const mapToDeleteResponse = (obj) =>{
+const MapToDeleteResponse = (obj) =>{
     let res_obj = {}
             res_obj = obj;
         return res_obj
@@ -71,6 +71,14 @@ const mapToDeleteResponse = (obj) =>{
 
 
 module.exports = {
+
+    MapToGetResponseDevice : MapToGetResponse,
+    MapToAddRequestDevice : MapToAddRequest,
+    MapToAddResponseDevice : MapToAddResponse,
+    MapToEditRequestDevice : MapToEditRequest,
+    MapToEditResponseDevice : MapToEditResponse,
+    MapToDeleteRequestDevice : MapToDeleteRequest,
+    MapToDeleteResponseDevice : MapToDeleteResponse,
 
 /**
 * @api {put} /api/device/0 Добавление Устройства
@@ -129,7 +137,7 @@ module.exports = {
                 return
             }
             const user_ctx = new UserCtx(user.dataValues)
-            return AddDevice(mapToAddRequest(req.body), user_ctx).then(r => {
+            return AddDevice(MapToAddRequest(req.body), user_ctx).then(r => {
                 res.end(JSON.stringify(r));
             }).catch(e => next(e))
         }).catch(e => {
@@ -170,7 +178,7 @@ module.exports = {
             }
             const user_ctx = new UserCtx(user.dataValues)
             return FindByIdDevice(req.params.id, user_ctx).then(r => {
-                res.end(JSON.stringify(mapToGetResponse(r)));
+                res.end(JSON.stringify(MapToGetResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -239,8 +247,8 @@ module.exports = {
             if(!req.body.id && !req.params.id){
                 res.status(412).json({ error: INAVID_ARGS });
             }
-            return EditDevice(mapToEditRequest(req.body), user_ctx).then(r => {
-                res.end(JSON.stringify(mapToEditResponse(r)));
+            return EditDevice(MapToEditRequest(req.body), user_ctx).then(r => {
+                res.end(JSON.stringify(MapToEditResponse(r)));
             }).catch(e => next(e))
         }).catch(e => {
             res.status(401).json({ error: e.message });
@@ -397,7 +405,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -641,7 +649,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -781,7 +789,7 @@ module.exports = {
                     let res_out = []
 
                     r.forEach(rr => {
-                        res_out.push(mapToGetResponse(rr))
+                        res_out.push(MapToGetResponse(rr))
                     })
 
                     res.end(JSON.stringify({
@@ -804,3 +812,5 @@ module.exports = {
 
 
 }
+
+
